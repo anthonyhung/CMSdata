@@ -1,0 +1,196 @@
+---
+title: "ICD-10 PCS codes"
+author: "anthonyhung"
+date: "2025-07-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Load table
+
+```{r libraries}
+library(readr)
+library(dplyr)
+library(stringr)
+```
+
+
+```{r data}
+# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
+icd10codes <- read_fwf(
+  file = "data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt",
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = "c")
+)
+```
+
+
+# Search for the procedures I am interested in and store the codes
+
+
+## appendectomy = "resection of the appendix"
+
+```{r appendectomy}
+appendectomy_cd <- icd10codes %>%
+  filter(str_detect(description, regex("resection.*appendix", ignore_case = TRUE))) %>%
+  pull(code)
+```
+
+## cholecystectomy = "resection of the gallbladder"
+
+```{r cholecystectomy}
+cholecystectomy_cd <- icd10codes %>%
+  filter(str_detect(description, regex("resection.*gallbladder", ignore_case = TRUE))) %>%
+  pull(code)
+```
+
+## colon resection (there are many parts)
+
+```{r colon resection}
+large_intestine_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Large intestine", ignore_case = TRUE))) %>%
+  pull(code)
+
+cecum_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Cecum", ignore_case = TRUE))) %>%
+  pull(code)
+
+ascending_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Ascending Colon", ignore_case = TRUE))) %>%
+  pull(code)
+
+transverse_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Transverse Colon", ignore_case = TRUE))) %>%
+  pull(code)
+
+descending_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Descending Colon", ignore_case = TRUE))) %>%
+  pull(code)
+
+sigmoid_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Sigmoid Colon", ignore_case = TRUE))) %>%
+  pull(code)
+
+left_colon_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Left Large Intestine", ignore_case = TRUE))) %>%
+  pull(code)
+
+right_colon_codes <- icd10codes %>%
+  filter(str_detect(description, regex("^Resection of Right Large Intestine", ignore_case = TRUE))) %>%
+  pull(code)
+
+colon_codes <- c(large_intestine_codes,
+                 cecum_codes,
+                 ascending_codes,
+                 transverse_codes,
+                 descending_codes,
+                 sigmoid_codes,
+                 left_colon_codes,
+                 right_colon_codes)
+```
+
+## Gastric bypass (stomach to Jejunum or ileum)
+
+```{r gastric bypass}
+gastric_bypass_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Bypass Stomach to (Jejunum|Ileum)", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Anterior or posterior spinal arthrodesis
+
+```{r spinal fusions}
+spinal_fusion_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Fusion of .*vertebral joint", ignore_case = TRUE)) &
+    str_detect(description, regex("anterior|posterior", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Total knee replacement
+
+```{r TKA}
+knee_replacement_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Replacement of (Right|Left) Knee Joint", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Total hip replacement
+
+```{r THA}
+hip_replacement_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Replacement of (Right|Left) Hip Joint", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Craniotomy for brain tumor (open approach)
+
+```{r craniotomy}
+craniotomy_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Excision of Brain, Open Approach", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Total thyroidectomy
+
+```{r thyroidectomy}
+thyroidectomy_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Resection of Thyroid Gland,", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Femoral-popliteal bypass
+
+```{r fem-pop}
+fem_pop_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Bypass (Right|Left) Femoral Artery.* to Popliteal Artery", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Lung resection (note: this omits trachea and carina)
+
+```{r lung resection}
+lung_resection_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Resection of.* Lung|^Resection of.* Bronchus", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## Open repair femoral neck/shaft fracture (Not replacement, "upper femur", "open")
+
+```{r femur_repair resection}
+femur_repair_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^Repair (Right|Left) Upper Femur, Open", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
+## AAA repair ("supplement, repair, or replace")
+
+```{r AAA}
+AAA_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("^(Supplement|Repair|Replacement of) Abdominal Aorta", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+```
+
