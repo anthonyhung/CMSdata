@@ -1,0 +1,57 @@
+---
+title: "surgCodes"
+author: "anthonyhung"
+date: "2025-07-04"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(dplyr)
+```
+
+
+## Identify ICD codes corresponding to surgeries and categories of surgeries
+
+
+
+```{r}
+PClass <- read.csv("data/PClassR_v2023-1/PClassR_v2023-1.csv",
+                   skip = 1,
+                   header = TRUE)
+PClass_surg <- PClass %>%
+  filter(X.PROCEDURE.CLASS. == 3 | X.PROCEDURE.CLASS. == 4) # identify "Major" class diagnostic or therapeutic procedures (likely to be OR operations)
+
+#Put codes into categories based on PRCCSR
+PRCCSR_categories_file <- read.csv("data/PRCCSR_v2023-1/PRCCSR_categories.csv") #I made this file from the reference excel file's panel
+PRCCSR <- read.csv("data/PRCCSR_v2023-1/PRCCSR_v2023-1.CSV")
+
+#join datasets
+joined_codes <- merge(PClass_surg, PRCCSR, by.x = "X.ICD.10.PCS.CODE.", by.y = "X.ICD.10.PCS.")
+
+dim(joined_codes) #56454 codes qualify
+table(joined_codes$X.CLINICAL.DOMAIN.)
+
+write.csv(joined_codes$X.ICD.10.PCS.CODE., "~/Desktop/PCScodes.csv")
+```
+
+
+Surgeries from etherington et al
+
+Femoral-popliteal bypass
+AAA repair
+Appendectomy
+Cholecystectomy
+Gastric bypass
+Colon resection
+Anterior or posterior spinal arthrodesis
+Craniotomy for a brain tumor
+Total knee replacement
+Total hip replacement
+Open repair of femoral neck or shaft fracture
+Total thyroidectomy
+Neck dissection
+Lung resection
+
+
