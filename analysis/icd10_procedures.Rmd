@@ -11,8 +11,8 @@ editor_options:
 
 ```{r libraries}
 library(readr)
-library(dplyr)
 library(stringr)
+library(tidyverse)
 ```
 
 
@@ -35,17 +35,29 @@ icd10codes <- read_fwf(
 ## appendectomy = "resection of the appendix"
 
 ```{r appendectomy}
-appendectomy_cd <- icd10codes %>%
+appendectomy_codes <- icd10codes %>%
   filter(str_detect(description, regex("resection.*appendix", ignore_case = TRUE))) %>%
   pull(code)
+
+appendectomy_codes_icd9 <- c("47.0","47.01","47.09")
+
+appendectomy_codes_CPT <- c("44950","44955","44960","44970")
+
+appendectomy_codes <- c(appendectomy_codes, appendectomy_codes_icd9, appendectomy_codes_CPT)
 ```
 
 ## cholecystectomy = "resection of the gallbladder"
 
 ```{r cholecystectomy}
-cholecystectomy_cd <- icd10codes %>%
+cholecystectomy_codes <- icd10codes %>%
   filter(str_detect(description, regex("resection.*gallbladder", ignore_case = TRUE))) %>%
   pull(code)
+
+cholecystectomy_codes_icd9 <- c("51.2","51.22","51.23")
+
+cholecystectomy_codes_CPT <- c("47562","47563","47564","47600","47605","47610","47612","47620")
+
+cholecystectomy_codes <- c(cholecystectomy_codes, cholecystectomy_codes_icd9, cholecystectomy_codes_CPT)
 ```
 
 ## colon resection (there are many parts)
@@ -91,6 +103,12 @@ colon_codes <- c(large_intestine_codes,
                  sigmoid_codes,
                  left_colon_codes,
                  right_colon_codes)
+
+colon_codes_icd9 <- c("17.3","17.31","17.32","17.33","17.34","17.35","17.36","17.39","45.7","45.71","45.72","45.73","45.74","45.75","45.76","45.79","45.8","45.81","45.82","45.83")
+
+colon_codes_CPT <- c("44144","44157","44158","44160","44204","44205","44207","44208","45402")
+
+colon_codes <- c(colon_codes, colon_codes_icd9, colon_codes_CPT)
 ```
 
 ## Gastric bypass (stomach to Jejunum or ileum)
@@ -101,6 +119,12 @@ gastric_bypass_codes <- icd10codes %>%
     str_detect(description, regex("^Bypass Stomach to (Jejunum|Ileum)", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+gastric_bypass_codes_icd9 <- c("43.7","43.81","44.31","44.32","44.38","44.39")
+
+gastric_bypass_codes_CPT <- c("43644","43645","43845","43846","43847")
+
+gastric_bypass_codes <- c(gastric_bypass_codes, gastric_bypass_codes_icd9, gastric_bypass_codes_CPT)
 ```
 
 ## Anterior or posterior spinal arthrodesis
@@ -112,6 +136,12 @@ spinal_fusion_codes <- icd10codes %>%
     str_detect(description, regex("anterior|posterior", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+spinal_fusion_codes_icd9 <- c("81.00","81.01","81.02","81.03","81.04","81.05","81.06","81.07","81.08","81.30","81.31","81.32","81.33","81.34","81.35","81.36","81.37","81.38","81.39","81.62","81.63","81.64","81.65","81.66")
+
+spinal_fusion_codes_CPT <- c("22548","22551","22552","22554","22556","22558","22585","22586","22590","22595","22600","22610","22612","22614","22630","22632","22633","22634","22800","22802","22804","22808","22810","22812")
+
+spinal_fusion_codes <- c(spinal_fusion_codes, spinal_fusion_codes_icd9, spinal_fusion_codes_CPT)
 ```
 
 ## Total knee replacement
@@ -122,6 +152,12 @@ knee_replacement_codes <- icd10codes %>%
     str_detect(description, regex("^Replacement of (Right|Left) Knee Joint", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+knee_replacement_codes_icd9 <- "81.54"
+
+knee_replacement_codes_CPT <- c("27447","27487")
+
+knee_replacement_codes <- c(knee_replacement_codes, knee_replacement_codes_icd9, knee_replacement_codes_CPT)
 ```
 
 ## Total hip replacement
@@ -132,6 +168,12 @@ hip_replacement_codes <- icd10codes %>%
     str_detect(description, regex("^Replacement of (Right|Left) Hip Joint", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+hip_replacement_codes_icd9 <- "81.51"
+
+hip_replacement_codes_CPT <- c("27130","27132","27134")
+
+hip_replacement_codes <- c(hip_replacement_codes, hip_replacement_codes_icd9, hip_replacement_codes_CPT)
 ```
 
 ## Craniotomy for brain tumor (open approach)
@@ -142,6 +184,12 @@ craniotomy_codes <- icd10codes %>%
     str_detect(description, regex("^Excision of Brain, Open Approach", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+craniotomy_codes_icd9 <- c("01.24","01.31","01.32","01.39","01.53")
+
+craniotomy_codes_CPT <- c("61500","61510","61512","61518","61519","61520","61521","61522","61524","61526","61530","61545","61546")
+
+craniotomy_codes <- c(craniotomy_codes, craniotomy_codes_icd9, craniotomy_codes_CPT)
 ```
 
 ## Total thyroidectomy
@@ -152,6 +200,12 @@ thyroidectomy_codes <- icd10codes %>%
     str_detect(description, regex("^Resection of Thyroid Gland,", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+thyroidectomy_codes_icd9 <- "06.4"
+
+thyroidectomy_codes_CPT <- c("60240","60252","60254","60260","60270","60271")
+
+thyroidectomy_codes <- c(thyroidectomy_codes, thyroidectomy_codes_icd9, thyroidectomy_codes_CPT)
 ```
 
 ## Femoral-popliteal bypass
@@ -162,6 +216,12 @@ fem_pop_codes <- icd10codes %>%
     str_detect(description, regex("^Bypass (Right|Left) Femoral Artery.* to Popliteal Artery", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+fem_pop_codes_icd9 <- "39.29"
+
+fem_pop_codes_CPT <- c("35556","35583","35656")
+
+fem_pop_codes <- c(fem_pop_codes, fem_pop_codes_icd9, fem_pop_codes_CPT)
 ```
 
 ## Lung resection (note: this omits trachea and carina)
@@ -172,16 +232,28 @@ lung_resection_codes <- icd10codes %>%
     str_detect(description, regex("^Resection of.* Lung|^Resection of.* Bronchus", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+lung_resection_codes_icd9 <- c("32.30","32.39","32.41","32.49","32.50","32.59")
+
+lung_resection_codes_CPT <- c("32491","32507","32668")
+
+lung_resection_codes <- c(lung_resection_codes, lung_resection_codes_icd9, lung_resection_codes_CPT)
 ```
 
-## Open repair femoral neck/shaft fracture (Not replacement, "upper femur", "open")
+## Open repair femoral neck/shaft fracture (Not replacement, "upper or lower femur", "open")
 
 ```{r femur_repair resection}
 femur_repair_codes <- icd10codes %>%
   filter(
-    str_detect(description, regex("^Repair (Right|Left) Upper Femur, Open", ignore_case = TRUE))
+    str_detect(description, regex("^Repair (Right|Left) (Upper|lower) Femur, Open", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+femur_repair_codes_icd9 <- c("79.25","79.35","79.55")
+
+femur_repair_codes_CPT <- c("27170","27176","27177","27178","27179","27181","27248","27470","27472")
+
+femur_repair_codes <- c(femur_repair_codes, femur_repair_codes_icd9, femur_repair_codes_CPT)
 ```
 
 ## AAA repair ("supplement, repair, or replace")
@@ -189,8 +261,59 @@ femur_repair_codes <- icd10codes %>%
 ```{r AAA}
 AAA_codes <- icd10codes %>%
   filter(
-    str_detect(description, regex("^(Supplement|Repair|Replacement of) Abdominal Aorta", ignore_case = TRUE))
+    str_detect(description, regex("^(Supplement|Repair|Replacement|Restriction) of Abdominal Aorta", ignore_case = TRUE))
   ) %>%
   pull(code)
+
+AAA_codes_icd9 <- "39.52"
+
+AAA_codes_CPT <- c("34701","34702","34703","34704","34705","34706","34830","34831","34832","34841","34842","34843","34844","34845","34846","34847","34848","35081","35082","35091","35092","35102","35103")
+
+AAA_codes <- c(AAA_codes, AAA_codes_icd9, AAA_codes_CPT)
 ```
+
+## Neck dissection (excision or resection of neck lymphatics)
+
+```{r neck}
+neck_codes <- icd10codes %>%
+  filter(
+    str_detect(description, regex("(Resection|Excision).* neck lymphatic", ignore_case = TRUE))
+  ) %>%
+  pull(code)
+
+neck_codes_icd9 <- c("40.40","40.41","40.42")
+
+neck_codes_CPT <- c("31365","31368","38542","38720","38724","41135","41145","41155","42426","69155")
+
+neck_codes <- c(neck_codes, neck_codes_icd9, neck_codes_CPT)
+```
+
+## Make dataframe of codes/descriptions
+```{r export}
+code_list <- list(
+  AAA = AAA_codes,
+  appendectomy = appendectomy_codes,
+  cholecystectomy = cholecystectomy_codes,
+  colon = colon_codes,
+  craniotomy = craniotomy_codes,
+  fem_pop = fem_pop_codes,
+  femur = femur_repair_codes,
+  gastric_bypass = gastric_bypass_codes,
+  hip = hip_replacement_codes,
+  knee = knee_replacement_codes,
+  lung = lung_resection_codes,
+  neck = neck_codes,
+  spine = spinal_fusion_codes,
+  thyroidectomy = thyroidectomy_codes
+)
+
+# Convert to tibble
+df <- enframe(code_list, name = "group", value = "codes") %>%
+  unnest(codes)
+
+df$codes <- gsub("\\.", "", df$codes)
+
+write.csv(df, "output/surgery_codes.csv", row.names = FALSE)
+```
+
 
