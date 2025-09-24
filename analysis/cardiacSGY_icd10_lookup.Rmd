@@ -1,0 +1,302 @@
+---
+title: "cardiacSGY_icd10_lookup"
+author: "anthonyhung"
+date: "2025-08-30"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(readr)
+library(stringr)
+library(tidyverse)
+```
+
+```{r}
+# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
+icd10codes <- read_fwf(
+  file = "data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt",
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = "c")
+)
+head(icd10codes)
+```
+
+# load all codes
+
+```{r}
+allcodes <- "0210093, 0210098, 0210099, 021009C, 021009F, 021009W, 02100A3, 02100A8, 02100A9, 02100AC, 02100AF, 02100AW, 02100J3, 02100J8, 02100J9, 02100JC, 02100JF, 02100JW, 02100K3, 02100K8, 02100K9, 02100KC, 02100KF, 02100KW, 02100Z3, 02100Z8, 02100Z9, 02100ZC, 02100ZF, 0211093, 0211098, 0211099, 021109C, 021109F, 021109W, 02110A3, 02110A8, 02110A9, 02110AC, 02110AF, 02110AW, 02110J3, 02110J8, 02110J9, 02110JC, 02110JF, 02110JW, 02110K3, 02110K8, 02110K9, 02110KC, 02110KF, 02110KW, 02110Z3, 02110Z8, 02110Z9, 02110ZC, 02110ZF, 0212093, 0212098, 0212099, 021209C, 021209F, 021209W, 02120A3, 02120A8, 02120A9, 02120AC, 02120AF, 02120AW, 02120J3, 02120J8, 02120J9, 02120JC, 02120JF, 02120JW, 02120K3, 02120K8, 02120K9, 02120KC, 02120KF, 02120KW, 02120Z3, 02120Z8, 02120Z9, 02120ZC, 02120ZF, 0213093, 0213098, 0213099, 021309C, 021309F, 021309W, 02130A3, 02130A8, 02130A9, 02130AC, 02130AF, 02130AW, 02130J3, 02130J8, 02130J9, 02130JC, 02130JF, 02130JW, 02130K3, 02130K8, 02130K9, 02130KC, 02130KF, 02130KW, 02130Z3, 02130Z8, 02130Z9, 02130ZC, 02130ZF, 027F04Z, 027F0DZ, 027F0ZZ, 02CF0ZZ, 02NF0ZZ, 02QF0ZZ, 02RF07Z, 02RF08Z, 02RF0JZ, 02RF0KZ, 027G04Z, 027G0DZ, 027G0ZZ, 02CG0ZZ, 02NG0ZZ, 02QG0ZZ, 02RG07Z, 02RG08Z, 02RG0JZ, 02RG0KZ, 02CJ0ZZ, 02QJ0ZZ, 02RJ07Z, 02RJ08Z, 02RJ0JZ, 02RJ0KZ, 0210493, 0210498, 0210499, 021049C, 021049F, 021049W, 02104A3, 02104A8, 02104A9, 02104AC, 02104AF, 02104AW, 02104J3, 02104J8, 02104J9, 02104JC, 02104JF, 02104JW, 02104K3, 02104K8, 02104K9, 02104KC, 02104KF, 02104KW, 02104Z3, 02104Z8, 02104Z9, 02104ZC, 02104ZF, 0211493, 0211498, 0211499, 021149C, 021149F, 021149W, 02114A3, 02114A8, 02114A9, 02114AC, 02114AF, 02114AW, 02114J3, 02114J8, 02114J9, 02114JC, 02114JF, 02114JW, 02114K3, 02114K8, 02114K9, 02114KC, 02114KF, 02114KW, 02114Z3, 02114Z8, 02114Z9, 02114ZC, 02114ZF, 0212493, 0212498, 0212499, 021249C, 021249F, 021249W, 02124A3, 02124A8, 02124A9, 02124AC, 02124AF, 02124AW, 02124J3, 02124J8, 02124J9, 02124JC, 02124JF, 02124JW, 02124K3, 02124K8, 02124K9, 02124KC, 02124KF, 02124KW, 02124Z3, 02124Z8, 02124Z9, 02124ZC, 02124ZF, 0213493, 0213498, 0213499, 021349C, 021349F, 021349W, 02134A3, 02134A8, 02134A9, 02134AC, 02134AF, 02134AW, 02134J3, 02134J8, 02134J9, 02134JC, 02134JF, 02134JW, 02134K3, 02134K8, 02134K9, 02134KC, 02134KF, 02134KW, 02134Z3, 02134Z8, 02134Z9, 02134ZC, 02134ZF, 027F34Z, 027F3DZ, 027F3ZZ, 027F44Z, 027F4DZ, 027F4ZZ, 02CF3ZZ, 02CF4ZZ, 02NF3ZZ, 02NF4ZZ, 02RF37H, 02RF37Z, 02RF38H, 02RF38Z, 02RF3JH, 02RF3JZ, 02RF3KH, 02RF3KZ, 02RF47Z, 02RF48Z, 02RF4JZ, 02RF4KZ, 027G34Z, 027G3DZ, 027G3ZZ, 027G44Z, 027G4DZ, 027G4ZZ, 02CG3ZZ, 02CG4ZZ, 02NG3ZZ, 02NG4ZZ, 02RG37H, 02RG37Z, 02RG38H, 02RG38Z, 02RG3JH, 02RG3JZ, 02RG3KH, 02RG3KZ, 02RG47Z, 02RG48Z, 02RG4JZ, 02RG4KZ, 02UG3JZ, 02QG3ZZ, 02UG37E, 02UG37Z, 02UG38E, 02UG38Z, 02UG3JE, 02UG3KE, 02UG3KZ, 027J34Z, 027J3DZ, 027J3ZZ, 027J44Z, 027J4DZ, 027J4ZZ, 02NJ3ZZ, 02NJ4ZZ, 02RJ47Z, 02RJ48Z, 02RJ4JZ, 02RJ4KZ, 02RJ37H, 02RJ37Z, 02RJ38H, 02RJ38Z, 02RJ3JH, 02RJ3JZ, 02RJ3KH, 02RJ3KZ, 027J04Z, 027J0DZ, 027J0ZZ, 02CJ3ZZ, 02CJ4ZZ, 02NJ0ZZ"
+
+# Function to get unique ICD codes from a single string
+get_unique_ICD_from_string <- function(ICD_string) {
+  # Split string by comma or space
+  ICD_vector <- unlist(strsplit(ICD_string, split = "[, \n]+"))
+  
+  # Trim whitespace from each element
+  ICD_vector <- trimws(ICD_vector)
+  
+  # Convert to character (in case of numeric-like codes)
+  ICD_vector <- as.character(ICD_vector)
+  
+  # Return unique values
+  unique(ICD_vector)
+}
+allcodes_unique <- get_unique_ICD_from_string(allcodes)
+
+
+wildcards <- ("02100xx, 02110xx, 02120xx, 02130xx, 02RF07x, 02RF08x, 02RF0Kx, 02RF0Jx, 02QF0Zx, 02UF07x, 02UF08x, 02UF0Jx, 02UF0Kx, 02QF0xx, 02RF0xx, 02RG07x, 02RG08x, 02RG0Jx, 02RG0Kx, 02QG0Zx, 02UG07x, 02UG08x, 02UG0Jx, 02UG0Kx, 02QG0xx, 02RG0xx, 02RJ07x, 02RJ08x, 02RJ0Jx,
+02RJ0Kx, 02QJ0Zx, 02UJ07x, 02UJ08x, 02UJ0Jx, 02UJ0Kx, 02QJ0xx, 02RJ0xx, 02103xx, 02113xx, 02123xx, 02133xx, 02104xx, 02114xx, 02124xx, 02134xx, 02RF47x, 02RF48x, 02RF4Jx, 02RF4Kx, 02QF4Zx, 02UF47x, 02UF48x, 02UF4Jx, 02UF4Kx, 02QF3xx, 02RF3xx, 02QF4xx, 02RF4xx, 02RG47x, 02RG48x, 02RG4Jx, 02RG4Kx, 02QG4Zx, 02UG47x, 02UG48x, 02UG4Jx, 02UG4Kx, 02QG3xx, 02RG3xx, 02QG4xx, 02RG4xx, 02RJ47x, 02RJ48x, 02RJ4Jx, 02RJ4Kx, 02QJ4Zx, 02UJ47x, 02UJ48x, 02UJ4Jx, 02UJ4Kx, 02QJ3xx, 02RJ3xx, 02QJ4xx, 02RJ4xx")
+
+# Function to expand wildcard codes
+expand_wildcards <- function(wildcard_string, master_codes) {
+  wildcard_vector <- unlist(strsplit(wildcard_string, split = "[, \n]+"))
+  wildcard_vector <- trimws(wildcard_vector)
+  
+  expanded <- map(wildcard_vector, function(pat) {
+    regex_pat <- paste0("^", str_replace_all(pat, "x", ""))
+    master_codes$code[str_detect(master_codes$code, regex_pat)]
+  }) %>% unlist()
+  
+  unique(expanded)
+}
+
+wildcard_expanded <- expand_wildcards(wildcards, icd10codes)
+
+combined_codes_unique <- sort(unique(c(allcodes_unique, wildcard_expanded)))
+```
+ 
+# Match codes to the descriptions:
+
+ Columns for output: Number / Range 	Full Description* 	Procedure type	Approach
+
+```{r}
+# make into tibble for joining
+combined_codes_df <- tibble(code = combined_codes_unique)
+
+# join with icd10codes on the code
+cardiacSGYlookup <- combined_codes_df %>%
+  left_join(icd10codes, by = c("code")) %>%
+  rename(`Number / Range` = code,
+         `Full Description` = description) %>%
+  mutate(
+    `Procedure type` = case_when(
+      str_detect(`Full Description`, regex("Bypass Coronary Artery", ignore_case = TRUE)) ~ "Coronary Artery Bypass Graft",
+      str_detect(`Full Description`, regex("Mitral Valve", ignore_case = TRUE)) ~ "Mitral Valve repair/replacement",
+      str_detect(`Full Description`, regex("Aortic Valve", ignore_case = TRUE)) ~ "Aortic Valve repair/replacement",
+      str_detect(`Full Description`, regex("Tricuspid Valve", ignore_case = TRUE)) ~ "Tricuspid Valve repair/replacement",
+      str_detect(`Full Description`, regex("Pulmonary Valve", ignore_case = TRUE)) ~ "Pulmonary Valve repair/replacement",
+      TRUE ~ str_extract(`Full Description`, "^[A-Za-z]+")
+    ),
+    Approach = str_extract(`Full Description`,
+                           "(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach)"),
+        Replacement = str_detect(`Full Description`, regex("Replacement", ignore_case = TRUE))
+
+  )
+
+write.csv(cardiacSGYlookup, "output/ICD10_cardiacSGY_lookup.csv", row.names = FALSE)
+```
+
+Find Percutaneous Coronary Intervention codes
+```{r}
+PCI_codes <- icd10codes %>%
+  filter(str_detect(description, regex("Dilation of Coronary Artery, ", ignore_case = TRUE))) %>% 
+  rename(`Number / Range` = code,
+         `Full Description` = description) %>%
+  mutate(Approach = str_extract(`Full Description`,
+                           "(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach)"),
+         WithDevice = str_detect(`Full Description`, regex("Device", ignore_case = TRUE)),
+         DrugEluting = str_detect(`Full Description`, regex("Drug-eluting", ignore_case = TRUE)),
+         Brachytherapy = str_detect(`Full Description`, regex("radioactive", ignore_case = TRUE))
+  )
+
+write.csv(PCI_codes, "output/ICD10_PCI_lookup.csv", row.names = FALSE)
+```
+
+To prevent leading zeroes from being omitted when opening in excel => file:import:
+
+
+While these codes are fresh on our minds, it would be beneficial for us to create 2 parallel lists:
+
+    PCI with stents as treatment, for comparative effectiveness studies with CABG.
+    Repeat revascularization as an outcome: Any CABG or PCI (including balloon angioplasty without stents, brachytherapy, etc.).
+    
+```{r}
+stentasTreatment <- PCI_codes %>% filter(WithDevice == TRUE, Brachytherapy == FALSE) %>% pull(`Number / Range`) # include PCI with BMS or DES only
+cat(paste(stentasTreatment, collapse = ", "))
+
+
+revascasOutcome <- c(PCI_codes %>% pull(`Number / Range`), # include any PCI code and any CABG
+                     cardiacSGYlookup %>% filter(`Procedure type` == "Coronary Artery Bypass Graft", Approach != "Percutaneous Approach") %>% pull(`Number / Range`)) # here, I include only CABG that was open or robotic (omitting the percutaneous ones)
+cat(paste(revascasOutcome, collapse = ", "))
+
+```
+
+
+
+
+
+Other specific groups
+```{r}
+# CABG
+
+#open CABG
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Coronary Artery Bypass Graft", Approach == "Open Approach") %>% pull(`Number / Range`), collapse = ", "))
+
+#robotic CABG
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Coronary Artery Bypass Graft", Approach == "Percutaneous Endoscopic Approach", !grepl("coronary vein", `Full Description`, ignore.case = TRUE)) %>% pull(`Number / Range`), collapse = ", "))
+
+
+
+
+
+# VALVES, open
+
+#open aortic valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Open Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#open aortic valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Open Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#open mitral valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Open Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#open mitral valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Open Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#open tricuspid valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Open Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#open tricuspid valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Open Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+
+# VALVES, percutaneous endoscopic
+
+#percutaneous endoscopic aortic valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous endoscopic aortic valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous endoscopic mitral valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous endoscopic mitral valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous endoscopic tricuspid valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous endoscopic tricuspid valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Percutaneous Endoscopic Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+
+
+# VALVES, percutaneous
+
+#percutaneous aortic valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous aortic valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Aortic Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous mitral valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous mitral valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Mitral Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous tricuspid valve repair
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == FALSE) %>% pull(`Number / Range`), collapse = ", "))
+
+#percutaneous tricuspid valve replacement
+cat(paste(cardiacSGYlookup %>% filter(`Procedure type` == "Tricuspid Valve repair/replacement", Approach == "Percutaneous Approach", Replacement == TRUE) %>% pull(`Number / Range`), collapse = ", "))
+
+
+# PCI (does not differentiate between open, transcatheter, or robotic)
+cat(paste(PCI_codes %>% filter(WithDevice == TRUE, DrugEluting == TRUE, Brachytherapy == FALSE) %>% pull(`Number / Range`), collapse = ", ")) # DES
+
+cat(paste(PCI_codes %>% filter(WithDevice == TRUE, DrugEluting == FALSE, Brachytherapy == FALSE) %>% pull(`Number / Range`), collapse = ", ")) # BMS
+
+cat(paste(PCI_codes %>% filter(WithDevice == TRUE, DrugEluting == FALSE, Brachytherapy == TRUE) %>% pull(`Number / Range`), collapse = ", ")) # Brachy
+
+cat(paste(PCI_codes %>% filter(WithDevice == FALSE, DrugEluting == FALSE, Brachytherapy == FALSE) %>% pull(`Number / Range`), collapse = ", ")) # dilation without placement of stent
+
+
+# "Thanks. Let’s keep a record of open and robotic PCIs and take a look at their utilization rates and outcomes after the cohort is created."
+cat(paste(PCI_codes %>% filter(Approach == "Percutaneous Endoscopic Approach") %>% pull(`Number / Range`), collapse = ", ")) ##robotic PCI (any type)
+
+cat(paste(PCI_codes %>% filter(Approach == "Open Approach") %>% pull(`Number / Range`), collapse = ", ")) ##open PCI (any type)
+
+```
+
+# Additional ICD-10-PCS codes found using CPT back-look up in the CMS data:
+
+02BF0ZZ	Excision of Aortic Valve, Open Approach
+02BF0ZX	Excision of Aortic Valve, Open Approach, Diagnostic
+02WF08Z	Revision of Zooplastic Tissue in Aortic Valve, Open Approach
+02WF38Z	Revision of Zooplastic Tissue in Aortic Valve, Percutaneous Approach
+02UF38Z	Supplement Aortic Valve with Zooplastic Tissue, Percutaneous Approach
+02WF0JZ	Revision of Synthetic Substitute in Aortic Valve, Open Approach
+02WF0KZ	Revision of Nonautologous Tissue Substitute in Aortic Valve, Open Approach
+X2RF032	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Open Approach, New Technology Group 2
+X2RF332	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Percutaneous Approach, New Technology Group 2
+X2RF432	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Percutaneous Endoscopic Approach, New Technology Group 2
+	
+02RX07Z	Replacement of Thoracic Aorta, Ascending/Arch with Autologous Tissue Substitute, Open Approach
+02RX0KZ	Replacement of Thoracic Aorta, Ascending/Arch with Nonautologous Tissue Substitute, Open Approach
+02RX0JZ	Replacement of Thoracic Aorta, Ascending/Arch with Synthetic Substitute, Open Approach
+02RX08Z	Replacement of Thoracic Aorta, Ascending/Arch with Zooplastic Tissue, Open Approach
+02RW07Z	Replacement of Thoracic Aorta, Descending with Autologous Tissue Substitute, Open Approach
+02RW0JZ	Replacement of Thoracic Aorta, Descending with Synthetic Substitute, Open Approach
+02RW08Z	Replacement of Thoracic Aorta, Descending with Zooplastic Tissue, Open Approach
+02SX0ZZ	Reposition Thoracic Aorta, Ascending/Arch, Open Approach
+02VX0DZ	Restriction of Thoracic Aorta, Ascending/Arch with Intraluminal Device, Open Approach
+02VX0ZZ	Restriction of Thoracic Aorta, Ascending/Arch, Open Approach
+02VW0EZ	Restriction of Thoracic Aorta, Descending with Branched or Fenestrated Intraluminal Device, One or Two Arteries, Open Approach
+02VW0FZ	Restriction of Thoracic Aorta, Descending with Branched or Fenestrated Intraluminal Device, Three or More Arteries, Open Approach
+02VW0DZ	Restriction of Thoracic Aorta, Descending with Intraluminal Device, Open Approach
+02VW3DZ	Restriction of Thoracic Aorta, Descending with Intraluminal Device, Percutaneous Approach
+02VW4DZ	Restriction of Thoracic Aorta, Descending with Intraluminal Device, Percutaneous Endoscopic Approach
+02VW0ZZ	Restriction of Thoracic Aorta, Descending, Open Approach
+02BX0ZZ	Excision of Thoracic Aorta, Ascending/Arch, Open Approach
+02BW0ZZ	Excision of Thoracic Aorta, Descending, Open Approach
+02UX07Z	Supplement Thoracic Aorta, Ascending/Arch with Autologous Tissue Substitute, Open Approach
+02UX0KZ	Supplement Thoracic Aorta, Ascending/Arch with Nonautologous Tissue Substitute, Open Approach
+02UX0JZ	Supplement Thoracic Aorta, Ascending/Arch with Synthetic Substitute, Open Approach
+02UX08Z	Supplement Thoracic Aorta, Ascending/Arch with Zooplastic Tissue, Open Approach
+02UW0KZ	Supplement Thoracic Aorta, Descending with Nonautologous Tissue Substitute, Open Approach
+02UW0JZ	Supplement Thoracic Aorta, Descending with Synthetic Substitute, Open Approach
+02UW4JZ	Supplement Thoracic Aorta, Descending with Synthetic Substitute, Percutaneous Endoscopic Approach
+02UW08Z	Supplement Thoracic Aorta, Descending with Zooplastic Tissue, Open Approach
+02CX0ZZ	Extirpation of Matter from Thoracic Aorta, Ascending/Arch, Open Approach
+02HX0DZ	Insertion of Intraluminal Device into Thoracic Aorta, Ascending/Arch, Open Approach
+02HW3YZ	Insertion of Other Device into Thoracic Aorta, Descending, Percutaneous Approach
+02LW3DJ	Occlusion of Thoracic Aorta, Descending with Intraluminal Device, Temporary, Percutaneous Approach
+02NX0ZZ	Release Thoracic Aorta, Ascending/Arch, Open Approach
+02QX0ZZ	Repair Thoracic Aorta, Ascending/Arch, Open Approach
+02QW0ZZ	Repair Thoracic Aorta, Descending, Open Approach
+	
+02VG0ZZ	Restriction of Mitral Valve, Open Approach
+02VG3ZZ	Restriction of Mitral Valve, Percutaneous Approach
+02VG4ZZ	Restriction of Mitral Valve, Percutaneous Endoscopic Approach
+02BG0ZZ	Excision of Mitral Valve, Open Approach
+02BG0ZX	Excision of Mitral Valve, Open Approach, Diagnostic
+02BG3ZZ	Excision of Mitral Valve, Percutaneous Approach
+02BG4ZZ	Excision of Mitral Valve, Percutaneous Endoscopic Approach
+02WG08Z	Revision of Zooplastic Tissue in Mitral Valve, Open Approach
+02WG38Z	Revision of Zooplastic Tissue in Mitral Valve, Percutaneous Approach
+02WG0JZ	Revision of Synthetic Substitute in Mitral Valve, Open Approach
+02WG3JZ	Revision of Synthetic Substitute in Mitral Valve, Percutaneous Approach
+	
+02UJ3JZ	Supplement Tricuspid Valve with Synthetic Substitute, Percutaneous Approach
+02BJ0ZZ	Excision of Tricuspid Valve, Open Approach
+
+02C03ZZ	Extirpation of Matter from Coronary Artery, One Artery, Percutaneous Approach
+X2C0361	Extirpation of Matter from Coronary Artery, One Artery using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1

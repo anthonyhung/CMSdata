@@ -1,0 +1,241 @@
+"Number / Range","Full Description","Approach","WithDevice","DrugEluting","Brachytherapy"
+"0270046","Dilation of Coronary Artery, One Artery, Bifurcation, with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027004Z","Dilation of Coronary Artery, One Artery with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0270056","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027005Z","Dilation of Coronary Artery, One Artery with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0270066","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027006Z","Dilation of Coronary Artery, One Artery with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0270076","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027007Z","Dilation of Coronary Artery, One Artery with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"02700D6","Dilation of Coronary Artery, One Artery, Bifurcation, with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700DZ","Dilation of Coronary Artery, One Artery with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700E6","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700EZ","Dilation of Coronary Artery, One Artery with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700F6","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700FZ","Dilation of Coronary Artery, One Artery with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700G6","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700GZ","Dilation of Coronary Artery, One Artery with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02700T6","Dilation of Coronary Artery, One Artery, Bifurcation, with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02700TZ","Dilation of Coronary Artery, One Artery with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02700Z6","Dilation of Coronary Artery, One Artery, Bifurcation, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"02700ZZ","Dilation of Coronary Artery, One Artery, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"0270346","Dilation of Coronary Artery, One Artery, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027034Z","Dilation of Coronary Artery, One Artery with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0270356","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027035Z","Dilation of Coronary Artery, One Artery with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0270366","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027036Z","Dilation of Coronary Artery, One Artery with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0270376","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027037Z","Dilation of Coronary Artery, One Artery with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"02703D6","Dilation of Coronary Artery, One Artery, Bifurcation, with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703DZ","Dilation of Coronary Artery, One Artery with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703E6","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703EZ","Dilation of Coronary Artery, One Artery with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703F6","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703FZ","Dilation of Coronary Artery, One Artery with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703G6","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703GZ","Dilation of Coronary Artery, One Artery with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02703T6","Dilation of Coronary Artery, One Artery, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02703TZ","Dilation of Coronary Artery, One Artery with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02703Z6","Dilation of Coronary Artery, One Artery, Bifurcation, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"02703ZZ","Dilation of Coronary Artery, One Artery, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"0270446","Dilation of Coronary Artery, One Artery, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027044Z","Dilation of Coronary Artery, One Artery with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0270456","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027045Z","Dilation of Coronary Artery, One Artery with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0270466","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027046Z","Dilation of Coronary Artery, One Artery with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0270476","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027047Z","Dilation of Coronary Artery, One Artery with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"02704D6","Dilation of Coronary Artery, One Artery, Bifurcation, with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704DZ","Dilation of Coronary Artery, One Artery with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704E6","Dilation of Coronary Artery, One Artery, Bifurcation, with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704EZ","Dilation of Coronary Artery, One Artery with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704F6","Dilation of Coronary Artery, One Artery, Bifurcation, with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704FZ","Dilation of Coronary Artery, One Artery with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704G6","Dilation of Coronary Artery, One Artery, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704GZ","Dilation of Coronary Artery, One Artery with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02704T6","Dilation of Coronary Artery, One Artery, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02704TZ","Dilation of Coronary Artery, One Artery with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02704Z6","Dilation of Coronary Artery, One Artery, Bifurcation, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"02704ZZ","Dilation of Coronary Artery, One Artery, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"0271046","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027104Z","Dilation of Coronary Artery, Two Arteries with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0271056","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027105Z","Dilation of Coronary Artery, Two Arteries with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0271066","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027106Z","Dilation of Coronary Artery, Two Arteries with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0271076","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027107Z","Dilation of Coronary Artery, Two Arteries with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"02710D6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710DZ","Dilation of Coronary Artery, Two Arteries with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710E6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710EZ","Dilation of Coronary Artery, Two Arteries with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710F6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710FZ","Dilation of Coronary Artery, Two Arteries with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710G6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710GZ","Dilation of Coronary Artery, Two Arteries with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02710T6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02710TZ","Dilation of Coronary Artery, Two Arteries with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02710Z6","Dilation of Coronary Artery, Two Arteries, Bifurcation, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"02710ZZ","Dilation of Coronary Artery, Two Arteries, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"0271346","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027134Z","Dilation of Coronary Artery, Two Arteries with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0271356","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027135Z","Dilation of Coronary Artery, Two Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0271366","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027136Z","Dilation of Coronary Artery, Two Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0271376","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027137Z","Dilation of Coronary Artery, Two Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"02713D6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713DZ","Dilation of Coronary Artery, Two Arteries with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713E6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713EZ","Dilation of Coronary Artery, Two Arteries with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713F6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713FZ","Dilation of Coronary Artery, Two Arteries with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713G6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713GZ","Dilation of Coronary Artery, Two Arteries with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02713T6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02713TZ","Dilation of Coronary Artery, Two Arteries with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02713Z6","Dilation of Coronary Artery, Two Arteries, Bifurcation, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"02713ZZ","Dilation of Coronary Artery, Two Arteries, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"0271446","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027144Z","Dilation of Coronary Artery, Two Arteries with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0271456","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027145Z","Dilation of Coronary Artery, Two Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0271466","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027146Z","Dilation of Coronary Artery, Two Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0271476","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027147Z","Dilation of Coronary Artery, Two Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"02714D6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714DZ","Dilation of Coronary Artery, Two Arteries with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714E6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714EZ","Dilation of Coronary Artery, Two Arteries with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714F6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714FZ","Dilation of Coronary Artery, Two Arteries with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714G6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714GZ","Dilation of Coronary Artery, Two Arteries with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02714T6","Dilation of Coronary Artery, Two Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02714TZ","Dilation of Coronary Artery, Two Arteries with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02714Z6","Dilation of Coronary Artery, Two Arteries, Bifurcation, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"02714ZZ","Dilation of Coronary Artery, Two Arteries, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"0272046","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027204Z","Dilation of Coronary Artery, Three Arteries with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0272056","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027205Z","Dilation of Coronary Artery, Three Arteries with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0272066","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027206Z","Dilation of Coronary Artery, Three Arteries with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0272076","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027207Z","Dilation of Coronary Artery, Three Arteries with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"02720D6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720DZ","Dilation of Coronary Artery, Three Arteries with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720E6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720EZ","Dilation of Coronary Artery, Three Arteries with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720F6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720FZ","Dilation of Coronary Artery, Three Arteries with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720G6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720GZ","Dilation of Coronary Artery, Three Arteries with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02720T6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02720TZ","Dilation of Coronary Artery, Three Arteries with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02720Z6","Dilation of Coronary Artery, Three Arteries, Bifurcation, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"02720ZZ","Dilation of Coronary Artery, Three Arteries, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"0272346","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027234Z","Dilation of Coronary Artery, Three Arteries with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0272356","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027235Z","Dilation of Coronary Artery, Three Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0272366","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027236Z","Dilation of Coronary Artery, Three Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0272376","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027237Z","Dilation of Coronary Artery, Three Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"02723D6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723DZ","Dilation of Coronary Artery, Three Arteries with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723E6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723EZ","Dilation of Coronary Artery, Three Arteries with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723F6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723FZ","Dilation of Coronary Artery, Three Arteries with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723G6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723GZ","Dilation of Coronary Artery, Three Arteries with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02723T6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02723TZ","Dilation of Coronary Artery, Three Arteries with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02723Z6","Dilation of Coronary Artery, Three Arteries, Bifurcation, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"02723ZZ","Dilation of Coronary Artery, Three Arteries, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"0272446","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027244Z","Dilation of Coronary Artery, Three Arteries with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0272456","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027245Z","Dilation of Coronary Artery, Three Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0272466","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027246Z","Dilation of Coronary Artery, Three Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0272476","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027247Z","Dilation of Coronary Artery, Three Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"02724D6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724DZ","Dilation of Coronary Artery, Three Arteries with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724E6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724EZ","Dilation of Coronary Artery, Three Arteries with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724F6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724FZ","Dilation of Coronary Artery, Three Arteries with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724G6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724GZ","Dilation of Coronary Artery, Three Arteries with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02724T6","Dilation of Coronary Artery, Three Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02724TZ","Dilation of Coronary Artery, Three Arteries with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02724Z6","Dilation of Coronary Artery, Three Arteries, Bifurcation, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"02724ZZ","Dilation of Coronary Artery, Three Arteries, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"0273046","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027304Z","Dilation of Coronary Artery, Four or More Arteries with Drug-eluting Intraluminal Device, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0273056","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027305Z","Dilation of Coronary Artery, Four or More Arteries with Two Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0273066","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027306Z","Dilation of Coronary Artery, Four or More Arteries with Three Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"0273076","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"027307Z","Dilation of Coronary Artery, Four or More Arteries with Four or More Drug-eluting Intraluminal Devices, Open Approach","Open Approach",TRUE,TRUE,FALSE
+"02730D6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730DZ","Dilation of Coronary Artery, Four or More Arteries with Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730E6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730EZ","Dilation of Coronary Artery, Four or More Arteries with Two Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730F6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730FZ","Dilation of Coronary Artery, Four or More Arteries with Three Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730G6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730GZ","Dilation of Coronary Artery, Four or More Arteries with Four or More Intraluminal Devices, Open Approach","Open Approach",TRUE,FALSE,FALSE
+"02730T6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02730TZ","Dilation of Coronary Artery, Four or More Arteries with Radioactive Intraluminal Device, Open Approach","Open Approach",TRUE,FALSE,TRUE
+"02730Z6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"02730ZZ","Dilation of Coronary Artery, Four or More Arteries, Open Approach","Open Approach",FALSE,FALSE,FALSE
+"0273346","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027334Z","Dilation of Coronary Artery, Four or More Arteries with Drug-eluting Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0273356","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027335Z","Dilation of Coronary Artery, Four or More Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0273366","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027336Z","Dilation of Coronary Artery, Four or More Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"0273376","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"027337Z","Dilation of Coronary Artery, Four or More Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,TRUE,FALSE
+"02733D6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733DZ","Dilation of Coronary Artery, Four or More Arteries with Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733E6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733EZ","Dilation of Coronary Artery, Four or More Arteries with Two Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733F6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733FZ","Dilation of Coronary Artery, Four or More Arteries with Three Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733G6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733GZ","Dilation of Coronary Artery, Four or More Arteries with Four or More Intraluminal Devices, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,FALSE
+"02733T6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02733TZ","Dilation of Coronary Artery, Four or More Arteries with Radioactive Intraluminal Device, Percutaneous Approach","Percutaneous Approach",TRUE,FALSE,TRUE
+"02733Z6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"02733ZZ","Dilation of Coronary Artery, Four or More Arteries, Percutaneous Approach","Percutaneous Approach",FALSE,FALSE,FALSE
+"0273446","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027344Z","Dilation of Coronary Artery, Four or More Arteries with Drug-eluting Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0273456","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027345Z","Dilation of Coronary Artery, Four or More Arteries with Two Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0273466","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027346Z","Dilation of Coronary Artery, Four or More Arteries with Three Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"0273476","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"027347Z","Dilation of Coronary Artery, Four or More Arteries with Four or More Drug-eluting Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,TRUE,FALSE
+"02734D6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734DZ","Dilation of Coronary Artery, Four or More Arteries with Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734E6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734EZ","Dilation of Coronary Artery, Four or More Arteries with Two Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734F6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734FZ","Dilation of Coronary Artery, Four or More Arteries with Three Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734G6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734GZ","Dilation of Coronary Artery, Four or More Arteries with Four or More Intraluminal Devices, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,FALSE
+"02734T6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02734TZ","Dilation of Coronary Artery, Four or More Arteries with Radioactive Intraluminal Device, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",TRUE,FALSE,TRUE
+"02734Z6","Dilation of Coronary Artery, Four or More Arteries, Bifurcation, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE
+"02734ZZ","Dilation of Coronary Artery, Four or More Arteries, Percutaneous Endoscopic Approach","Percutaneous Endoscopic Approach",FALSE,FALSE,FALSE

@@ -1,0 +1,416 @@
+---
+title: "extract_ICD10codes"
+author: "anthonyhung"
+date: "2025-08-20"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Load libraries
+
+```{r}
+library(stringr)
+library(dplyr)
+```
+
+# Copy in inclusion criteria directly from from https://doi.org/10.1161/CIRCOUTCOMES.119.006449 (tables S1 and S2) and use structure of codes to sort them into the CABG/Valve procedures and by Open/Percutaneous
+- Basically, this is all the rows from S1 and S2 that have "Rule Type" == "inclusion". Technically, the paper itself focuses on aortic procedures, but S2 has a value of "inclusion" for all the nonaortic valve procedures.
+
+```{r copied text}
+tableS1andS2InclusionCriteria <- "
+Table S1 CABG:
+Inclusion PR10 0210093 Bypass 1 Cor Art From Cor Art With Autol Vn, Open Approach
+Inclusion PR10 0210098 Bypass 1 Cor Art From R Int Mammary W Autol Vn, Open
+Inclusion PR10 0210099 Bypass 1 Cor Art From L Int Mammary W Autol Vn, Open
+Inclusion PR10 021009C Bypass 1 Cor Art From Thor Art With Autol Vn, Open Approach
+Inclusion PR10 021009F Bypass 1 Cor Art From Abd Art With Autol Vn, Open Approach
+Inclusion PR10 021009W Bypass 1 Cor Art From Aorta With Autol Vn, Open Approach
+Inclusion PR10 02100A3 Bypass 1 Cor Art From Cor Art With Autol Art, Open Approach
+Inclusion PR10 02100A8 Bypass 1 Cor Art From R Int Mammary W Autol Art, Open
+Inclusion PR10 02100A9 Bypass 1 Cor Art From L Int Mammary W Autol Art, Open
+Inclusion PR10 02100AC Bypass 1 Cor Art From Thor Art With Autol Art, Open Approach
+Inclusion PR10 02100AF Bypass 1 Cor Art From Abd Art With Autol Art, Open Approach
+Inclusion PR10 02100AW Bypass 1 Cor Art From Aorta With Autol Art, Open Approach
+Inclusion PR10 02100J3 Bypass 1 Cor Art From Cor Art With Synth Sub, Open Approach
+Inclusion PR10 02100J8 Bypass 1 Cor Art From R Int Mammary W Synth Sub, Open
+Inclusion PR10 02100J9 Bypass 1 Cor Art From L Int Mammary W Synth Sub, Open
+Inclusion PR10 02100JC Bypass 1 Cor Art From Thor Art With Synth Sub, Open Approach
+Inclusion PR10 02100JF Bypass 1 Cor Art From Abd Art With Synth Sub, Open Approach
+Inclusion PR10 02100JW Bypass 1 Cor Art From Aorta With Synth Sub, Open Approach
+Inclusion PR10 02100K3 Bypass 1 Cor Art From Cor Art With Nonaut Sub, Open Approach
+Inclusion PR10 02100K8 Bypass 1 Cor Art From R Int Mammary W Nonaut Sub, Open
+Inclusion PR10 02100K9 Bypass 1 Cor Art From L Int Mammary W Nonaut Sub, Open
+Page 6
+Inclusion PR10 02100KC Bypass 1 Cor Art From Thor Art W Nonaut Sub, Open
+Inclusion PR10 02100KF Bypass 1 Cor Art From Abd Art With Nonaut Sub, Open Approach
+Inclusion PR10 02100KW Bypass 1 Cor Art From Aorta With Nonaut Sub, Open Approach
+Inclusion PR10 02100Z3 Bypass Coronary Artery, One Site From Cor Art, Open Approach
+Inclusion PR10 02100Z8 Bypass 1 Cor Art From R Int Mammary, Open Approach
+Inclusion PR10 02100Z9 Bypass 1 Cor Art From L Int Mammary, Open Approach
+Inclusion PR10 02100ZC Bypass 1 Cor Art From Thor Art, Open Approach
+Inclusion PR10 02100ZF Bypass Coronary Artery, One Site From Abd Art, Open Approach
+Inclusion PR10 0210493 Bypass 1 Cor Art From Cor Art W Autol Vn, Perc Endo
+Inclusion PR10 0210498 Bypass 1 Cor Art From R Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 0210499 Bypass 1 Cor Art From L Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 021049C Bypass 1 Cor Art From Thor Art W Autol Vn, Perc Endo
+Inclusion PR10 021049F Bypass 1 Cor Art From Abd Art W Autol Vn, Perc Endo
+Inclusion PR10 021049W Bypass 1 Cor Art From Aorta W Autol Vn, Perc Endo
+Inclusion PR10 02104A3 Bypass 1 Cor Art From Cor Art W Autol Art, Perc Endo
+Inclusion PR10 02104A8 Bypass 1 Cor Art From R Int Mammary W Autol Art, Perc Endo
+Inclusion PR10 02104A9 Bypass 1 Cor Art From L Int Mammary W Autol Art, Perc Endo
+Inclusion PR10 02104AC Bypass 1 Cor Art From Thor Art W Autol Art, Perc Endo
+Inclusion PR10 02104AF Bypass 1 Cor Art From Abd Art W Autol Art, Perc Endo
+Inclusion PR10 02104AW Bypass 1 Cor Art From Aorta W Autol Art, Perc Endo
+Inclusion PR10 02104J3 Bypass 1 Cor Art From Cor Art W Synth Sub, Perc Endo
+Inclusion PR10 02104J8 Bypass 1 Cor Art From R Int Mammary W Synth Sub, Perc Endo
+Inclusion PR10 02104J9 Bypass 1 Cor Art From L Int Mammary W Synth Sub, Perc Endo
+Inclusion PR10 02104JC Bypass 1 Cor Art From Thor Art W Synth Sub, Perc Endo
+Inclusion PR10 02104JF Bypass 1 Cor Art From Abd Art W Synth Sub, Perc Endo
+Inclusion PR10 02104JW Bypass 1 Cor Art From Aorta W Synth Sub, Perc Endo
+Inclusion PR10 02104K3 Bypass 1 Cor Art From Cor Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02104K8 Bypass 1 Cor Art From R Int Mammary W Nonaut Sub, Perc Endo
+Inclusion PR10 02104K9 Bypass 1 Cor Art From L Int Mammary W Nonaut Sub, Perc Endo
+Inclusion PR10 02104KC Bypass 1 Cor Art From Thor Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02104KF Bypass 1 Cor Art From Abd Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02104KW Bypass 1 Cor Art From Aorta W Nonaut Sub, Perc Endo
+Inclusion PR10 02104Z3 Bypass 1 Cor Art From Cor Art, Perc Endo Approach
+Inclusion PR10 02104Z8 Bypass 1 Cor Art From R Int Mammary, Perc Endo Approach
+Inclusion PR10 02104Z9 Bypass 1 Cor Art From L Int Mammary, Perc Endo Approach
+Inclusion PR10 02104ZC Bypass 1 Cor Art From Thor Art, Perc Endo Approach
+Inclusion PR10 02104ZF Bypass 1 Cor Art From Abd Art, Perc Endo Approach
+Inclusion PR10 0211093 Bypass 2 Cor Art From Cor Art With Autol Vn, Open Approach
+Page 7
+Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Page 8
+PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 0211098 0211099 021109C 021109F 021109W 02110A3 02110A8 02110A9 02110AC 02110AF 02110AW 02110J3 02110J8 02110J9 02110JC 02110JF 02110JW 02110K3 02110K8 02110K9 02110KC 02110KF 02110KW 02110Z3 02110Z8 02110Z9 02110ZC 02110ZF 0211493 0211498 0211499 021149C 021149F 021149W 02114A3 02114A8 02114A9 02114AC Bypass 2 Cor Art From R Int Mammary W Autol Vn, Open
+Bypass 2 Cor Art From L Int Mammary W Autol Vn, Open
+Bypass 2 Cor Art From Thor Art With Autol Vn, Open Approach
+Bypass 2 Cor Art From Abd Art With Autol Vn, Open Approach
+Bypass 2 Cor Art From Aorta With Autol Vn, Open Approach
+Bypass 2 Cor Art From Cor Art With Autol Art, Open Approach
+Bypass 2 Cor Art From R Int Mammary W Autol Art, Open
+Bypass 2 Cor Art From L Int Mammary W Autol Art, Open
+Bypass 2 Cor Art From Thor Art With Autol Art, Open Approach
+Bypass 2 Cor Art From Abd Art With Autol Art, Open Approach
+Bypass 2 Cor Art From Aorta With Autol Art, Open Approach
+Bypass 2 Cor Art From Cor Art With Synth Sub, Open Approach
+Bypass 2 Cor Art From R Int Mammary W Synth Sub, Open
+Bypass 2 Cor Art From L Int Mammary W Synth Sub, Open
+Bypass 2 Cor Art From Thor Art With Synth Sub, Open Approach
+Bypass 2 Cor Art From Abd Art With Synth Sub, Open Approach
+Bypass 2 Cor Art From Aorta With Synth Sub, Open Approach
+Bypass 2 Cor Art From Cor Art With Nonaut Sub, Open Approach
+Bypass 2 Cor Art From R Int Mammary W Nonaut Sub, Open
+Bypass 2 Cor Art From L Int Mammary W Nonaut Sub, Open
+Bypass 2 Cor Art From Thor Art W Nonaut Sub, Open
+Bypass 2 Cor Art From Abd Art With Nonaut Sub, Open Approach
+Bypass 2 Cor Art From Aorta With Nonaut Sub, Open Approach
+Bypass 2 Cor Art From Cor Art, Open Approach
+Bypass 2 Cor Art From R Int Mammary, Open Approach
+Bypass 2 Cor Art From L Int Mammary, Open Approach
+Bypass 2 Cor Art From Thor Art, Open Approach
+Bypass 2 Cor Art From Abd Art, Open Approach
+Bypass 2 Cor Art From Cor Art W Autol Vn, Perc Endo
+Bypass 2 Cor Art From R Int Mammary W Autol Vn, Perc Endo
+Bypass 2 Cor Art From L Int Mammary W Autol Vn, Perc Endo
+Bypass 2 Cor Art From Thor Art W Autol Vn, Perc Endo
+Bypass 2 Cor Art From Abd Art W Autol Vn, Perc Endo
+Bypass 2 Cor Art From Aorta W Autol Vn, Perc Endo
+Bypass 2 Cor Art From Cor Art W Autol Art, Perc Endo
+Bypass 2 Cor Art From R Int Mammary W Autol Art, Perc Endo
+Bypass 2 Cor Art From L Int Mammary W Autol Art, Perc Endo
+Bypass 2 Cor Art From Thor Art W Autol Art, Perc Endo
+Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Page 9
+PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 02114AF 02114AW 02114J3 02114J8 02114J9 02114JC 02114JF 02114JW 02114K3 02114K8 02114K9 02114KC 02114KF 02114KW 02114Z3 02114Z8 02114Z9 02114ZC 02114ZF 0212093 0212098 0212099 021209C 021209F 021209W 02120A3 02120A8 02120A9 02120AC 02120AF 02120AW 02120J3 02120J8 02120J9 02120JC 02120JF 02120JW 02120K3 Bypass 2 Cor Art From Abd Art W Autol Art, Perc Endo
+Bypass 2 Cor Art From Aorta W Autol Art, Perc Endo
+Bypass 2 Cor Art From Cor Art W Synth Sub, Perc Endo
+Bypass 2 Cor Art From R Int Mammary W Synth Sub, Perc Endo
+Bypass 2 Cor Art From L Int Mammary W Synth Sub, Perc Endo
+Bypass 2 Cor Art From Thor Art W Synth Sub, Perc Endo
+Bypass 2 Cor Art From Abd Art W Synth Sub, Perc Endo
+Bypass 2 Cor Art From Aorta W Synth Sub, Perc Endo
+Bypass 2 Cor Art From Cor Art W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From R Int Mammary W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From L Int Mammary W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From Thor Art W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From Abd Art W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From Aorta W Nonaut Sub, Perc Endo
+Bypass 2 Cor Art From Cor Art, Perc Endo Approach
+Bypass 2 Cor Art From R Int Mammary, Perc Endo Approach
+Bypass 2 Cor Art From L Int Mammary, Perc Endo Approach
+Bypass 2 Cor Art From Thor Art, Perc Endo Approach
+Bypass 2 Cor Art From Abd Art, Perc Endo Approach
+Bypass 3 Cor Art From Cor Art With Autol Vn, Open Approach
+Bypass 3 Cor Art From R Int Mammary W Autol Vn, Open
+Bypass 3 Cor Art From L Int Mammary W Autol Vn, Open
+Bypass 3 Cor Art From Thor Art With Autol Vn, Open Approach
+Bypass 3 Cor Art From Abd Art With Autol Vn, Open Approach
+Bypass 3 Cor Art From Aorta With Autol Vn, Open Approach
+Bypass 3 Cor Art From Cor Art With Autol Art, Open Approach
+Bypass 3 Cor Art From R Int Mammary W Autol Art, Open
+Bypass 3 Cor Art From L Int Mammary W Autol Art, Open
+Bypass 3 Cor Art From Thor Art With Autol Art, Open Approach
+Bypass 3 Cor Art From Abd Art With Autol Art, Open Approach
+Bypass 3 Cor Art From Aorta With Autol Art, Open Approach
+Bypass 3 Cor Art From Cor Art With Synth Sub, Open Approach
+Bypass 3 Cor Art From R Int Mammary W Synth Sub, Open
+Bypass 3 Cor Art From L Int Mammary W Synth Sub, Open
+Bypass 3 Cor Art From Thor Art With Synth Sub, Open Approach
+Bypass 3 Cor Art From Abd Art With Synth Sub, Open Approach
+Bypass 3 Cor Art From Aorta With Synth Sub, Open Approach
+Bypass 3 Cor Art From Cor Art With Nonaut Sub, Open Approach
+Inclusion PR10 02120K8 Bypass 3 Cor Art From R Int Mammary W Nonaut Sub, Open
+Inclusion PR10 02120K9 Bypass 3 Cor Art From L Int Mammary W Nonaut Sub, Open
+Inclusion PR10 02120KC Bypass 3 Cor Art From Thor Art W Nonaut Sub, Open
+Inclusion PR10 02120KF Bypass 3 Cor Art From Abd Art With Nonaut Sub, Open Approach
+Inclusion PR10 02120KW Bypass 3 Cor Art From Aorta With Nonaut Sub, Open Approach
+Inclusion PR10 02120Z3 Bypass 3 Cor Art From Cor Art, Open Approach
+Inclusion PR10 02120Z8 Bypass 3 Cor Art From R Int Mammary, Open Approach
+Inclusion PR10 02120Z9 Bypass 3 Cor Art From L Int Mammary, Open Approach
+Inclusion PR10 02120ZC Bypass 3 Cor Art From Thor Art, Open Approach
+Inclusion PR10 02120ZF Bypass 3 Cor Art From Abd Art, Open Approach
+Inclusion PR10 0212493 Bypass 3 Cor Art From Cor Art W Autol Vn, Perc Endo
+Inclusion PR10 0212498 Bypass 3 Cor Art From R Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 0212499 Bypass 3 Cor Art From L Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 021249C Bypass 3 Cor Art From Thor Art W Autol Vn, Perc Endo
+Inclusion PR10 021249F Bypass 3 Cor Art From Abd Art W Autol Vn, Perc Endo
+Inclusion PR10 021249W Bypass 3 Cor Art From Aorta W Autol Vn, Perc Endo
+Inclusion PR10 02124A3 Bypass 3 Cor Art From Cor Art W Autol Art, Perc Endo
+Inclusion PR10 02124A8 Bypass 3 Cor Art From R Int Mammary W Autol Art, Perc Endo
+Inclusion PR10 02124A9 Bypass 3 Cor Art From L Int Mammary W Autol Art, Perc Endo
+Inclusion PR10 02124AC Bypass 3 Cor Art From Thor Art W Autol Art, Perc Endo
+Inclusion PR10 02124AF Bypass 3 Cor Art From Abd Art W Autol Art, Perc Endo
+Inclusion PR10 02124AW Bypass 3 Cor Art From Aorta W Autol Art, Perc Endo
+Inclusion PR10 02124J3 Bypass 3 Cor Art From Cor Art W Synth Sub, Perc Endo
+Inclusion PR10 02124J8 Bypass 3 Cor Art From R Int Mammary W Synth Sub, Perc Endo
+Inclusion PR10 02124J9 Bypass 3 Cor Art From L Int Mammary W Synth Sub, Perc Endo
+Inclusion PR10 02124JC Bypass 3 Cor Art From Thor Art W Synth Sub, Perc Endo
+Inclusion PR10 02124JF Bypass 3 Cor Art From Abd Art W Synth Sub, Perc Endo
+Inclusion PR10 02124JW Bypass 3 Cor Art From Aorta W Synth Sub, Perc Endo
+Inclusion PR10 02124K3 Bypass 3 Cor Art From Cor Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02124K8 Bypass 3 Cor Art From R Int Mammary W Nonaut Sub, Perc Endo
+Inclusion PR10 02124K9 Bypass 3 Cor Art From L Int Mammary W Nonaut Sub, Perc Endo
+Inclusion PR10 02124KC Bypass 3 Cor Art From Thor Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02124KF Bypass 3 Cor Art From Abd Art W Nonaut Sub, Perc Endo
+Inclusion PR10 02124KW Bypass 3 Cor Art From Aorta W Nonaut Sub, Perc Endo
+Inclusion PR10 02124Z3 Bypass 3 Cor Art From Cor Art, Perc Endo Approach
+Inclusion PR10 02124Z8 Bypass 3 Cor Art From R Int Mammary, Perc Endo Approach
+Inclusion PR10 02124Z9 Bypass 3 Cor Art From L Int Mammary, Perc Endo Approach
+Inclusion PR10 02124ZC Bypass 3 Cor Art From Thor Art, Perc Endo Approach
+Page 10
+Inclusion PR10 02124ZF Bypass 3 Cor Art From Abd Art, Perc Endo Approach
+Inclusion PR10 0213093 Bypass 4+ Cor Art From Cor Art With Autol Vn, Open Approach
+Inclusion PR10 0213098 Bypass 4+ Cor Art From R Int Mammary W Autol Vn, Open
+Inclusion PR10 0213099 Bypass 4+ Cor Art From L Int Mammary W Autol Vn, Open
+Inclusion PR10 021309C Bypass 4+ Cor Art From Thor Art With Autol Vn, Open Approach
+Inclusion PR10 021309F Bypass 4+ Cor Art From Abd Art With Autol Vn, Open Approach
+Inclusion PR10 021309W Bypass 4+ Cor Art From Aorta With Autol Vn, Open Approach
+Inclusion PR10 02130A3 Bypass 4+ Cor Art From Cor Art With Autol Art, Open Approach
+Inclusion PR10 02130A8 Bypass 4+ Cor Art From R Int Mammary W Autol Art, Open
+Inclusion PR10 02130A9 Bypass 4+ Cor Art From L Int Mammary W Autol Art, Open
+Inclusion PR10 02130AC Bypass 4+ Cor Art From Thor Art W Autol Art, Open
+Inclusion PR10 02130AF Bypass 4+ Cor Art From Abd Art With Autol Art, Open Approach
+Inclusion PR10 02130AW Bypass 4+ Cor Art From Aorta With Autol Art, Open Approach
+Inclusion PR10 02130J3 Bypass 4+ Cor Art From Cor Art With Synth Sub, Open Approach
+Inclusion PR10 02130J8 Bypass 4+ Cor Art From R Int Mammary W Synth Sub, Open
+Inclusion PR10 02130J9 Bypass 4+ Cor Art From L Int Mammary W Synth Sub, Open
+Inclusion PR10 02130JC Bypass 4+ Cor Art From Thor Art W Synth Sub, Open
+Inclusion PR10 02130JF Bypass 4+ Cor Art From Abd Art With Synth Sub, Open Approach
+Inclusion PR10 02130JW Bypass 4+ Cor Art From Aorta With Synth Sub, Open Approach
+Inclusion PR10 02130K3 Bypass 4+ Cor Art From Cor Art W Nonaut Sub, Open
+Inclusion PR10 02130K8 Bypass 4+ Cor Art From R Int Mammary W Nonaut Sub, Open
+Inclusion PR10 02130K9 Bypass 4+ Cor Art From L Int Mammary W Nonaut Sub, Open
+Inclusion PR10 02130KC Bypass 4+ Cor Art From Thor Art W Nonaut Sub, Open
+Inclusion PR10 02130KF Bypass 4+ Cor Art From Abd Art W Nonaut Sub, Open
+Inclusion PR10 02130KW Bypass 4+ Cor Art From Aorta With Nonaut Sub, Open Approach
+Inclusion PR10 02130Z3 Bypass 4+ Cor Art From Cor Art, Open Approach
+Inclusion PR10 02130Z8 Bypass 4+ Cor Art From R Int Mammary, Open Approach
+Inclusion PR10 02130Z9 Bypass 4+ Cor Art From L Int Mammary, Open Approach
+Inclusion PR10 02130ZC Bypass 4+ Cor Art From Thor Art, Open Approach
+Inclusion PR10 02130ZF Bypass 4+ Cor Art From Abd Art, Open Approach
+Inclusion PR10 0213493 Bypass 4+ Cor Art From Cor Art W Autol Vn, Perc Endo
+Inclusion PR10 0213498 Bypass 4+ Cor Art From R Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 0213499 Bypass 4+ Cor Art From L Int Mammary W Autol Vn, Perc Endo
+Inclusion PR10 021349C Bypass 4+ Cor Art From Thor Art W Autol Vn, Perc Endo
+Inclusion PR10 021349F Bypass 4+ Cor Art From Abd Art W Autol Vn, Perc Endo
+Inclusion PR10 021349W Bypass 4+ Cor Art From Aorta W Autol Vn, Perc Endo
+Inclusion PR10 02134A3 Bypass 4+ Cor Art From Cor Art W Autol Art, Perc Endo
+Inclusion PR10 02134A8 Bypass 4+ Cor Art From R Int Mammary W Autol Art, Perc Endo
+Page 11
+Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Inclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Exclusion Page 12
+PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR10 PR9 PR9 PR9 PR9 PR9 CPT CPT CPT CPT CPT CPT CPT PR10 PR10 PR10 PR10 02134A9 02134AC 02134AF 02134AW 02134J3 02134J8 02134J9 02134JC 02134JF 02134JW 02134K3 02134K8 02134K9 02134KC 02134KF 02134KW 02134Z3 02134Z8 02134Z9 02134ZC 02134ZF 021K0Z8 
+
+Table S2 Valves:
+Inclusion PR10 027F04Z Dilate Aortic Valve W Drug-Elut Intralum, Open
+Inclusion PR10 027F0DZ Dilation Of Aortic Valve With Intralum Dev, Open Approach
+Inclusion PR10 027F0ZZ Dilation Of Aortic Valve, Open Approach
+Inclusion PR10 027F34Z Dilate Aortic Valve W Drug-Elut Intralum, Perc
+Inclusion 027F3DZ Dilation Of Aortic Valve With Intralum Dev, Perc Approach
+Inclusion PR10 027F3ZZ Dilation Of Aortic Valve, Percutaneous Approach
+Inclusion PR10 027F44Z Dilate Aortic Valve W Drug-Elut Intralum, Perc Endo
+Inclusion PR10 027F4DZ Dilate Of Aortic Valve With Intralum Dev, Perc Endo Approach
+Inclusion PR10 027F4ZZ Dilation Of Aortic Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 027G04Z Dilate Mitral Valve W Drug-Elut Intralum, Open
+Inclusion PR10 027G0DZ Dilation Of Mitral Valve With Intralum Dev, Open Approach
+Inclusion PR10 027G0ZZ Dilation Of Mitral Valve, Open Approach
+Inclusion PR10 027G34Z Dilate Mitral Valve W Drug-Elut Intralum, Perc
+Inclusion PR10 027G3DZ Dilation Of Mitral Valve With Intralum Dev, Perc Approach
+Inclusion PR10 027G3ZZ Dilation Of Mitral Valve, Percutaneous Approach
+Inclusion PR10 027G44Z Dilate Mitral Valve W Drug-Elut Intralum, Perc Endo
+Inclusion PR10 027G4DZ Dilate Of Mitral Valve With Intralum Dev, Perc Endo Approach
+Inclusion PR10 027G4ZZ Dilation Of Mitral Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 027H34Z Dilate Of Pulm Valve With Drug-Elut Intralum, Perc Approach
+Inclusion PR10 027H3DZ Dilation Of Pulmonary Valve With Intralum Dev, Perc Approach
+Inclusion PR10 027H3ZZ Dilation Of Pulmonary Valve, Percutaneous Approach
+Inclusion PR10 027H44Z Dilate Pulm Valve W Drug-Elut Intralum, Perc Endo
+Inclusion PR10 027H4DZ Dilation Of Pulm Valve With Intralum Dev, Perc Endo Approach
+Page 26
+Inclusion PR10 027H4ZZ Dilation Of Pulmonary Valve, Perc Endo Approach
+PR10 Inclusion 027J34Z Dilate Tricusp Valve W Drug-Elut Intralum, Perc
+Inclusion Dilate Tricusp Valve W Drug-Elut Intralum, Perc Endo
+Inclusion PR10 027J3DZ Dilation Of Tricuspid Valve With Intralum Dev, Perc Approach
+Inclusion PR10 027J3ZZ Dilation Of Tricuspid Valve, Percutaneous Approach
+PR10 027J44Z Inclusion PR10 027J4DZ Dilate Tricusp Valve W Intralum Dev, Perc Endo
+Inclusion PR10 027J4ZZ Dilation Of Tricuspid Valve, Perc Endo Approach
+Inclusion PR10 02CF0ZZ Extirpation Of Matter From Aortic Valve, Open Approach
+Inclusion PR10 02CF3ZZ Extirpation Of Matter From Aortic Valve, Perc Approach
+Inclusion PR10 02CF4ZZ Extirpation Of Matter From Aortic Valve, Perc Endo Approach
+Inclusion PR10 02CG0ZZ Extirpation Of Matter From Mitral Valve, Open Approach
+Inclusion PR10 02CG3ZZ Extirpation Of Matter From Mitral Valve, Perc Approach
+Inclusion PR10 02CG4ZZ Extirpation Of Matter From Mitral Valve, Perc Endo Approach
+Inclusion PR10 02CH0ZZ Extirpation Of Matter From Pulmonary Valve, Open Approach
+Inclusion PR10 02CJ0ZZ Extirpation Of Matter From Tricuspid Valve, Open Approach
+Inclusion PR10 02NF0ZZ Release Aortic Valve, Open Approach
+Inclusion PR10 02NF3ZZ Release Aortic Valve, Percutaneous Approach
+Inclusion PR10 02NF4ZZ Release Aortic Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 02NG0ZZ Release Mitral Valve, Open Approach
+Inclusion PR10 02NG3ZZ Release Mitral Valve, Percutaneous Approach
+Inclusion PR10 02NG4ZZ Release Mitral Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 02NH3ZZ Release Pulmonary Valve, Percutaneous Approach
+Inclusion PR10 02NH4ZZ Release Pulmonary Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 02NJ3ZZ Release Tricuspid Valve, Percutaneous Approach
+Inclusion PR10 02NJ4ZZ Release Tricuspid Valve, Percutaneous Endoscopic Approach
+Inclusion PR10 02QF0ZZ Repair Aortic Valve, Open Approach
+Inclusion PR10 02QG0ZZ Repair Mitral Valve, Open Approach
+Inclusion PR10 02QH0ZZ Repair Pulmonary Valve, Open Approach
+Inclusion PR10 02QJ0ZZ Repair Tricuspid Valve, Open Approach
+Inclusion PR10 02RF07Z Replacement Of Aortic Valve With Autol Sub, Open Approach
+Inclusion PR10 02RF08Z Replacement Of Aortic Valve With Zooplastic, Open Approach
+Inclusion PR10 02RF0JZ Replacement Of Aortic Valve With Synth Sub, Open Approach
+Inclusion PR10 02RF0KZ Replacement Of Aortic Valve With Nonaut Sub, Open Approach
+Inclusion PR10 02RF37H Replace Aortic Valve W Autol Sub, Transap, Perc
+Inclusion PR10 02RF37Z Replacement Of Aortic Valve With Autol Sub, Perc Approach
+Inclusion PR10 02RF38H Replace Aortic Valve W Zooplastic, Transap, Perc
+Inclusion PR10 02RF38Z Replacement Of Aortic Valve With Zooplastic, Perc Approach
+Inclusion PR10 02RF3JH Replace Aortic Valve W Synth Sub, Transap, Perc
+Page 27
+Inclusion PR10 02RF3JZ Replacement Of Aortic Valve With Synth Sub, Perc Approach
+PR10 Inclusion 02RF3KH Replace Aortic Valve W Nonaut Sub, Transap, Perc
+Inclusion PR10 02RF3KZ Replacement Of Aortic Valve With Nonaut Sub, Perc Approach
+Inclusion Replace Of Aortic Valve With Zooplastic, Perc Endo Approach
+Inclusion PR10 02RF47Z Replace Of Aortic Valve With Autol Sub, Perc Endo Approach
+PR10 02RF48Z Inclusion PR10 02RF4JZ Replace Of Aortic Valve With Synth Sub, Perc Endo Approach
+Inclusion PR10 02RF4KZ Replace Of Aortic Valve With Nonaut Sub, Perc Endo Approach
+Inclusion PR10 02RG07Z Replacement Of Mitral Valve With Autol Sub, Open Approach
+Inclusion PR10 02RG08Z Replacement Of Mitral Valve With Zooplastic, Open Approach
+Inclusion PR10 02RG0JZ Replacement Of Mitral Valve With Synth Sub, Open Approach
+Inclusion PR10 02RG0KZ Replacement Of Mitral Valve With Nonaut Sub, Open Approach
+Inclusion PR10 02RG37H Replace Mitral Valve W Autol Sub, Transap, Perc
+Inclusion PR10 02RG37Z Replacement Of Mitral Valve With Autol Sub, Perc Approach
+Inclusion PR10 02RG38H Replace Mitral Valve W Zooplastic, Transap, Perc
+Inclusion PR10 02RG38Z Replacement Of Mitral Valve With Zooplastic, Perc Approach
+Inclusion PR10 02RG3JH Replace Mitral Valve W Synth Sub, Transap, Perc
+Inclusion PR10 02RG3JZ Replacement Of Mitral Valve With Synth Sub, Perc Approach
+Inclusion PR10 02RG3KH Replace Mitral Valve W Nonaut Sub, Transap, Perc
+Inclusion PR10 02RG3KZ Replacement Of Mitral Valve With Nonaut Sub, Perc Approach
+Inclusion PR10 02RG47Z Replace Of Mitral Valve With Autol Sub, Perc Endo Approach
+Inclusion PR10 02RG48Z Replace Of Mitral Valve With Zooplastic, Perc Endo Approach
+Inclusion PR10 02RG4JZ Replace Of Mitral Valve With Synth Sub, Perc Endo Approach
+Inclusion PR10 02RG4KZ Replace Of Mitral Valve With Nonaut Sub, Perc Endo Approach
+Inclusion PR10 02RH07Z Replacement Of Pulmonary Valve With Autol Sub, Open Approach
+Inclusion PR10 02RH08Z Replacement Of Pulm Valve With Zooplastic, Open Approach
+Inclusion PR10 02RH0JZ Replacement Of Pulmonary Valve With Synth Sub, Open Approach
+Inclusion PR10 02RH0KZ Replacement Of Pulm Valve With Nonaut Sub, Open Approach
+Inclusion PR10 02RH37Z Replacement Of Pulmonary Valve With Autol Sub, Perc Approach
+Inclusion PR10 02RH38Z Replacement Of Pulm Valve With Zooplastic, Perc Approach
+Inclusion PR10 02RH3JZ Replacement Of Pulmonary Valve With Synth Sub, Perc Approach
+Inclusion PR10 02RH3KZ Replacement Of Pulm Valve With Nonaut Sub, Perc Approach
+Inclusion PR10 02RH47Z Replacement Of Pulm Valve With Autol Sub, Perc Endo Approach
+Inclusion PR10 02RH48Z Replace Of Pulm Valve With Zooplastic, Perc Endo Approach
+Inclusion PR10 02RH4JZ Replacement Of Pulm Valve With Synth Sub, Perc Endo Approach
+Inclusion PR10 02RH4KZ Replace Of Pulm Valve With Nonaut Sub, Perc Endo Approach
+Inclusion PR10 02RJ07Z Replacement Of Tricuspid Valve With Autol Sub, Open Approach
+Inclusion PR10 02RJ08Z Replacement Of Tricusp Valve With Zooplastic, Open Approach
+Inclusion PR10 02RJ0JZ Replacement Of Tricuspid Valve With Synth Sub, Open Approach
+Page 28
+Inclusion PR10 02RJ0KZ Replacement Of Tricusp Valve With Nonaut Sub, Open Approach
+PR10 Inclusion 02RJ47Z Replace Of Tricusp Valve With Autol Sub, Perc Endo Approach
+Inclusion PR10 02RJ48Z Replace Of Tricusp Valve With Zooplastic, Perc Endo Approach
+Inclusion Replace Of Tricusp Valve With Nonaut Sub, Perc Endo Approach
+Inclusion PR10 02RJ4JZ Replace Of Tricusp Valve With Synth Sub, Perc Endo Approach
+PR10 02RJ4KZ Inclusion PR10 02TH0ZZ Resection Of Pulmonary Valve, Open Approach
+Inclusion PR10 02TH3ZZ Resection Of Pulmonary Valve, Percutaneous Approach
+Inclusion PR10 02TH4ZZ Resection Of Pulmonary Valve, Perc Endo Approach
+Inclusion PR10 02UG3JZ Supplement Mitral Valve With Synth Sub, Perc Approach"
+```
+
+Define and implement functions
+1. extract_icd10pcs extracts PCS codes from free text, leveraging the structure of the codes as 7 length alphanumeric strings that do not use letters {I,O}
+2. classify_cardic_codes sorts the extracted PCS codes into: CABG (starts with 021) vs individual valve (based on the 4th position character in the code) and then from there into open vs percutaneous approach based on the 5th position character
+
+```{r}
+# Function to extract ICD-10-PCS codes
+extract_icd10pcs <- function(text) {
+  # ICD-10-PCS: 7 chars, A-Z (except I,O) and 0-9
+  pattern <- "\\b[0-9A-HJ-NP-Z]{7}\\b"
+  
+  codes <- str_extract_all(text, pattern)[[1]]
+  unique(codes)
+}
+
+# Function to place the ICD-10-PCS codes into the correct body part/approach category
+classify_cardiac_codes <- function(codes) {
+  
+  df <- data.frame(
+    code = codes,
+    body_part = substr(codes, 4, 4),
+    approach = substr(codes, 5, 5),
+    stringsAsFactors = FALSE
+  )
+  
+  # Identify CABG separately: they all start with 021
+  df$category <- ifelse(substr(df$code, 1, 3) == "021",
+                        # CABG classification
+                        ifelse(df$approach == "0", "CABGOPEN",
+                               ifelse(df$approach %in% c("3", "4"), "CABGPERC", "CABGOther")),
+                        NA)
+  
+  # Valves: map by body part character position
+  valve_map <- c("F" = "Aortic", "G" = "Mitral", "H" = "Pulmonic", "J" = "Tricuspid")
+  df$valve <- valve_map[df$body_part]
+  
+  df$type <- case_when(
+    df$approach == "0" ~ "OPEN",
+    df$approach %in% c("3", "4") ~ "PERC",
+    TRUE ~ NA
+  )
+  
+  df$category <- ifelse(is.na(df$category) & !is.na(df$valve),
+                        paste0(df$valve, df$type),
+                        df$category)
+  
+  # Collapse to summary dataframe
+  summary_df <- df %>%
+    filter(!is.na(category)) %>%
+    group_by(category) %>%
+    summarise(codes = paste(unique(code), collapse = ", "),
+              .groups = "drop")
+  
+  return(summary_df)
+}
+
+
+cardiac_codes_organized <- classify_cardiac_codes(extract_icd10pcs(tableS1andS2InclusionCriteria))
+write.csv(cardiac_codes_organized, "output/icd10pcs_codes.csv", row.names = FALSE)
+```
+
