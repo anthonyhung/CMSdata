@@ -248,7 +248,8 @@ cat(paste(PCI_codes %>% filter(Approach == "Open Approach") %>% pull(`Number / R
 X2RF032	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Open Approach, New Technology Group 2
 X2RF332	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Percutaneous Approach, New Technology Group 2
 X2RF432	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Technique, Percutaneous Endoscopic Approach, New Technology Group 2
-	
+02UF3JZ	Supplement Aortic Valve with Synthetic Substitute, Percutaneous Approach	Aortic Valve repair/replacement	Percutaneous Approach	Repair
+
 02RX07Z	Replacement of Thoracic Aorta, Ascending/Arch with Autologous Tissue Substitute, Open Approach
 02RX0KZ	Replacement of Thoracic Aorta, Ascending/Arch with Nonautologous Tissue Substitute, Open Approach
 02RX0JZ	Replacement of Thoracic Aorta, Ascending/Arch with Synthetic Substitute, Open Approach
@@ -282,6 +283,38 @@ X2RF432	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Te
 02NX0ZZ	Release Thoracic Aorta, Ascending/Arch, Open Approach
 02QX0ZZ	Repair Thoracic Aorta, Ascending/Arch, Open Approach
 02QW0ZZ	Repair Thoracic Aorta, Descending, Open Approach
+027X3DZ	Dilation of Thoracic Aorta, Ascending/Arch with Intraluminal Device, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+027X3ZZ	Dilation of Thoracic Aorta, Ascending/Arch, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+027W0DZ	Dilation of Thoracic Aorta, Descending with Intraluminal Device, Open Approach	Thoracic Aorta procedure	Open Approach	
+027W3DZ	Dilation of Thoracic Aorta, Descending with Intraluminal Device, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+027W4DZ	Dilation of Thoracic Aorta, Descending with Intraluminal Device, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+027W3ZZ	Dilation of Thoracic Aorta, Descending, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02HW3DZ	Insertion of Intraluminal Device into Thoracic Aorta, Descending, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02QX3ZZ	Repair Thoracic Aorta, Ascending/Arch, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02QW3ZZ	Repair Thoracic Aorta, Descending, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02QW4ZZ	Repair Thoracic Aorta, Descending, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02RX4JZ	Replacement of Thoracic Aorta, Ascending/Arch with Synthetic Substitute, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02RW0KZ	Replacement of Thoracic Aorta, Descending with Nonautologous Tissue Substitute, Open Approach	Thoracic Aorta procedure	Open Approach	
+02RW4JZ	Replacement of Thoracic Aorta, Descending with Synthetic Substitute, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02VX0EZ	Restriction of Thoracic Aorta, Ascending/Arch with Branched or Fenestrated Intraluminal Device, One or Two Arteries, Open Approach	Thoracic Aorta procedure	Open Approach	
+02VX3EZ	Restriction of Thoracic Aorta, Ascending/Arch with Branched or Fenestrated Intraluminal Device, One or Two Arteries, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VX4EZ	Restriction of Thoracic Aorta, Ascending/Arch with Branched or Fenestrated Intraluminal Device, One or Two Arteries, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02VX0FZ	Restriction of Thoracic Aorta, Ascending/Arch with Branched or Fenestrated Intraluminal Device, Three or More Arteries, Open Approach	Thoracic Aorta procedure	Open Approach	
+02VX3FZ	Restriction of Thoracic Aorta, Ascending/Arch with Branched or Fenestrated Intraluminal Device, Three or More Arteries, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VX0CZ	Restriction of Thoracic Aorta, Ascending/Arch with Extraluminal Device, Open Approach	Thoracic Aorta procedure	Open Approach	
+02VX3DZ	Restriction of Thoracic Aorta, Ascending/Arch with Intraluminal Device, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VX4DZ	Restriction of Thoracic Aorta, Ascending/Arch with Intraluminal Device, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02VW3EZ	Restriction of Thoracic Aorta, Descending with Branched or Fenestrated Intraluminal Device, One or Two Arteries, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VW3FZ	Restriction of Thoracic Aorta, Descending with Branched or Fenestrated Intraluminal Device, Three or More Arteries, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VW0CZ	Restriction of Thoracic Aorta, Descending with Extraluminal Device, Open Approach	Thoracic Aorta procedure	Open Approach	
+02VW3CZ	Restriction of Thoracic Aorta, Descending with Extraluminal Device, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02VW3ZZ	Restriction of Thoracic Aorta, Descending, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02UX3JZ	Supplement Thoracic Aorta, Ascending/Arch with Synthetic Substitute, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02UW3JZ	Supplement Thoracic Aorta, Descending with Synthetic Substitute, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach	
+02UW48Z	Supplement Thoracic Aorta, Descending with Zooplastic Tissue, Percutaneous Endoscopic Approach	Thoracic Aorta procedure	Minimally Invasive Approach (Percutaneous Endoscopic Approach)	
+02CW0ZZ	Extirpation of Matter from Thoracic Aorta, Descending, Open Approach	Thoracic Aorta procedure	Open Approach
+02CW3ZZ	Extirpation of Matter from Thoracic Aorta, Descending, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach
+02CX3ZZ	Extirpation of Matter from Thoracic Aorta, Ascending/Arch, Percutaneous Approach	Thoracic Aorta procedure	Percutaneous Approach
 	
 02VG0ZZ	Restriction of Mitral Valve, Open Approach
 02VG3ZZ	Restriction of Mitral Valve, Percutaneous Approach
@@ -294,9 +327,12 @@ X2RF432	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Te
 02WG38Z	Revision of Zooplastic Tissue in Mitral Valve, Percutaneous Approach
 02WG0JZ	Revision of Synthetic Substitute in Mitral Valve, Open Approach
 02WG3JZ	Revision of Synthetic Substitute in Mitral Valve, Percutaneous Approach
-	
+02UG3JH	Supplement Mitral Valve with Synthetic Substitute, Transapical, Percutaneous Approach	Mitral Valve repair/replacement	Percutaneous Approach	Repair
+
 02UJ3JZ	Supplement Tricuspid Valve with Synthetic Substitute, Percutaneous Approach
 02BJ0ZZ	Excision of Tricuspid Valve, Open Approach
 
 02C03ZZ	Extirpation of Matter from Coronary Artery, One Artery, Percutaneous Approach
 X2C0361	Extirpation of Matter from Coronary Artery, One Artery using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1
+X2C1361 Extirpation of Matter from Coronary Artery, Two Arteries using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1 Percutaneous Approach	FALSE	FALSE	FALSE
+X2C2361 Extirpation of Matter from Coronary Artery, Three Arteries using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1 Percutaneous Approach	FALSE	FALSE	FALSE
