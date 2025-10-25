@@ -1,0 +1,241 @@
+---
+title: "noncardiacSGY_code_lookup"
+author: "anthonyhung"
+date: "2025-10-24"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(dplyr)
+library(stringr)
+library(readr)
+```
+
+# ICD-10-PCS
+
+## ICD-10-PCS codes from the HCUP CCSR categories
+- included amongst the categories are 
+appendectomy
+cholecystectomy
+gastric bypass - "Gastro-jejunal bypass (including bariatric)"
+colon resection - "colectomy"
+anterior or posterior spinal arthrodesis - "Spine fusion"
+craniotomy for brain tumor - ?"CNS excision procedures"
+total knee replacement - ?"Knee arthroplasty"
+total hip replacement - ?"Hip arthroplasty"
+open repair of femoral neck or shaft fracture - ?"Femur fixation"
+total thyroidectomy 
+lung resection - "Lung, pleura, or diaphragm resection (open and thoracoscopic)"
+
+```{r}
+ICD10_CSS <- read_csv("data/PRCCSR_v2025-1/PRCCSR-ICD10_mapping.csv")
+
+ICD10_CSS_appendectomy <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Appendectomy") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_chole <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Cholecystectomy") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_gastricBypass <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Gastro-jejunal bypass (including bariatric)") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_colectomy <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Colectomy") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_spineFusion <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Spine fusion") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_craniotomy <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "CNS excision procedures") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_TKA <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Knee arthroplasty") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_THA <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Hip arthroplasty") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_femur <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Femur fixation") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_thyroid <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Thyroidectomy") %>% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_lung <- ICD10_CSS %>% 
+  filter(`CCSR Category Description` == "Lung, pleura, or diaphragm resection (open and thoracoscopic)") %>% 
+  pull(`ICD-10-PCS Code`)
+
+#Stack all the vectors
+ICD10_CSS_List <- stack(list(
+  ICD10_CSS_appendectomy = ICD10_CSS_appendectomy,
+  ICD10_CSS_chole = ICD10_CSS_chole,
+  ICD10_CSS_gastricBypass = ICD10_CSS_gastricBypass,
+  ICD10_CSS_colectomy = ICD10_CSS_colectomy,
+  ICD10_CSS_spineFusion = ICD10_CSS_spineFusion,
+  ICD10_CSS_craniotomy = ICD10_CSS_craniotomy,
+  ICD10_CSS_TKA = ICD10_CSS_TKA,
+  ICD10_CSS_THA = ICD10_CSS_THA,
+  ICD10_CSS_femur = ICD10_CSS_femur,
+  ICD10_CSS_thyroid = ICD10_CSS_thyroid,
+  ICD10_CSS_lung = ICD10_CSS_lung
+))
+names(ICD10_CSS_List) <- c("code", "Type")
+```
+
+line-by-line file
+
+```{r}
+# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
+icd10codes <- read_fwf(
+  file = "data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt",
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = "c")
+)
+head(icd10codes)
+
+# make into tibble for joining
+ICD10_CSS_List <- tibble(ICD10_CSS_List)
+
+# join with icd10codes on the code
+noncardiacSGYlookup <- ICD10_CSS_List %>%
+  left_join(icd10codes, by = c("code")) %>%
+  rename(`Number / Range` = code,
+         `Full Description` = description) %>%
+  mutate(
+    Approach = str_extract(`Full Description`,
+                           "(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach|Natural or Artificial Opening Endoscopic|External Approach|Natural or Artificial Opening With Percutaneous Endoscopic Assistance)")
+  )
+```
+
+
+###todo
+
+```{r}
+# Function to place the ICD-10-PCS codes into the correct body part/approach category
+classify_codes <- function(codes) {
+  
+  df <- data.frame(
+    code = codes,
+    body_part = substr(codes, 4, 4),
+    approach = substr(codes, 5, 5),
+    stringsAsFactors = FALSE
+  )
+  
+  # Valves: map by body part character position
+  valve_map <- c("F" = "Aortic", "G" = "Mitral", "H" = "Pulmonic", "J" = "Tricuspid")
+  df$valve <- valve_map[df$body_part]
+  
+  df$type <- case_when(
+    df$approach == "0" ~ "OPEN",
+    df$approach %in% c("3", "4") ~ "PERC",
+    TRUE ~ NA
+  )
+  
+  df$category <- ifelse(is.na(df$category) & !is.na(df$valve),
+                        paste0(df$valve, df$type),
+                        df$category)
+  
+  # Collapse to summary dataframe
+  summary_df <- df %>%
+    filter(!is.na(category)) %>%
+    group_by(category) %>%
+    summarise(codes = paste(unique(code), collapse = ", "),
+              .groups = "drop")
+  
+  return(summary_df)
+}
+```
+
+
+# CPT codes
+
+## CPT codes from the HCUP CCSR categories
+- included amongst the categories are 
+
+appendectomy
+cholecystectomy - "Cholecystectomy and common duct exploration"
+gastric bypass - "Gastric bypass and volume reduction"
+anterior or posterior spinal arthrodesis - "spinal fusion"
+total knee replacement - "Arthroplasty knee"
+total hip replacement - "Hip replacement, total and partial"
+open repair of femoral neck or shaft fracture - "Treatment, fracture or dislocation of hip and femur"
+total thyroidectomy - "Thyroidectomy, partial or complete"
+lung resection - "Lobectomy or pneumonectomy"
+
+
+```{r}
+CPT_CSS <- read_csv("data/CCS-Services_Procedures_v2025-1/CCS_Services_Procedures_v2025-1_052425.csv")
+
+CPT_CSS_appendectomy <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Appendectomy") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_chole <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Cholecystectomy and common duct exploration") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_gastricBypass <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Gastric bypass and volume reduction") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_spineFusion <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Spinal fusion") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_TKA <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Arthroplasty knee") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_THA <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Hip replacement, total and partial") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_femur <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Treatment, fracture or dislocation of hip and femur") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_thyroid <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Thyroidectomy, partial or complete") %>% 
+  pull(`Code Range`)
+
+CPT_CSS_lung <- CPT_CSS %>% 
+  filter(`CCS Label`  == "Lobectomy or pneumonectomy") %>% 
+  pull(`Code Range`)
+
+
+#Stack all the vectors
+CPT_CSS_List <- stack(list(
+  CPT_CSS_appendectomy = CPT_CSS_appendectomy,
+  CPT_CSS_chole = CPT_CSS_chole,
+  CPT_CSS_gastricBypass = CPT_CSS_gastricBypass,
+  CPT_CSS_spineFusion = CPT_CSS_spineFusion,
+  CPT_CSS_TKA = CPT_CSS_TKA,
+  CPT_CSS_THA = CPT_CSS_THA,
+  CPT_CSS_femur = CPT_CSS_femur,
+  CPT_CSS_thyroid = CPT_CSS_thyroid,
+  CPT_CSS_lung = CPT_CSS_lung
+))
+names(CPT_CSS_List) <- c("code", "Type")
+
+CPT_CSS_List$code <- gsub("^'?(\\w+)-\\1'?$", "'\\1'", CPT_CSS_List$code)
+```
+
+
+
+
