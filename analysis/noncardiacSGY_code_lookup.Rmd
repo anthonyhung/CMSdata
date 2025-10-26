@@ -13,6 +13,7 @@ editor_options:
 library(dplyr)
 library(stringr)
 library(readr)
+library(tidyverse)
 
 # Function to extract ICD-10-PCS codes
 extract_icd10pcs <- function(text) {
@@ -22,6 +23,35 @@ extract_icd10pcs <- function(text) {
   codes <- str_extract_all(text, pattern)[[1]]
   unique(codes)
 }
+
+# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
+icd10codes_2026 <- read_fwf(
+  file = "data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt",
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = "c")
+)
+
+icd10codes_2018 <- read_fwf(
+  file = "data/2018-icd-10-pcs-codes-file/icd10pcs_codes_2018.txt",
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = "c")
+)
+
+icd10codes <- bind_rows(
+  icd10codes_2026 %>% mutate(source = "2026"),
+  icd10codes_2018 %>% mutate(source = "2018")
+) %>%
+  arrange(code, desc(source)) %>%  # keep 2026 first if both exist
+  distinct(code, .keep_all = TRUE) %>%
+  select(-source)
+
+head(icd10codes)
 ```
 
 # ICD-10-PCS
@@ -46,8 +76,27 @@ ICD10_AHRQ_AAA <- extract_icd10pcs("0410090, 0410096, 0410097, 0410098, 0410099,
 #From PMID: 36519918
 ICD10_36519918_colectomy <- extract_icd10pcs("0DBE0ZZ, 0DBE3ZZ, 0DBE4ZZ, 0DBE7ZZ, 0DBF0ZZ, 0DBF3ZZ, 0DBF4ZZ, 0DBF7ZZ, 0DBG0ZZ, 0DBG3ZZ, 0DBG4ZZ, 0DBG7ZZ, 0DBH0ZZ, 0DBH3ZZ, 0DBH4ZZ, 0DBH7ZZ, 0DBK0ZZ, 0DBK3ZZ, 0DBK4ZZ, 0DBK7ZZ, 0DBL0ZZ, 0DBL3ZZ, 0DBL4ZZ, 0DBL7ZZ, 0DBM0ZZ, 0DBM3ZZ, 0DBM4ZZ, 0DBM7ZZ, 0DBN0ZZ, 0DBN3ZZ, 0DBN4ZZ, 0DBN7ZZ, 0DTE0ZZ, 0DTE4ZZ, 0DTE7ZZ, 0DTE8ZZ, 0DTF0ZZ, 0DTF4ZG, 0DTF4ZZ, 0DTF7ZZ, 0DTF8ZZ, 0DTG0ZZ, 0DTG4ZG, 0DTG4ZZ, 0DTG7ZZ, 0DTG8ZZ, 0DTGFZZ, 0DTH0ZZ, 0DTH4ZZ, 0DTH7ZZ, 0DTH8ZZ, 0DTK0ZZ, 0DTK4ZZ, 0DTK7ZZ, 0DTK8ZZ, 0DTL0ZZ, 0DTL4ZG, 0DTL4ZZ, 0DTL7ZZ, 0DTL8ZZ, 0DTLFZZ, 0DTM0ZZ, 0DTM4ZG, 0DTM4ZZ, 0DTM7ZZ, 0DTM8ZZ, 0DTMFZZ, 0DTN0ZZ, 0DTN4ZG, 0DTN4ZZ, 0DTN7ZZ, 0DTN8ZZ, 0DTNFZZ")
 
+#From PMID: 38619839
+wildcards_appendectomy <- ("0DBJ0, 0DBJ3, 0DBJ4, 0DBJ7, 0DBJ8, 0DTJ0, 0DTJ4, 0DTJ7, 0DTJ8, 0DDJ3, 0DDJ4, 0DDJ8, 0DCJ0, 0DCJ3, 0DCJ4, 0DCJ7, 0DCJ8, 0D9J0, 0D9J3, 0D9J4, 0D9J7, 0D9J8")
 
+# Function to expand wildcard codes
+expand_wildcards <- function(wildcard_string, master_codes) {
+  wildcard_vector <- unlist(strsplit(wildcard_string, split = "[, \n]+"))
+  wildcard_vector <- trimws(wildcard_vector)
+  
+  expanded <- map(wildcard_vector, function(pat) {
+    regex_pat <- paste0("^", str_replace_all(pat, "x", ""))
+    master_codes$code[str_detect(master_codes$code, regex_pat)]
+  }) %>% unlist()
+  
+  unique(expanded)
+}
 
+ICD10_38619839_appendectomy <- expand_wildcards(wildcards_appendectomy, icd10codes)
+
+#From PMID: 37989635
+ICD10_37989635_neckDissection <- extract_icd10pcs("07B10ZX, 07B10ZZ, 07B13ZX, 07B13ZZ, 07B14ZX, 07B14ZZ, 07B20ZX, 07B20ZZ, 07B23ZX, 07B23ZZ, 07B24ZX, 07B24ZZ, 07T10ZZ, 07T14ZZ")
+ICD10_37989635_thyroid <- extract_icd10pcs("0GCK0ZZ, 0GCK4ZZ, 0GTK0ZZ, 0GTK4ZZ")
 
 ICD10_CSS <- read_csv("data/PRCCSR_v2025-1/PRCCSR-ICD10_mapping.csv")
 
@@ -100,6 +149,9 @@ ICD10_CSS_lung <- ICD10_CSS %>%
 ICD10_CSS_List <- stack(list(
   ICD10_AHRQ_AAA = ICD10_AHRQ_AAA,
   ICD10_36519918_colectomy = ICD10_36519918_colectomy,
+  ICD10_38619839_appendectomy = ICD10_38619839_appendectomy,
+  ICD10_37989635_neckDissection = ICD10_37989635_neckDissection,
+  ICD10_37989635_thyroid = ICD10_37989635_thyroid,
   ICD10_CSS_appendectomy = ICD10_CSS_appendectomy,
   ICD10_CSS_chole = ICD10_CSS_chole,
   ICD10_CSS_gastricBypass = ICD10_CSS_gastricBypass,
@@ -118,17 +170,6 @@ names(ICD10_CSS_List) <- c("code", "Type")
 line-by-line file
 
 ```{r}
-# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
-icd10codes <- read_fwf(
-  file = "data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt",
-  fwf_cols(
-    code = c(1, 7),
-    description = c(9, NA)  # skip 1 space between code and description
-  ),
-  col_types = cols(.default = "c")
-)
-head(icd10codes)
-
 # make into tibble for joining
 ICD10_CSS_List <- tibble(ICD10_CSS_List)
 
@@ -203,6 +244,9 @@ lung resection - "Lobectomy or pneumonectomy"
 #From PMID: 38619839
 CPT_38619839_appendectomy <- c("44900", "44901", "44950", "44955", "44960", "44970", "44979")
 
+#From PMID: 37989635
+CPT_37989635_neckDissection <- c("38700", "38724", "38746", "38720", "60252", "60254")
+CPT_37989635_thyroid <- c("60271", "60225", "60240", "60271", "60252", "60254")
 
 
 CPT_CSS <- read_csv("data/CCS-Services_Procedures_v2025-1/CCS_Services_Procedures_v2025-1_052425.csv")
@@ -254,7 +298,9 @@ CPT_CSS_List <- stack(list(
   CPT_CSS_THA = CPT_CSS_THA,
   CPT_CSS_femur = CPT_CSS_femur,
   CPT_CSS_thyroid = CPT_CSS_thyroid,
-  CPT_CSS_lung = CPT_CSS_lung
+  CPT_CSS_lung = CPT_CSS_lung,
+  CPT_37989635_neckDissection = CPT_37989635_neckDissection,
+  CPT_37989635_thyroid = CPT_37989635_thyroid
 ))
 names(CPT_CSS_List) <- c("code", "Type")
 

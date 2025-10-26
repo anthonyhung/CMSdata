@@ -41,7 +41,7 @@ appendectomy_codes <- icd10codes %>%
 
 appendectomy_codes_icd9 <- c("47.0","47.01","47.09")
 
-appendectomy_codes_CPT <- c("44950","44955","44960","44970")
+appendectomy_codes_CPT <- c("44950","44960","44970")
 
 appendectomy_codes <- c(appendectomy_codes, appendectomy_codes_icd9, appendectomy_codes_CPT)
 ```

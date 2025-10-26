@@ -15,7 +15,7 @@
 
 <title>ICD-10 PCS codes</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -361,7 +361,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -372,8 +372,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -382,13 +382,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-07-06
+<strong>Last updated:</strong> 2025-10-22
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>CMSdata/</code> <span
@@ -400,7 +400,7 @@ title="This is the local directory in which the code in this file was executed."
 This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
 analysis was created with <a
   href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
 that were applied when the results were created. The <em>Past
 versions</em> tab lists the development history.
 </p>
@@ -411,21 +411,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -516,15 +513,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree9a1f71275cbc9742280871531ccaacaca826575btargetblank9a1f712a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree4a5a6d8032263dd26001de34ae4e9cd7ace7a292targetblank4a5a6d8a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/anthonyhung/CMSdata/tree/9a1f71275cbc9742280871531ccaacaca826575b" target="_blank">9a1f712</a>
+<a href="https://github.com/anthonyhung/CMSdata/tree/4a5a6d8032263dd26001de34ae4e9cd7ace7a292" target="_blank">4a5a6d8</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree9a1f71275cbc9742280871531ccaacaca826575btargetblank9a1f712a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree4a5a6d8032263dd26001de34ae4e9cd7ace7a292targetblank4a5a6d8a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -534,7 +531,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/anthonyhung/CMSdata/tree/9a1f71275cbc9742280871531ccaacaca826575b" target="_blank">9a1f712</a>.
+<a href="https://github.com/anthonyhung/CMSdata/tree/4a5a6d8032263dd26001de34ae4e9cd7ace7a292" target="_blank">4a5a6d8</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -553,9 +550,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/icd10_procedures.Rmd
 
 </code></pre>
 <p>
@@ -605,6 +599,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/66e20e5f590192c39724d7ea86959ade0423f7f0/analysis/icd10_procedures.Rmd" target="_blank">66e20e5</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-07-06
+</td>
+<td>
+added CPT and icd9 codes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/anthonyhung/CMSdata/66e20e5f590192c39724d7ea86959ade0423f7f0/docs/icd10_procedures.html" target="_blank">66e20e5</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-07-06
+</td>
+<td>
+added CPT and icd9 codes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/anthonyhung/CMSdata/blob/cd4cef336bbcdfbce6e5bf6f977373413489f854/analysis/icd10_procedures.Rmd" target="_blank">cd4cef3</a>
 </td>
 <td>
@@ -626,20 +654,18 @@ start parsing icd10
 </div>
 <div id="load-table" class="section level1">
 <h1>Load table</h1>
-<pre class="r"><code>library(readr)</code></pre>
-<pre><code>Warning: package &#39;readr&#39; was built under R version 4.2.3</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>Warning: package &#39;dplyr&#39; was built under R version 4.2.3</code></pre>
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(stringr)</code></pre>
-<pre><code>Warning: package &#39;stringr&#39; was built under R version 4.2.3</code></pre>
+<pre class="r"><code>library(readr)
+library(stringr)
+library(tidyverse)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ purrr     1.0.1
+✔ forcats   1.0.0     ✔ tibble    3.2.1
+✔ ggplot2   3.4.2     ✔ tidyr     1.3.1
+✔ lubridate 1.9.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <pre class="r"><code># read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
 icd10codes &lt;- read_fwf(
   file = &quot;data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt&quot;,
@@ -892,6 +918,33 @@ neck_codes_icd9 &lt;- c(&quot;40.40&quot;,&quot;40.41&quot;,&quot;40.42&quot;)
 neck_codes_CPT &lt;- c(&quot;31365&quot;,&quot;31368&quot;,&quot;38542&quot;,&quot;38720&quot;,&quot;38724&quot;,&quot;41135&quot;,&quot;41145&quot;,&quot;41155&quot;,&quot;42426&quot;,&quot;69155&quot;)
 
 neck_codes &lt;- c(neck_codes, neck_codes_icd9, neck_codes_CPT)</code></pre>
+</div>
+<div id="make-dataframe-of-codesdescriptions" class="section level2">
+<h2>Make dataframe of codes/descriptions</h2>
+<pre class="r"><code>code_list &lt;- list(
+  AAA = AAA_codes,
+  appendectomy = appendectomy_codes,
+  cholecystectomy = cholecystectomy_codes,
+  colon = colon_codes,
+  craniotomy = craniotomy_codes,
+  fem_pop = fem_pop_codes,
+  femur = femur_repair_codes,
+  gastric_bypass = gastric_bypass_codes,
+  hip = hip_replacement_codes,
+  knee = knee_replacement_codes,
+  lung = lung_resection_codes,
+  neck = neck_codes,
+  spine = spinal_fusion_codes,
+  thyroidectomy = thyroidectomy_codes
+)
+
+# Convert to tibble
+df &lt;- enframe(code_list, name = &quot;group&quot;, value = &quot;codes&quot;) %&gt;%
+  unnest(codes)
+
+df$codes &lt;- gsub(&quot;\\.&quot;, &quot;&quot;, df$codes)
+
+write.csv(df, &quot;output/surgery_codes.csv&quot;, row.names = FALSE)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -901,9 +954,9 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.2 (2022-10-31)
+<pre><code>R version 4.2.3 (2023-03-15)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS 15.5
+Running under: macOS 15.7.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
@@ -916,21 +969,25 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] stringr_1.5.1 dplyr_1.1.4   readr_2.1.5  
+ [1] lubridate_1.9.2 forcats_1.0.0   dplyr_1.1.2     purrr_1.0.1    
+ [5] tidyr_1.3.1     tibble_3.2.1    ggplot2_3.4.2   tidyverse_2.0.0
+ [9] stringr_1.5.0   readr_2.1.4    
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.13-1     pillar_1.9.0      compiler_4.2.2    bslib_0.8.0      
- [5] later_1.4.1       jquerylib_0.1.4   git2r_0.31.0      workflowr_1.7.1  
- [9] tools_4.2.2       bit_4.5.0.1       digest_0.6.37     jsonlite_1.8.9   
-[13] evaluate_1.0.1    lifecycle_1.0.4   tibble_3.2.1      pkgconfig_2.0.3  
-[17] rlang_1.1.4       cli_3.6.3         rstudioapi_0.17.1 parallel_4.2.2   
-[21] yaml_2.3.10       xfun_0.49         fastmap_1.2.0     withr_3.0.2      
-[25] knitr_1.49        generics_0.1.3    fs_1.6.5          vctrs_0.6.5      
-[29] sass_0.4.9        hms_1.1.3         bit64_4.5.2       tidyselect_1.2.1 
-[33] rprojroot_2.0.4   glue_1.8.0        R6_2.5.1          fansi_1.0.6      
-[37] vroom_1.6.5       rmarkdown_2.29    tzdb_0.4.0        magrittr_2.0.3   
-[41] whisker_0.4.1     promises_1.3.2    htmltools_0.5.8.1 httpuv_1.6.15    
-[45] utf8_1.2.4        stringi_1.8.4     cachem_1.1.0      crayon_1.5.3     </code></pre>
+ [1] tidyselect_1.2.1  xfun_0.39         bslib_0.4.2       colorspace_2.1-0 
+ [5] vctrs_0.6.5       generics_0.1.3    htmltools_0.5.8.1 yaml_2.3.7       
+ [9] utf8_1.2.3        rlang_1.1.1       jquerylib_0.1.4   later_1.3.1      
+[13] pillar_1.9.0      glue_1.6.2        withr_2.5.0       bit64_4.0.5      
+[17] lifecycle_1.0.3   munsell_0.5.0     gtable_0.3.3      workflowr_1.7.0  
+[21] evaluate_0.21     knitr_1.43        tzdb_0.4.0        fastmap_1.1.1    
+[25] httpuv_1.6.11     parallel_4.2.3    fansi_1.0.4       Rcpp_1.0.13      
+[29] promises_1.2.0.1  scales_1.2.1      cachem_1.0.8      vroom_1.6.3      
+[33] jsonlite_1.8.5    bit_4.0.5         fs_1.6.2          hms_1.1.3        
+[37] digest_0.6.31     stringi_1.7.12    rprojroot_2.0.3   grid_4.2.3       
+[41] cli_3.6.1         tools_4.2.3       magrittr_2.0.3    sass_0.4.6       
+[45] crayon_1.5.2      whisker_0.4.1     pkgconfig_2.0.3   timechange_0.2.0 
+[49] rmarkdown_2.22    rstudioapi_0.14   R6_2.5.1          git2r_0.32.0     
+[53] compiler_4.2.3   </code></pre>
 </div>
 </div>
 </div>
