@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="anthonyhung" />
+
+<meta name="date" content="2025-10-24" />
+
+<title>noncardiacSGY_code_lookup</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CMSdata</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">noncardiacSGY_code_lookup</h1>
+<h4 class="author">anthonyhung</h4>
+<h4 class="date">2025-10-24</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2025-10-28
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>CMSdata/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20250704code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20250704)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20250704code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20250704)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatreeb2e1cfaf136c79ebf2c67bfc04a71547e04e7fd8targetblankb2e1cfaa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/anthonyhung/CMSdata/tree/b2e1cfaf136c79ebf2c67bfc04a71547e04e7fd8" target="_blank">b2e1cfa</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatreeb2e1cfaf136c79ebf2c67bfc04a71547e04e7fd8targetblankb2e1cfaa"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/anthonyhung/CMSdata/tree/b2e1cfaf136c79ebf2c67bfc04a71547e04e7fd8" target="_blank">b2e1cfa</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .RData
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+
+Untracked files:
+    Untracked:  data/CPTdictionary/
+    Untracked:  output/CPT_noncardiacSGY_lookup.csv
+    Untracked:  output/ICD_noncardiacSGY_lookup.csv
+
+Unstaged changes:
+    Modified:   analysis/noncardiacSGY_code_lookup.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/noncardiacSGY_code_lookup.Rmd</code>) and HTML
+(<code>docs/noncardiacSGY_code_lookup.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/b2e1cfaf136c79ebf2c67bfc04a71547e04e7fd8/analysis/noncardiacSGY_code_lookup.Rmd" target="_blank">b2e1cfa</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-10-27
+</td>
+<td>
+added additional codes from papers
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/306e917629df726bff7ccdbb394dd821705d2e2e/analysis/noncardiacSGY_code_lookup.Rmd" target="_blank">306e917</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-10-26
+</td>
+<td>
+add codes from sources
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/1aca5c117ed19290a42b77a2a7b105190f2648eb/analysis/noncardiacSGY_code_lookup.Rmd" target="_blank">1aca5c1</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-10-25
+</td>
+<td>
+add PMID codes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/1ca02191dc32543ba57013a311d883543b8d8364/analysis/noncardiacSGY_code_lookup.Rmd" target="_blank">1ca0219</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-10-25
+</td>
+<td>
+add ccsr code for finding groups of ICD and CPT codes for each
+noncardiac surgery procedure group that exists in the ccsr
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(stringr)
+library(readr)
+library(tidyverse)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ purrr     1.0.1
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.1</code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code># Function to extract ICD-10-PCS codes
+extract_icd10pcs &lt;- function(text) {
+  # ICD-10-PCS: 7 chars, A-Z (except I,O) and 0-9
+  pattern &lt;- &quot;\\b[0-9A-HJ-NP-Z]{7}\\b&quot;
+  
+  codes &lt;- str_extract_all(text, pattern)[[1]]
+  unique(codes)
+}
+
+# read in full list of 2026 ICD 10 codes from https://www.cms.gov/files/zip/2026-icd-10-pcs-codes-file.zip (7 character code and description)
+icd10codes_2026 &lt;- read_fwf(
+  file = &quot;data/2026-icd-10-pcs-codes-file/icd10pcs_codes_2026.txt&quot;,
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = &quot;c&quot;)
+)
+
+icd10codes_2018 &lt;- read_fwf(
+  file = &quot;data/2018-icd-10-pcs-codes-file/icd10pcs_codes_2018.txt&quot;,
+  fwf_cols(
+    code = c(1, 7),
+    description = c(9, NA)  # skip 1 space between code and description
+  ),
+  col_types = cols(.default = &quot;c&quot;)
+)
+
+icd10codes &lt;- bind_rows(
+  icd10codes_2026 %&gt;% mutate(source = &quot;2026&quot;),
+  icd10codes_2018 %&gt;% mutate(source = &quot;2018&quot;)
+) %&gt;%
+  arrange(code, desc(source)) %&gt;%  # keep 2026 first if both exist
+  distinct(code, .keep_all = TRUE) %&gt;%
+  select(-source)
+
+head(icd10codes)</code></pre>
+<pre><code># A tibble: 6 × 2
+  code    description                                                           
+  &lt;chr&gt;   &lt;chr&gt;                                                                 
+1 0016070 Bypass Cerebral Ventricle to Nasopharynx with Autologous Tissue Subst…
+2 0016071 Bypass Cerebral Ventricle to Mastoid Sinus with Autologous Tissue Sub…
+3 0016072 Bypass Cerebral Ventricle to Atrium with Autologous Tissue Substitute…
+4 0016073 Bypass Cerebral Ventricle to Blood Vessel with Autologous Tissue Subs…
+5 0016074 Bypass Cerebral Ventricle to Pleural Cavity with Autologous Tissue Su…
+6 0016075 Bypass Cerebral Ventricle to Intestine with Autologous Tissue Substit…</code></pre>
+</div>
+<div id="icd-10-pcs" class="section level1">
+<h1>ICD-10-PCS</h1>
+<div id="icd-10-pcs-codes-from-the-hcup-ccsr-categories"
+class="section level2">
+<h2>ICD-10-PCS codes from the HCUP CCSR categories</h2>
+<ul>
+<li>included amongst the categories are appendectomy cholecystectomy
+gastric bypass - “Gastro-jejunal bypass (including bariatric)” colon
+resection - “colectomy” anterior or posterior spinal arthrodesis -
+“Spine fusion” craniotomy for brain tumor - ?“CNS excision procedures”
+total knee replacement - ?“Knee arthroplasty” total hip replacement -
+?“Hip arthroplasty” open repair of femoral neck or shaft fracture -
+?“Femur fixation” total thyroidectomy lung resection - “Lung, pleura, or
+diaphragm resection (open and thoracoscopic)”</li>
+</ul>
+<pre class="r"><code>ICD10_AHRQ_AAA &lt;- extract_icd10pcs(&quot;0410090, 0410096, 0410097, 0410098, 0410099, 041009B, 041009C, 041009D, 041009F, 041009G, 041009H, 041009J, 041009K, 041009Q, 041009R, 04100A0, 04100A6, 04100A7, 04100A8, 04100A9, 04100AB, 04100AC, 04100AD, 04100AF, 04100AG, 04100AH, 04100AJ, 04100AK, 04100AQ, 04100AR, 04100J0, 04100J6, 04100J7, 04100J8, 04100J9, 04100JB, 04100JC, 04100JD, 04100JF, 04100JG, 04100JH, 04100JJ, 04100JK, 04100JQ, 04100JR, 04100K0, 04100K6, 04100K7, 04100K8, 04100K9, 04100KB, 04100KC, 04100KD, 04100KF, 04100KG, 04100KH, 04100KJ, 04100KK, 04100KQ, 04100KR, 04100Z0, 04100Z6, 04100Z7, 04100Z8, 04100Z9, 04100ZB, 04100ZC, 04100ZD, 04100ZF, 04100ZG, 04100ZH, 04100ZJ, 04100ZK, 04100ZQ, 04100ZR, 0410490, 0410496, 0410497, 0410498, 0410499, 041049B, 041049C, 041049D, 041049F, 041049G, 041049H, 041049J, 041049K, 041049Q, 041049R, 04104A0, 04104A6, 04104A7, 04104A8, 04104A9, 04104AB, 04104AC, 04104AD, 04104AF, 04104AG, 04104AH, 04104AJ, 04104AK, 04104AQ, 04104AR, 04104J0, 04104J6, 04104J7, 04104J8, 04104J9, 04104JB, 04104JC, 04104JD, 04104JF, 04104JG, 04104JH, 04104JJ, 04104JK, 04104JQ, 04104JR, 04104K0, 04104K6, 04104K7, 04104K8, 04104K9, 04104KB, 04104KC, 04104KD, 04104KF, 04104KG, 04104KH, 04104KJ, 04104KK, 04104KQ, 04104KR, 04104Z0, 04104Z6, 04104Z7, 04104Z8, 04104Z9, 04104ZB, 04104ZC, 04104ZD, 04104ZF, 04104ZG, 04104ZH, 04104ZJ, 04104ZK, 04104ZQ, 04104ZR, 04500ZZ, 04503ZZ, 04504ZZ, 04B00ZZ, 04B03ZZ, 04B04ZZ, 04H00DZ, 04H03DZ, 04H04DZ, 04L00DJ, 04L00DZ, 04L00ZZ, 04L03DJ, 04L03DZ, 04L03ZZ, 04L04DZ, 04L04ZZ, 04Q00ZZ, 04Q03ZZ, 04Q04ZZ, 04R007Z, 04R00JZ, 04R00KZ, 04R047Z, 04R04JZ, 04R04KZ, 04U007Z, 04U00JZ, 04U00KZ, 04U037Z, 04U03JZ, 04U03KZ, 04U047Z, 04U04JZ, 04U04KZ, 04V00D6, 04V00DJ, 04V00DZ, 04V00E6, 04V00EZ, 04V00F6, 04V00FZ, 04V00Z6, 04V00ZZ, 04V03D6, 04V03DJ, 04V03DZ, 04V03E6, 04V03EZ, 04V03F6, 04V03FZ, 04V03Z6, 04V03ZZ, 04V04D6, 04V04DJ, 04V04DZ, 04V04E6, 04V04EZ, 04V04F6, 04V04FZ, 04V04Z6, 04V04ZZ&quot;)
+
+#From PMID: 36519918
+ICD10_36519918_colectomy &lt;- extract_icd10pcs(&quot;0DBE0ZZ, 0DBE3ZZ, 0DBE4ZZ, 0DBE7ZZ, 0DBF0ZZ, 0DBF3ZZ, 0DBF4ZZ, 0DBF7ZZ, 0DBG0ZZ, 0DBG3ZZ, 0DBG4ZZ, 0DBG7ZZ, 0DBH0ZZ, 0DBH3ZZ, 0DBH4ZZ, 0DBH7ZZ, 0DBK0ZZ, 0DBK3ZZ, 0DBK4ZZ, 0DBK7ZZ, 0DBL0ZZ, 0DBL3ZZ, 0DBL4ZZ, 0DBL7ZZ, 0DBM0ZZ, 0DBM3ZZ, 0DBM4ZZ, 0DBM7ZZ, 0DBN0ZZ, 0DBN3ZZ, 0DBN4ZZ, 0DBN7ZZ, 0DTE0ZZ, 0DTE4ZZ, 0DTE7ZZ, 0DTE8ZZ, 0DTF0ZZ, 0DTF4ZG, 0DTF4ZZ, 0DTF7ZZ, 0DTF8ZZ, 0DTG0ZZ, 0DTG4ZG, 0DTG4ZZ, 0DTG7ZZ, 0DTG8ZZ, 0DTGFZZ, 0DTH0ZZ, 0DTH4ZZ, 0DTH7ZZ, 0DTH8ZZ, 0DTK0ZZ, 0DTK4ZZ, 0DTK7ZZ, 0DTK8ZZ, 0DTL0ZZ, 0DTL4ZG, 0DTL4ZZ, 0DTL7ZZ, 0DTL8ZZ, 0DTLFZZ, 0DTM0ZZ, 0DTM4ZG, 0DTM4ZZ, 0DTM7ZZ, 0DTM8ZZ, 0DTMFZZ, 0DTN0ZZ, 0DTN4ZG, 0DTN4ZZ, 0DTN7ZZ, 0DTN8ZZ, 0DTNFZZ&quot;)
+
+#From PMID: 38619839
+wildcards_appendectomy &lt;- (&quot;0DBJ0, 0DBJ3, 0DBJ4, 0DBJ7, 0DBJ8, 0DTJ0, 0DTJ4, 0DTJ7, 0DTJ8, 0DDJ3, 0DDJ4, 0DDJ8, 0DCJ0, 0DCJ3, 0DCJ4, 0DCJ7, 0DCJ8, 0D9J0, 0D9J3, 0D9J4, 0D9J7, 0D9J8&quot;)
+# Function to expand wildcard codes
+expand_wildcards &lt;- function(wildcard_string, master_codes) {
+  wildcard_vector &lt;- unlist(strsplit(wildcard_string, split = &quot;[, \n]+&quot;))
+  wildcard_vector &lt;- trimws(wildcard_vector)
+  
+  expanded &lt;- map(wildcard_vector, function(pat) {
+    regex_pat &lt;- paste0(&quot;^&quot;, str_replace_all(pat, &quot;x&quot;, &quot;&quot;))
+    master_codes$code[str_detect(master_codes$code, regex_pat)]
+  }) %&gt;% unlist()
+  
+  unique(expanded)
+}
+
+ICD10_38619839_appendectomy &lt;- expand_wildcards(wildcards_appendectomy, icd10codes)
+
+#From PMID: 37989635
+ICD10_37989635_neckDissection &lt;- extract_icd10pcs(&quot;07B10ZX, 07B10ZZ, 07B13ZX, 07B13ZZ, 07B14ZX, 07B14ZZ, 07B20ZX, 07B20ZZ, 07B23ZX, 07B23ZZ, 07B24ZX, 07B24ZZ, 07T10ZZ, 07T14ZZ&quot;)
+ICD10_37989635_thyroid &lt;- extract_icd10pcs(&quot;0GCK0ZZ, 0GCK4ZZ, 0GTK0ZZ, 0GTK4ZZ&quot;)
+
+
+#From PMID: 39765242
+ICD10_39765242_spineFusion &lt;- extract_icd10pcs(gsub(&quot;ICD-10-P-&quot;, &quot;&quot;, &quot;ICD-10-P-0SG0070, ICD-10-P-0SG00A0,
+ICD-10-P-0SG00J0, ICD-10-P-0SG00K0, ICD-10-P-0SG0071, ICD-10-P-0SG007J, ICD-10-P-0SG00AJ, ICD-10-P-0SG00J1, ICD-10-P-0SG00JJ, ICD-10-P-0SG00K1, ICD-10-P-0SG00KJ, ICD-10-P-0SG0370,
+ICD-10-P-0SG03A0, ICD-10-P-0SG03J0,
+ICD-10-P-0SG03K0, ICD-10-P-0SG0470,
+ICD-10-P-0SG04A0, ICD-10-P-0SG04J0,
+ICD-10-P-0SG04K0, ICD-10-P-0SG0371,
+ICD-10-P-0SG037J, ICD-10-P-0SG03AJ,
+ICD-10-P-0SG03J1, ICD-10-P-0SG03JJ,
+ICD-10-P-0SG03K1, ICD-10-P-0SG03KJ,
+ICD-10-P-0SG0471, ICD-10-P-0SG047J,
+ICD-10-P-0SG04AJ, ICD-10-P-0SG04J1,
+ICD-10-P-0SG04JJ, ICD-10-P-0SG04K1,
+ICD-10-P-0SG04KJ, ICD-10-P-0SG1070, ICD-10-P-0SG10A0,
+ICD-10-P-0SG10J0, ICD-10-P-0SG10K0,
+ICD-10-P-0SG1071, ICD-10-P-0SG107J,
+ICD-10-P-0SG10AJ, ICD-10-P-0SG10J1,
+ICD-10-P-0SG10JJ, ICD-10-P-0SG10K1,
+ICD-10-P-0SG10KJ, ICD-10-P-0SG1370,
+ICD-10-P-0SG13A0, ICD-10-P-0SG13J0,
+ICD-10-P-0SG13K0, ICD-10-P-0SG1470,
+ICD-10-P-0SG14A0, ICD-10-P-0SG14J0,
+ICD-10-P-0SG14K0, ICD-10-P-0SG1371,
+ICD-10-P-0SG137J, ICD-10-P-0SG13AJ,
+ICD-10-P-0SG13J1, ICD-10-P-0SG13JJ,
+ICD-10-P-0SG13K1, ICD-10-P-0SG13KJ,
+ICD-10-P-0SG1471, ICD-10-P-0SG147J,
+ICD-10-P-0SG14AJ, ICD-10-P-0SG14J1,
+ICD-10-P-0SG14JJ, ICD-10-P-0SG14K1,
+ICD-10-P-0SG14KJ, ICD-10-P-00NY0ZZ, ICD-10-P-00NY3ZZ,
+ICD-10-P-00NY4Z&quot;))
+
+#From PMID: 40625013
+ICD10_40625013_spineFusion &lt;- extract_icd10pcs(&quot;0RGA070, 0RGA071, 0RGA07J, 0RGA0A0, 0RGA0A1, 0RGA0AJ, 0RGA0J0, 0RGA0J1, 0RGA0JJ, 0RGA0K0, 0RGA0K1, 0RGA0KJ, 0RGA0Z0, 0RGA0Z1,
+0RGA0ZJ, 0RGA370, 0RGA371, 0RGA37J, 0RGA3A0, 0RGA3A1, 0RGA3AJ, 0RGA3J0, 0RGA3J1, 0RGA3JJ, 0RGA3K0, 0RGA3K1, 0RGA3KJ, 0RGA3Z0,
+0RGA3Z1, 0RGA3ZJ, 0RGA470, 0RGA471, 0RGA47J, 0RGA4A0, 0RGA4A1, 0RGA4AJ, 0RGA4J0, 0RGA4J1, 0RGA4JJ, 0RGA4K0, 0RGA4K1, 0RGA4KJ,
+0RGA4Z0, 0RGA4Z1, 0RGA4ZJ, 0RHA04Z, 0RHA0BZ, 0RHA0CZ, 0RHA0DZ, 0RHA34Z, 0RHA3BZ, 0RHA3CZ, 0RHA3DZ, 0RHA44Z, 0RHA4BZ, 0RHA4CZ,
+0RHA4DZ, 0RPA04Z, 0RPA0AZ, 0RPA34Z, 0RPA3AZ, 0RPA44Z, 0RPA4AZ, 0RPAX4Z, 0RSA04Z, 0RSA0ZZ, 0RSA34Z, 0RSA3ZZ, 0RSA44Z, 0RSA4ZZ,
+0RSAX4Z, 0RWA04Z, 0RWA0AZ, 0RWA34Z, 0RWA3AZ, 0RWA44Z, 0RWA4AZ, 0RWAX4Z, 0RWAXAZ, 0SG0070, 0SG0071, 0SG007J, 0SG00A0, 0SG00A1,
+0SG00AJ, 0SG00J0, 0SG00J1, 0SG00JJ, 0SG00K0, 0SG00K1, 0SG00KJ, 0SG00Z0, 0SG00Z1, 0SG00ZJ, 0SG0370, 0SG0371, 0SG037J, 0SG03A0, 0SG03A1,
+0SG03AJ, 0SG03J0, 0SG03J1, 0SG03JJ, 0SG03K0, 0SG03K1, 0SG03KJ, 0SG03Z0, 0SG03Z1, 0SG03ZJ, 0SG0470, 0SG0471, 0SG047J, 0SG04A0, 0SG04A1, 0SG04AJ, 0SG04J0, 0SG04J1, 0SG04JJ, 0SG04K0, 0SG04K1, 0SG04KJ, 0SG04Z0, 0SG04Z1, 0SG04ZJ, 0SG1070, 0SG1071, 0SG107J, 0SG10A0, 0SG10A1,
+0SG10AJ, 0SG10J0, 0SG10J1, 0SG10JJ, 0SG10K0, 0SG10K1, 0SG10KJ, 0SG10Z0, 0SG10Z1, 0SG10ZJ, 0SG1370, 0SG1371, 0SG137J, 0SG13A0, 0SG13A1,
+0SG13AJ, 0SG13J0, 0SG13J1, 0SG13JJ, 0SG13K0, 0SG13K1, 0SG13KJ, 0SG13Z0, 0SG13Z1, 0SG13ZJ, 0SG1470, 0SG1471, 0SG147J, 0SG14A0, 0SG14A1,
+0SG14AJ, 0SG14J0, 0SG14J1, 0SG14JJ, 0SG14K0, 0SG14K1, 0SG14KJ, 0SG14Z0, 0SG14Z1, 0SG14ZJ, 0SG3070, 0SG3071, 0SG307J, 0SG30A0, 0SG30A1,
+0SG30AJ, 0SG30J0, 0SG30J1, 0SG30JJ, 0SG30K0, 0SG30K1, 0SG30KJ, 0SG30Z0, 0SG30Z1, 0SG30ZJ, 0SG3370, 0SG3371, 0SG337J, 0SG33A0, 0SG33A1,
+0SG33AJ, 0SG33J0, 0SG33J1, 0SG33JJ, 0SG33K0, 0SG33K1, 0SG33KJ, 0SG33Z0, 0SG33Z1, 0SG33ZJ, 0SG3470, 0SG3471, 0SG347J, 0SG34A0, 0SG34A1,
+0SG34AJ, 0SG34J0, 0SG34J1, 0SG34JJ, 0SG34K0, 0SG34K1, 0SG34KJ, 0SG34Z0, 0SG34Z1, 0SG34ZJ, 0SH004Z, 0SH00BZ, 0SH00CZ, 0SH00DZ, 0SH034Z,
+0SH03BZ, 0SH03CZ, 0SH03DZ, 0SH044Z, 0SH04BZ, 0SH04CZ, 0SH04DZ, 0SH304Z, 0SH30BZ, 0SH30CZ, 0SH30DZ, 0SH334Z, 0SH33BZ, 0SH33CZ,
+0SH33DZ, 0SH344Z, 0SH34BZ, 0SH34CZ, 0SH34DZ, 0SP004Z, 0SP00AZ, 0SP034Z, 0SP03AZ, 0SP044Z, 0SP04AZ, 0SP0X4Z, 0SP304Z, 0SP30AZ, 0SP334Z,
+0SP33AZ, 0SP344Z, 0SP34AZ, 0SP3X4Z, 0SS004Z, 0SS00ZZ, 0SS034Z, 0SS03ZZ, 0SS044Z, 0SS04ZZ, 0SS0X4Z, 0SS304Z, 0SS30ZZ, 0SS334Z, 0SS33ZZ,
+0SS344Z, 0SS34ZZ, 0SS3X4Z, 0SW004Z, 0SW00AZ, 0SW034Z, 0SW03AZ, 0SW044Z, 0SW04AZ, 0SW0X4Z, 0SW0XAZ, 0SW304Z, 0SW30AZ, 0SW334Z,
+0SW33AZ, 0SW344Z, 0SW34AZ, 0SW3X4Z, 0SW3XAZ, XRGA092, XRGA0F3, XRGA0R7, XRGA3R7, XRGA4R7, XRGB092, XRGB0F3, XRGB0R7,
+XRGB3R7, XRGB4R7, XRGC092, XRGC0F3, XRGC0R7, XRGC3R7, XRGC4R7, XRGD092, XRGD0F3, XRGD0R7, XRGD3R7, XRGD4R7&quot;)
+
+ICD10_40625013_spineDecompression &lt;- extract_icd10pcs(&quot;0RBA0ZZ, 0RBA3ZZ, 0RBA4ZZ, 0RBB0ZZ, 0RBB3ZZ, 0RBB4ZZ, 0RTB0ZZ, 0SB00ZZ, 0SB03ZZ, 0SB04ZZ, 0SB20ZZ, 0SB23ZZ, 0SB24ZZ, 0SB30ZZ,
+0SB33ZZ, 0SB34ZZ, 0SB40ZZ, 0SB43ZZ, 0SB44ZZ, 0ST20ZZ, 0ST40ZZ, 0QB00ZZ, 0QB03ZZ, 0QB04ZZ, 00NY0ZZ, 00NY3ZZ, 00NY4ZZ, 01NB0ZZ,
+01NB3ZZ, 01NB4ZZ, 0Q9000Z, 0Q900ZZ, 0Q9030Z, 0Q903ZZ, 0Q9040Z, 0Q904ZZ, 0QB00ZZ, 0QB03ZZ, 0QB04ZZ, 0QN00ZZ, 0QN03ZZ, 0QN04ZZ&quot;)
+
+#From PMID: 39466980
+ICD10_39466980_liver &lt;- extract_icd10pcs(&quot;0FB00ZZ
+0FB04ZZ
+0F500ZZ
+0F504ZZ
+0FT10ZZ
+0FT14ZZ
+0FT20ZZ
+0FT24ZZ
+0FT00Z
+0FT04ZZ&quot;)
+
+#From PMID: 33046367
+ICD10_33046367_liver &lt;- extract_icd10pcs(&quot;0FB00ZZ
+0FB10ZZ
+0FB20ZZ
+0FB04ZZ
+0FB14ZZ
+0FB24ZZ
+0FT00ZZ
+0FT10ZZ
+0FT20ZZ
+0FT04ZZ
+0FT14ZZ
+0FT24ZZ&quot;)
+
+ICD10_CSS &lt;- read_csv(&quot;data/PRCCSR_v2025-1/PRCCSR-ICD10_mapping.csv&quot;)</code></pre>
+<pre><code>Rows: 82122 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (6): ICD-10-PCS Code quoted, ICD-10-PCS Code, ICD-10-PCS Code Descriptio...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>ICD10_CSS_appendectomy &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Appendectomy&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_chole &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Cholecystectomy&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_gastricBypass &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Gastro-jejunal bypass (including bariatric)&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_colectomy &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Colectomy&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_spineFusion &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Spine fusion&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_craniotomy &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;CNS excision procedures&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_TKA &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Knee arthroplasty&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_THA &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Hip arthroplasty&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_femur &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Femur fixation&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_thyroid &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Thyroidectomy&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+ICD10_CSS_lung &lt;- ICD10_CSS %&gt;% 
+  filter(`CCSR Category Description` == &quot;Lung, pleura, or diaphragm resection (open and thoracoscopic)&quot;) %&gt;% 
+  pull(`ICD-10-PCS Code`)
+
+
+#Stack all the vectors
+ICD10_List &lt;- stack(list(
+  ICD10_AHRQ_AAA = ICD10_AHRQ_AAA,
+  ICD10_36519918_colectomy = ICD10_36519918_colectomy,
+  ICD10_38619839_appendectomy = ICD10_38619839_appendectomy,
+  ICD10_37989635_neckDissection = ICD10_37989635_neckDissection,
+  ICD10_37989635_thyroid = ICD10_37989635_thyroid,
+  ICD10_39765242_spineFusion = ICD10_39765242_spineFusion,
+  ICD10_40625013_spineDecompression = ICD10_40625013_spineDecompression,
+  ICD10_39466980_liver = ICD10_39466980_liver, 
+  ICD10_33046367_liver = ICD10_33046367_liver,
+  ICD10_CSS_appendectomy = ICD10_CSS_appendectomy,
+  ICD10_CSS_chole = ICD10_CSS_chole,
+  ICD10_CSS_gastricBypass = ICD10_CSS_gastricBypass,
+  ICD10_CSS_colectomy = ICD10_CSS_colectomy,
+  ICD10_CSS_spineFusion = ICD10_CSS_spineFusion,
+  ICD10_CSS_craniotomy = ICD10_CSS_craniotomy,
+  ICD10_CSS_TKA = ICD10_CSS_TKA,
+  ICD10_CSS_THA = ICD10_CSS_THA,
+  ICD10_CSS_femur = ICD10_CSS_femur,
+  ICD10_CSS_thyroid = ICD10_CSS_thyroid,
+  ICD10_CSS_lung = ICD10_CSS_lung
+)) %&gt;%
+  distinct(values, .keep_all = TRUE)
+names(ICD10_List) &lt;- c(&quot;code&quot;, &quot;Type&quot;)</code></pre>
+<p>line-by-line file</p>
+<pre class="r"><code># make into tibble for joining
+ICD10_List &lt;- tibble(ICD10_List)
+
+# join with icd10codes on the code
+noncardiacSGYlookupICD10 &lt;- ICD10_List %&gt;%
+  left_join(icd10codes, by = c(&quot;code&quot;)) %&gt;%
+  rename(`Code` = code,
+         `Full Description` = description) %&gt;%
+  mutate(
+    Class = word(Type, 3, sep = &quot;_&quot;), 
+    Approach = str_extract(`Full Description`,
+                           &quot;(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach|Natural or Artificial Opening Endoscopic|External Approach|Natural or Artificial Opening With Percutaneous Endoscopic Assistance|Via Natural or Artificial Opening$)&quot;)
+  ) %&gt;% 
+  arrange(Class, Code) %&gt;% 
+  select(-Type)
+write.csv(noncardiacSGYlookupICD10, &quot;output/ICD_noncardiacSGY_lookup.csv&quot;, row.names = FALSE)</code></pre>
+</div>
+</div>
+<div id="cpt-codes" class="section level1">
+<h1>CPT codes</h1>
+<div id="cpt-codes-from-the-hcup-ccsr-categories"
+class="section level2">
+<h2>CPT codes from the HCUP CCSR categories</h2>
+<ul>
+<li>included amongst the categories are</li>
+</ul>
+<p>appendectomy cholecystectomy - “Cholecystectomy and common duct
+exploration” gastric bypass - “Gastric bypass and volume reduction”
+anterior or posterior spinal arthrodesis - “spinal fusion” total knee
+replacement - “Arthroplasty knee” total hip replacement - “Hip
+replacement, total and partial” open repair of femoral neck or shaft
+fracture - “Treatment, fracture or dislocation of hip and femur” total
+thyroidectomy - “Thyroidectomy, partial or complete” lung resection -
+“Lobectomy or pneumonectomy”</p>
+<pre class="r"><code>#From PMID: 38619839
+CPT_38619839_appendectomy &lt;- c(&quot;44900&quot;, &quot;44901&quot;, &quot;44950&quot;, &quot;44955&quot;, &quot;44960&quot;, &quot;44970&quot;, &quot;44979&quot;)
+
+#From PMID: 37989635
+CPT_37989635_neckDissection &lt;- c(&quot;38700&quot;, &quot;38724&quot;, &quot;38746&quot;, &quot;38720&quot;, &quot;60254&quot;, &quot;31390&quot;, &quot;31395&quot;, &quot;38542&quot;, &quot;41135&quot;, &quot;41145&quot;, &quot;41155&quot;, &quot;42426&quot;, &quot;69155&quot;)
+CPT_37989635_thyroid &lt;- c(&quot;60270&quot;, &quot;60271&quot;, &quot;60225&quot;, &quot;60240&quot;, &quot;60271&quot;, &quot;60252&quot;, &quot;60254&quot;)
+
+#From PMID: 39765242
+CPT_39765242_spineFusion &lt;- strsplit(gsub(&quot;CPT-&quot;, &quot;&quot;, &quot;CPT-22558, CPT-22612, CPT-22610, CPT-22556, CPT-22600, CPT-22595, CPT-22551, CPT-22630, CPT-22633, CPT-22533, CPT-22586, CPT-22614, CPT-22632, CPT-22634, CPT-22585, CPT-22634, CPT-22842, CPT-62380, CPT-63047, CPT-63030, CPT-63056, CPT-62380, CPT-63005, CPT-63017, CPT-63052, CPT-63053, CPT-63035, CPT-63044, CPT-63057&quot;), &quot;,\\s*&quot;)[[1]]
+
+CPT_39765242_spineDecompression &lt;- strsplit(gsub(&quot;CPT-&quot;, &quot;&quot;, &quot;CPT-22214, CPT-22216, CPT-22206, CPT-22207, CPT-22208, CPT-63087, CPT-63088, CPT-63090, CPT-63091, CPT-63051, 22856, 22867, 62287, 62380, 63001, 63003, 63005, 63011, 63012, 63015, 63016, 63017, 63020, 63030, 63035, 63040, 63042, 63045, 63046, 63047, 63048, 63050, 63051, 63055, 63064, 63075, 63077, 63081, 63082, 63085, 63086, 63087, 63088, 63090, 63091, 63101, 63102, 63103, &quot;, &quot;&quot;), &quot;,\\s*&quot;)[[1]]
+
+#From PMID: 33010034
+CPT_33010034_AAA &lt;- strsplit(&quot;33860, 33863, 33864, 33870, 33875, 33877, 34830, 34831, 34832, 35081, 35082, 35091, 35092, 35102, 35103, 33880, 33881, 34800, 34802, 34803, 34804, 34805, 34808, 34825, 34826&quot;, &quot;,\\s*&quot;)[[1]]
+
+CPT_33010034_femur &lt;- strsplit(&quot;27236, 27244, 27245, 27248, 27269, 27506, 27507, 27511, 27513,
+27514, 27519&quot;, &quot;,\\s*&quot;)[[1]]
+
+CPT_33010034_liver &lt;- strsplit(&quot;47120, 47122, 47125, 47130&quot;, &quot;,\\s*&quot;)[[1]]
+
+CPT_33010034_colectomy &lt;- strsplit(&quot;44140, 44141, 44143, 44144, 44145, 44146, 44147, 44150, 44151, 44155, 44156, 44157, 44158, 44160, 45110, 45111, 45112, 45113, 45114, 45116, 45119&quot;, &quot;,\\s*&quot;)[[1]]
+
+CPT_33010034_spineFusion &lt;- strsplit(&quot;22595, 22590, 22610, 22612, 22614, 22616, 22533, 22632, 22630, 22634, 22532, 22548, 22554, 22800, 22802, 22804, 22808, 22810, 22812, 27280&quot;, &quot;,\\s*&quot;)[[1]]
+
+#From PMID: 27506995
+CPT_27506995_liver &lt;- strsplit(&quot;47122, 47125, 47130, 47120&quot;, &quot;,\\s*&quot;)[[1]]
+
+#From PMID: 35985849
+CPT_35985849_liver &lt;- strsplit(&quot;47120, 47122, 47125, 47130&quot;, &quot;,\\s*&quot;)[[1]]
+
+#From PMID: 28190717
+CPT_28190717_femPop &lt;- strsplit(&quot;35521, 35533, 35537, 35538, 35539, 35540, 35621,35623, 35637, 35646, 35647, 35663, 35665&quot;, &quot;,\\s*&quot;)[[1]]
+
+
+#From PMID: 37959249
+CPT_37959249_AAA &lt;- strsplit(&quot;34830, 34831, 34832, 35081, 35082, 35091, 35092, 35102, 35103, 34701, 34702, 34703, 34704, 34705, 34706&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_femPop &lt;- strsplit(&quot;35666, 35656, 35556, 35583&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_colectomy &lt;- strsplit(&quot;44150, 44151, 44155, 44156, 44157, 44158, 44211, 44212, 44210, 44120, 44204, 44205, 44206, 44207, 44208, 44140, 44141, 44143, 44144, 44145, 44146, 45110, 45112, 45119, 45120, 45121, 45395, 45397&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_liver &lt;- strsplit(&quot;47379, 47120, 47122, 47125, 47130&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_gastricBypass &lt;- strsplit(&quot;43846, 43847, 43644r, 43644, 43645&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_lung &lt;- strsplit(&quot;32440, 32442, 32445, 32488, 32482, 32480, 32484,
+32486, 32491, 32491T, 32663&quot;, &quot;,\\s*&quot;)[[1]]
+CPT_37959249_craniotomy &lt;- strsplit(&quot;61304, 61305, 61522, 61312, 61313, 61314, 61315, 61322, 61323, 61510, 61512, 61518, 61519, 61520, 61521, 61526, 61530, 61545, 61546, &quot;, &quot;,\\s*&quot;)[[1]]
+
+CPT_CSS &lt;- read_csv(&quot;data/CCS-Services_Procedures_v2025-1/CCS_Services_Procedures_v2025-1_052425.csv&quot;)</code></pre>
+<pre><code>Rows: 15616 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (2): Code Range, CCS Label
+dbl (1): CCS
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>CPT_CSS_appendectomy &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Appendectomy&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_chole &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Cholecystectomy and common duct exploration&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_gastricBypass &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Gastric bypass and volume reduction&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_spineFusion &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Spinal fusion&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_TKA &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Arthroplasty knee&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_THA &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Hip replacement, total and partial&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_femur &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Treatment, fracture or dislocation of hip and femur&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_thyroid &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Thyroidectomy, partial or complete&quot;) %&gt;% 
+  pull(`Code Range`)
+
+CPT_CSS_lung &lt;- CPT_CSS %&gt;% 
+  filter(`CCS Label`  == &quot;Lobectomy or pneumonectomy&quot;) %&gt;% 
+  pull(`Code Range`)
+
+
+#Stack all the vectors
+CPT_List &lt;- stack(list(
+  CPT_CSS_appendectomy = CPT_CSS_appendectomy,
+  CPT_CSS_chole = CPT_CSS_chole,
+  CPT_CSS_gastricBypass = CPT_CSS_gastricBypass,
+  CPT_CSS_spineFusion = CPT_CSS_spineFusion,
+  CPT_CSS_TKA = CPT_CSS_TKA,
+  CPT_CSS_THA = CPT_CSS_THA,
+  CPT_CSS_femur = CPT_CSS_femur,
+  CPT_CSS_thyroid = CPT_CSS_thyroid,
+  CPT_CSS_lung = CPT_CSS_lung,
+  CPT_37989635_neckDissection = CPT_37989635_neckDissection,
+  CPT_37989635_thyroid = CPT_37989635_thyroid,
+  CPT_39765242_spineFusion = CPT_39765242_spineFusion,
+  CPT_39765242_spineDecompression = CPT_39765242_spineDecompression,
+  CPT_33010034_AAA = CPT_33010034_AAA,
+  CPT_33010034_femur = CPT_33010034_femur,
+  CPT_33010034_liver = CPT_33010034_liver,
+  CPT_33010034_colectomy = CPT_33010034_colectomy,
+  CPT_33010034_spineFusion = CPT_33010034_spineFusion,
+  CPT_27506995_liver = CPT_27506995_liver,
+  CPT_35985849_liver = CPT_35985849_liver,
+  CPT_28190717_femPop = CPT_28190717_femPop,
+  CPT_37959249_AAA = CPT_37959249_AAA,
+  CPT_37959249_femPop = CPT_37959249_femPop,
+  CPT_37959249_colectomy = CPT_37959249_colectomy,
+  CPT_37959249_liver = CPT_37959249_liver,
+  CPT_37959249_gastricBypass = CPT_37959249_gastricBypass,
+  CPT_37959249_lung = CPT_37959249_lung,
+  CPT_37959249_craniotomy = CPT_37959249_craniotomy
+)) 
+names(CPT_List) &lt;- c(&quot;code&quot;, &quot;Type&quot;)
+
+CPT_List$code &lt;- gsub(&quot;^&#39;?(\\w+)-\\1&#39;?$&quot;, &quot;&#39;\\1&#39;&quot;, CPT_List$code)
+
+CPT_List &lt;- CPT_List %&gt;%
+  mutate(code = str_remove_all(code, &quot;&#39;&quot;)) %&gt;%   # remove single quotes
+  rowwise() %&gt;%
+  mutate(
+    code = if (str_detect(code, &quot;-&quot;)) {
+      # Split range, convert to numeric, and expand
+      range &lt;- str_split(code, &quot;-&quot;, simplify = TRUE)
+      start &lt;- as.numeric(range[1])
+      end &lt;- as.numeric(range[2])
+      list(as.character(seq(start, end)))
+    } else {
+      list(code)
+    }
+  ) %&gt;%
+  unnest(code) %&gt;%
+  ungroup() %&gt;%
+  distinct(code, .keep_all = TRUE)</code></pre>
+<pre class="r"><code># List the 4 CSV files
+CPTfiles &lt;- c(&quot;data/CPTdictionary/cptmedical1.csv&quot;, &quot;data/CPTdictionary/cptmedical2.csv&quot;, &quot;data/CPTdictionary/cptmedical3.csv&quot;, &quot;data/CPTdictionary/cptmedical4.csv&quot;)
+
+# Read and stack them into one tibble
+CPTcodes &lt;- CPTfiles %&gt;%
+  map_dfr(~ read_csv(.x, col_types = cols(
+    `PROC CODE` = col_character(),
+    `PROCEDURE DESCRIPTION` = col_character()
+  ))) %&gt;%
+  distinct(`PROC CODE`, .keep_all = TRUE) %&gt;% 
+  select(`PROC CODE`, `PROCEDURE DESCRIPTION`)</code></pre>
+<pre><code>New names:
+New names:
+New names:
+• `` -&gt; `...3`
+• `` -&gt; `...4`
+• `` -&gt; `...5`
+• `` -&gt; `...6`
+• `` -&gt; `...7`
+• `` -&gt; `...8`
+• `` -&gt; `...9`
+• `` -&gt; `...10`
+• `` -&gt; `...11`
+• `` -&gt; `...12`
+• `` -&gt; `...13`
+• `` -&gt; `...14`
+• `` -&gt; `...15`
+• `` -&gt; `...16`
+• `` -&gt; `...17`
+• `` -&gt; `...18`
+• `` -&gt; `...19`
+• `` -&gt; `...20`
+• `` -&gt; `...21`
+• `` -&gt; `...22`
+• `` -&gt; `...23`
+• `` -&gt; `...24`
+• `` -&gt; `...25`
+• `` -&gt; `...26`
+• `` -&gt; `...27`
+• `` -&gt; `...28`
+• `` -&gt; `...29`
+• `` -&gt; `...30`
+• `` -&gt; `...31`
+• `` -&gt; `...32`
+• `` -&gt; `...33`
+• `` -&gt; `...34`
+• `` -&gt; `...35`
+• `` -&gt; `...36`
+• `` -&gt; `...37`
+• `` -&gt; `...38`
+• `` -&gt; `...39`
+• `` -&gt; `...40`
+• `` -&gt; `...41`
+• `` -&gt; `...42`
+• `` -&gt; `...43`
+• `` -&gt; `...44`
+• `` -&gt; `...45`
+• `` -&gt; `...46`
+• `` -&gt; `...47`
+• `` -&gt; `...48`
+• `` -&gt; `...49`
+• `` -&gt; `...50`
+• `` -&gt; `...51`
+• `` -&gt; `...52`
+• `` -&gt; `...53`
+• `` -&gt; `...54`
+• `` -&gt; `...55`
+• `` -&gt; `...56`
+• `` -&gt; `...57`
+• `` -&gt; `...58`
+• `` -&gt; `...59`
+• `` -&gt; `...60`
+• `` -&gt; `...61`
+• `` -&gt; `...62`
+• `` -&gt; `...63`
+• `` -&gt; `...64`
+• `` -&gt; `...65`
+• `` -&gt; `...66`
+• `` -&gt; `...67`
+• `` -&gt; `...68`
+• `` -&gt; `...69`
+• `` -&gt; `...70`
+• `` -&gt; `...71`
+• `` -&gt; `...72`
+• `` -&gt; `...73`
+• `` -&gt; `...74`</code></pre>
+<pre class="r"><code>names(CPTcodes) &lt;- c(&quot;code&quot;, &quot;description&quot;)</code></pre>
+<p>line-by-line file</p>
+<pre class="r"><code># make into tibble for joining
+CPT_List &lt;- tibble(CPT_List)
+
+# join with CPTcodes on the code
+noncardiacSGYlookupCPT &lt;- CPT_List %&gt;%
+  left_join(CPTcodes, by = c(&quot;code&quot;)) %&gt;%
+  rename(`Code` = code,
+         `Full Description` = description) %&gt;%
+  mutate(
+    Class = word(Type, 3, sep = &quot;_&quot;)
+  ) %&gt;% 
+  arrange(Class, Code) %&gt;% 
+  select(-Type)
+write.csv(noncardiacSGYlookupCPT, &quot;output/CPT_noncardiacSGY_lookup.csv&quot;, row.names = FALSE)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS 15.7.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.2 forcats_1.0.0   purrr_1.0.1     tidyr_1.3.1    
+ [5] tibble_3.2.1    ggplot2_3.4.2   tidyverse_2.0.0 readr_2.1.4    
+ [9] stringr_1.5.0   dplyr_1.1.2    
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1  xfun_0.39         bslib_0.4.2       colorspace_2.1-0 
+ [5] vctrs_0.6.5       generics_0.1.3    htmltools_0.5.8.1 yaml_2.3.7       
+ [9] utf8_1.2.3        rlang_1.1.1       jquerylib_0.1.4   later_1.3.1      
+[13] pillar_1.9.0      glue_1.6.2        withr_2.5.0       bit64_4.0.5      
+[17] lifecycle_1.0.3   munsell_0.5.0     gtable_0.3.3      workflowr_1.7.0  
+[21] evaluate_0.21     knitr_1.43        tzdb_0.4.0        fastmap_1.1.1    
+[25] httpuv_1.6.11     parallel_4.2.3    fansi_1.0.4       Rcpp_1.0.13      
+[29] promises_1.2.0.1  scales_1.2.1      cachem_1.0.8      vroom_1.6.3      
+[33] jsonlite_1.8.5    bit_4.0.5         fs_1.6.2          hms_1.1.3        
+[37] digest_0.6.31     stringi_1.7.12    rprojroot_2.0.3   grid_4.2.3       
+[41] cli_3.6.1         tools_4.2.3       magrittr_2.0.3    sass_0.4.6       
+[45] crayon_1.5.2      whisker_0.4.1     pkgconfig_2.0.3   timechange_0.2.0 
+[49] rmarkdown_2.22    rstudioapi_0.14   R6_2.5.1          git2r_0.32.0     
+[53] compiler_4.2.3   </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

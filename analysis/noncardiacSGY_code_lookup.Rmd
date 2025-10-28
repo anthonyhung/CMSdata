@@ -156,6 +156,32 @@ ICD10_40625013_spineDecompression <- extract_icd10pcs("0RBA0ZZ, 0RBA3ZZ, 0RBA4ZZ
 0SB33ZZ, 0SB34ZZ, 0SB40ZZ, 0SB43ZZ, 0SB44ZZ, 0ST20ZZ, 0ST40ZZ, 0QB00ZZ, 0QB03ZZ, 0QB04ZZ, 00NY0ZZ, 00NY3ZZ, 00NY4ZZ, 01NB0ZZ,
 01NB3ZZ, 01NB4ZZ, 0Q9000Z, 0Q900ZZ, 0Q9030Z, 0Q903ZZ, 0Q9040Z, 0Q904ZZ, 0QB00ZZ, 0QB03ZZ, 0QB04ZZ, 0QN00ZZ, 0QN03ZZ, 0QN04ZZ")
 
+#From PMID: 39466980
+ICD10_39466980_liver <- extract_icd10pcs("0FB00ZZ
+0FB04ZZ
+0F500ZZ
+0F504ZZ
+0FT10ZZ
+0FT14ZZ
+0FT20ZZ
+0FT24ZZ
+0FT00Z
+0FT04ZZ")
+
+#From PMID: 33046367
+ICD10_33046367_liver <- extract_icd10pcs("0FB00ZZ
+0FB10ZZ
+0FB20ZZ
+0FB04ZZ
+0FB14ZZ
+0FB24ZZ
+0FT00ZZ
+0FT10ZZ
+0FT20ZZ
+0FT04ZZ
+0FT14ZZ
+0FT24ZZ")
+
 ICD10_CSS <- read_csv("data/PRCCSR_v2025-1/PRCCSR-ICD10_mapping.csv")
 
 ICD10_CSS_appendectomy <- ICD10_CSS %>% 
@@ -204,7 +230,7 @@ ICD10_CSS_lung <- ICD10_CSS %>%
 
 
 #Stack all the vectors
-ICD10_CSS_List <- stack(list(
+ICD10_List <- stack(list(
   ICD10_AHRQ_AAA = ICD10_AHRQ_AAA,
   ICD10_36519918_colectomy = ICD10_36519918_colectomy,
   ICD10_38619839_appendectomy = ICD10_38619839_appendectomy,
@@ -212,6 +238,8 @@ ICD10_CSS_List <- stack(list(
   ICD10_37989635_thyroid = ICD10_37989635_thyroid,
   ICD10_39765242_spineFusion = ICD10_39765242_spineFusion,
   ICD10_40625013_spineDecompression = ICD10_40625013_spineDecompression,
+  ICD10_39466980_liver = ICD10_39466980_liver, 
+  ICD10_33046367_liver = ICD10_33046367_liver,
   ICD10_CSS_appendectomy = ICD10_CSS_appendectomy,
   ICD10_CSS_chole = ICD10_CSS_chole,
   ICD10_CSS_gastricBypass = ICD10_CSS_gastricBypass,
@@ -223,64 +251,30 @@ ICD10_CSS_List <- stack(list(
   ICD10_CSS_femur = ICD10_CSS_femur,
   ICD10_CSS_thyroid = ICD10_CSS_thyroid,
   ICD10_CSS_lung = ICD10_CSS_lung
-))
-names(ICD10_CSS_List) <- c("code", "Type")
+)) %>%
+  distinct(values, .keep_all = TRUE)
+names(ICD10_List) <- c("code", "Type")
 ```
 
 line-by-line file
 
 ```{r}
 # make into tibble for joining
-ICD10_CSS_List <- tibble(ICD10_CSS_List)
+ICD10_List <- tibble(ICD10_List)
 
 # join with icd10codes on the code
-noncardiacSGYlookup <- ICD10_CSS_List %>%
+noncardiacSGYlookupICD10 <- ICD10_List %>%
   left_join(icd10codes, by = c("code")) %>%
-  rename(`Number / Range` = code,
+  rename(`Code` = code,
          `Full Description` = description) %>%
   mutate(
+    Class = word(Type, 3, sep = "_"), 
     Approach = str_extract(`Full Description`,
                            "(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach|Natural or Artificial Opening Endoscopic|External Approach|Natural or Artificial Opening With Percutaneous Endoscopic Assistance|Via Natural or Artificial Opening$)")
-  )
-```
-
-
-###todo
-
-```{r}
-# Function to place the ICD-10-PCS codes into the correct body part/approach category
-classify_codes <- function(codes) {
-  
-  df <- data.frame(
-    code = codes,
-    body_part = substr(codes, 4, 4),
-    approach = substr(codes, 5, 5),
-    stringsAsFactors = FALSE
-  )
-  
-  # Valves: map by body part character position
-  valve_map <- c("F" = "Aortic", "G" = "Mitral", "H" = "Pulmonic", "J" = "Tricuspid")
-  df$valve <- valve_map[df$body_part]
-  
-  df$type <- case_when(
-    df$approach == "0" ~ "OPEN",
-    df$approach %in% c("3", "4") ~ "PERC",
-    TRUE ~ NA
-  )
-  
-  df$category <- ifelse(is.na(df$category) & !is.na(df$valve),
-                        paste0(df$valve, df$type),
-                        df$category)
-  
-  # Collapse to summary dataframe
-  summary_df <- df %>%
-    filter(!is.na(category)) %>%
-    group_by(category) %>%
-    summarise(codes = paste(unique(code), collapse = ", "),
-              .groups = "drop")
-  
-  return(summary_df)
-}
+  ) %>% 
+  arrange(Class, Code) %>% 
+  select(-Type)
+write.csv(noncardiacSGYlookupICD10, "output/ICD_noncardiacSGY_lookup.csv", row.names = FALSE)
 ```
 
 
@@ -305,14 +299,45 @@ lung resection - "Lobectomy or pneumonectomy"
 CPT_38619839_appendectomy <- c("44900", "44901", "44950", "44955", "44960", "44970", "44979")
 
 #From PMID: 37989635
-CPT_37989635_neckDissection <- c("38700", "38724", "38746", "38720", "60252", "60254")
-CPT_37989635_thyroid <- c("60271", "60225", "60240", "60271", "60252", "60254")
+CPT_37989635_neckDissection <- c("38700", "38724", "38746", "38720", "60254", "31390", "31395", "38542", "41135", "41145", "41155", "42426", "69155")
+CPT_37989635_thyroid <- c("60270", "60271", "60225", "60240", "60271", "60252", "60254")
 
 #From PMID: 39765242
 CPT_39765242_spineFusion <- strsplit(gsub("CPT-", "", "CPT-22558, CPT-22612, CPT-22610, CPT-22556, CPT-22600, CPT-22595, CPT-22551, CPT-22630, CPT-22633, CPT-22533, CPT-22586, CPT-22614, CPT-22632, CPT-22634, CPT-22585, CPT-22634, CPT-22842, CPT-62380, CPT-63047, CPT-63030, CPT-63056, CPT-62380, CPT-63005, CPT-63017, CPT-63052, CPT-63053, CPT-63035, CPT-63044, CPT-63057"), ",\\s*")[[1]]
 
-CPT_39765242_spineDecompression <- strsplit(gsub("CPT-", "", "CPT-22214, CPT-22216, CPT-22206, CPT-22207, CPT-22208, CPT-63087, CPT-63088, CPT-63090, CPT-6309", ""), ",\\s*")[[1]]
+CPT_39765242_spineDecompression <- strsplit(gsub("CPT-", "", "CPT-22214, CPT-22216, CPT-22206, CPT-22207, CPT-22208, CPT-63087, CPT-63088, CPT-63090, CPT-63091, CPT-63051, 22856, 22867, 62287, 62380, 63001, 63003, 63005, 63011, 63012, 63015, 63016, 63017, 63020, 63030, 63035, 63040, 63042, 63045, 63046, 63047, 63048, 63050, 63051, 63055, 63064, 63075, 63077, 63081, 63082, 63085, 63086, 63087, 63088, 63090, 63091, 63101, 63102, 63103, ", ""), ",\\s*")[[1]]
 
+#From PMID: 33010034
+CPT_33010034_AAA <- strsplit("33860, 33863, 33864, 33870, 33875, 33877, 34830, 34831, 34832, 35081, 35082, 35091, 35092, 35102, 35103, 33880, 33881, 34800, 34802, 34803, 34804, 34805, 34808, 34825, 34826", ",\\s*")[[1]]
+
+CPT_33010034_femur <- strsplit("27236, 27244, 27245, 27248, 27269, 27506, 27507, 27511, 27513,
+27514, 27519", ",\\s*")[[1]]
+
+CPT_33010034_liver <- strsplit("47120, 47122, 47125, 47130", ",\\s*")[[1]]
+
+CPT_33010034_colectomy <- strsplit("44140, 44141, 44143, 44144, 44145, 44146, 44147, 44150, 44151, 44155, 44156, 44157, 44158, 44160, 45110, 45111, 45112, 45113, 45114, 45116, 45119", ",\\s*")[[1]]
+
+CPT_33010034_spineFusion <- strsplit("22595, 22590, 22610, 22612, 22614, 22616, 22533, 22632, 22630, 22634, 22532, 22548, 22554, 22800, 22802, 22804, 22808, 22810, 22812, 27280", ",\\s*")[[1]]
+
+#From PMID: 27506995
+CPT_27506995_liver <- strsplit("47122, 47125, 47130, 47120", ",\\s*")[[1]]
+
+#From PMID: 35985849
+CPT_35985849_liver <- strsplit("47120, 47122, 47125, 47130", ",\\s*")[[1]]
+
+#From PMID: 28190717
+CPT_28190717_femPop <- strsplit("35521, 35533, 35537, 35538, 35539, 35540, 35621,35623, 35637, 35646, 35647, 35663, 35665", ",\\s*")[[1]]
+
+
+#From PMID: 37959249
+CPT_37959249_AAA <- strsplit("34830, 34831, 34832, 35081, 35082, 35091, 35092, 35102, 35103, 34701, 34702, 34703, 34704, 34705, 34706", ",\\s*")[[1]]
+CPT_37959249_femPop <- strsplit("35666, 35656, 35556, 35583", ",\\s*")[[1]]
+CPT_37959249_colectomy <- strsplit("44150, 44151, 44155, 44156, 44157, 44158, 44211, 44212, 44210, 44120, 44204, 44205, 44206, 44207, 44208, 44140, 44141, 44143, 44144, 44145, 44146, 45110, 45112, 45119, 45120, 45121, 45395, 45397", ",\\s*")[[1]]
+CPT_37959249_liver <- strsplit("47379, 47120, 47122, 47125, 47130", ",\\s*")[[1]]
+CPT_37959249_gastricBypass <- strsplit("43846, 43847, 43644r, 43644, 43645", ",\\s*")[[1]]
+CPT_37959249_lung <- strsplit("32440, 32442, 32445, 32488, 32482, 32480, 32484,
+32486, 32491, 32491T, 32663", ",\\s*")[[1]]
+CPT_37959249_craniotomy <- strsplit("61304, 61305, 61522, 61312, 61313, 61314, 61315, 61322, 61323, 61510, 61512, 61518, 61519, 61520, 61521, 61526, 61530, 61545, 61546, ", ",\\s*")[[1]]
 
 CPT_CSS <- read_csv("data/CCS-Services_Procedures_v2025-1/CCS_Services_Procedures_v2025-1_052425.csv")
 
@@ -354,7 +379,7 @@ CPT_CSS_lung <- CPT_CSS %>%
 
 
 #Stack all the vectors
-CPT_CSS_List <- stack(list(
+CPT_List <- stack(list(
   CPT_CSS_appendectomy = CPT_CSS_appendectomy,
   CPT_CSS_chole = CPT_CSS_chole,
   CPT_CSS_gastricBypass = CPT_CSS_gastricBypass,
@@ -367,13 +392,79 @@ CPT_CSS_List <- stack(list(
   CPT_37989635_neckDissection = CPT_37989635_neckDissection,
   CPT_37989635_thyroid = CPT_37989635_thyroid,
   CPT_39765242_spineFusion = CPT_39765242_spineFusion,
-  CPT_39765242_spineDecompression = CPT_39765242_spineDecompression
-))
-names(CPT_CSS_List) <- c("code", "Type")
+  CPT_39765242_spineDecompression = CPT_39765242_spineDecompression,
+  CPT_33010034_AAA = CPT_33010034_AAA,
+  CPT_33010034_femur = CPT_33010034_femur,
+  CPT_33010034_liver = CPT_33010034_liver,
+  CPT_33010034_colectomy = CPT_33010034_colectomy,
+  CPT_33010034_spineFusion = CPT_33010034_spineFusion,
+  CPT_27506995_liver = CPT_27506995_liver,
+  CPT_35985849_liver = CPT_35985849_liver,
+  CPT_28190717_femPop = CPT_28190717_femPop,
+  CPT_37959249_AAA = CPT_37959249_AAA,
+  CPT_37959249_femPop = CPT_37959249_femPop,
+  CPT_37959249_colectomy = CPT_37959249_colectomy,
+  CPT_37959249_liver = CPT_37959249_liver,
+  CPT_37959249_gastricBypass = CPT_37959249_gastricBypass,
+  CPT_37959249_lung = CPT_37959249_lung,
+  CPT_37959249_craniotomy = CPT_37959249_craniotomy
+)) 
+names(CPT_List) <- c("code", "Type")
 
-CPT_CSS_List$code <- gsub("^'?(\\w+)-\\1'?$", "'\\1'", CPT_CSS_List$code)
+CPT_List$code <- gsub("^'?(\\w+)-\\1'?$", "'\\1'", CPT_List$code)
+
+CPT_List <- CPT_List %>%
+  mutate(code = str_remove_all(code, "'")) %>%   # remove single quotes
+  rowwise() %>%
+  mutate(
+    code = if (str_detect(code, "-")) {
+      # Split range, convert to numeric, and expand
+      range <- str_split(code, "-", simplify = TRUE)
+      start <- as.numeric(range[1])
+      end <- as.numeric(range[2])
+      list(as.character(seq(start, end)))
+    } else {
+      list(code)
+    }
+  ) %>%
+  unnest(code) %>%
+  ungroup() %>%
+  distinct(code, .keep_all = TRUE)
 ```
 
+```{r}
+# List the 4 CSV files
+CPTfiles <- c("data/CPTdictionary/cptmedical1.csv", "data/CPTdictionary/cptmedical2.csv", "data/CPTdictionary/cptmedical3.csv", "data/CPTdictionary/cptmedical4.csv")
 
+# Read and stack them into one tibble
+CPTcodes <- CPTfiles %>%
+  map_dfr(~ read_csv(.x, col_types = cols(
+    `PROC CODE` = col_character(),
+    `PROCEDURE DESCRIPTION` = col_character()
+  ))) %>%
+  distinct(`PROC CODE`, .keep_all = TRUE) %>% 
+  select(`PROC CODE`, `PROCEDURE DESCRIPTION`)
+names(CPTcodes) <- c("code", "description")
+```
+
+line-by-line file
+
+```{r}
+# make into tibble for joining
+CPT_List <- tibble(CPT_List)
+
+# join with CPTcodes on the code
+noncardiacSGYlookupCPT <- CPT_List %>%
+  left_join(CPTcodes, by = c("code")) %>%
+  rename(`Code` = code,
+         `Full Description` = description) %>%
+  mutate(
+    Class = word(Type, 3, sep = "_")
+  ) %>% 
+  arrange(Class, Code) %>% 
+  select(-Type)
+write.csv(noncardiacSGYlookupCPT, "output/CPT_noncardiacSGY_lookup.csv", row.names = FALSE)
+
+```
 
 
