@@ -273,7 +273,8 @@ noncardiacSGYlookupICD10 <- ICD10_List %>%
                            "(Open Approach|Percutaneous Endoscopic Approach|Percutaneous Approach|Natural or Artificial Opening Endoscopic|External Approach|Natural or Artificial Opening With Percutaneous Endoscopic Assistance|Via Natural or Artificial Opening$)")
   ) %>% 
   arrange(Class, Code) %>% 
-  select(-Type)
+  select(-Type) %>% 
+  filter(!grepl("Bypass Abdominal Aorta", `Full Description`))
 write.csv(noncardiacSGYlookupICD10, "output/ICD_noncardiacSGY_lookup.csv", row.names = FALSE)
 ```
 
@@ -296,7 +297,7 @@ lung resection - "Lobectomy or pneumonectomy"
 
 ```{r}
 #From PMID: 38619839
-CPT_38619839_appendectomy <- c("44900", "44901", "44950", "44955", "44960", "44970", "44979")
+CPT_38619839_appendectomy <- c("44900", "44901", "44950", "44955", "44960", "44970")
 
 #From PMID: 37989635
 CPT_37989635_neckDissection <- c("38700", "38724", "38746", "38720", "60254", "31390", "31395", "38542", "41135", "41145", "41155", "42426", "69155")
@@ -315,7 +316,7 @@ CPT_33010034_femur <- strsplit("27236, 27244, 27245, 27248, 27269, 27506, 27507,
 
 CPT_33010034_liver <- strsplit("47120, 47122, 47125, 47130", ",\\s*")[[1]]
 
-CPT_33010034_colectomy <- strsplit("44140, 44141, 44143, 44144, 44145, 44146, 44147, 44150, 44151, 44155, 44156, 44157, 44158, 44160, 45110, 45111, 45112, 45113, 45114, 45116, 45119", ",\\s*")[[1]]
+CPT_33010034_colectomy <- strsplit("44140, 44141, 44143, 44144, 44145, 44146, 44147, 44150, 44151, 44155, 44156, 44157, 44158, 44160, 45110, 45111, 45112, 45113, 45114, 45116, 45119, 44110, 44111, 44130, 44139", ",\\s*")[[1]]
 
 CPT_33010034_spineFusion <- strsplit("22595, 22590, 22610, 22612, 22614, 22616, 22533, 22632, 22630, 22634, 22532, 22548, 22554, 22800, 22802, 22804, 22808, 22810, 22812, 27280", ",\\s*")[[1]]
 
@@ -332,7 +333,7 @@ CPT_28190717_femPop <- strsplit("35521, 35533, 35537, 35538, 35539, 35540, 35621
 #From PMID: 37959249
 CPT_37959249_AAA <- strsplit("34830, 34831, 34832, 35081, 35082, 35091, 35092, 35102, 35103, 34701, 34702, 34703, 34704, 34705, 34706", ",\\s*")[[1]]
 CPT_37959249_femPop <- strsplit("35666, 35656, 35556, 35583", ",\\s*")[[1]]
-CPT_37959249_colectomy <- strsplit("44150, 44151, 44155, 44156, 44157, 44158, 44211, 44212, 44210, 44120, 44204, 44205, 44206, 44207, 44208, 44140, 44141, 44143, 44144, 44145, 44146, 45110, 45112, 45119, 45120, 45121, 45395, 45397", ",\\s*")[[1]]
+CPT_37959249_colectomy <- strsplit("44150, 44151, 44155, 44156, 44157, 44158, 44211, 44212, 44210, 44120, 44204, 44205, 44206, 44207, 44208, 44140, 44141, 44143, 44144, 44145, 44146, 45110, 45112, 45119, 45120, 45121, 45395, 45397, 44213", ",\\s*")[[1]]
 CPT_37959249_liver <- strsplit("47379, 47120, 47122, 47125, 47130", ",\\s*")[[1]]
 CPT_37959249_gastricBypass <- strsplit("43846, 43847, 43644r, 43644, 43645", ",\\s*")[[1]]
 CPT_37959249_lung <- strsplit("32440, 32442, 32445, 32488, 32482, 32480, 32484,
@@ -463,6 +464,11 @@ noncardiacSGYlookupCPT <- CPT_List %>%
   ) %>% 
   arrange(Class, Code) %>% 
   select(-Type)
+
+#removing codes that are extraneous
+noncardiacSGYlookupCPT <- noncardiacSGYlookupCPT %>% 
+  filter(!Code %in% c("44979"))
+
 write.csv(noncardiacSGYlookupCPT, "output/CPT_noncardiacSGY_lookup.csv", row.names = FALSE)
 
 ```
