@@ -382,7 +382,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-10-30
+<strong>Last updated:</strong> 2025-11-04
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -516,15 +516,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree6d302d1181ce8ec9eb0467c2d9ce4afe99b68406targetblank6d302d1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree248fda1b837189d7f66622723c47ff8fe06b6248targetblank248fda1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/anthonyhung/CMSdata/tree/6d302d1181ce8ec9eb0467c2d9ce4afe99b68406" target="_blank">6d302d1</a>
+<a href="https://github.com/anthonyhung/CMSdata/tree/248fda1b837189d7f66622723c47ff8fe06b6248" target="_blank">248fda1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree6d302d1181ce8ec9eb0467c2d9ce4afe99b68406targetblank6d302d1a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomanthonyhungCMSdatatree248fda1b837189d7f66622723c47ff8fe06b6248targetblank248fda1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -534,7 +534,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/anthonyhung/CMSdata/tree/6d302d1181ce8ec9eb0467c2d9ce4afe99b68406" target="_blank">6d302d1</a>.
+<a href="https://github.com/anthonyhung/CMSdata/tree/248fda1b837189d7f66622723c47ff8fe06b6248" target="_blank">248fda1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -606,6 +606,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/anthonyhung/CMSdata/blob/248fda1b837189d7f66622723c47ff8fe06b6248/analysis/noncardiacSGY_code_lookup.Rmd" target="_blank">248fda1</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-11-03
+</td>
+<td>
+pasting code for all in a group
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/anthonyhung/CMSdata/248fda1b837189d7f66622723c47ff8fe06b6248/docs/noncardiacSGY_code_lookup.html" target="_blank">248fda1</a>
+</td>
+<td>
+anthonyhung
+</td>
+<td>
+2025-11-03
+</td>
+<td>
+pasting code for all in a group
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1053,15 +1087,44 @@ noncardiacSGYlookupICD10 &lt;- ICD10_List %&gt;%
   select(-Type) %&gt;% 
   filter(!Code %in% c(&quot;0BBR0ZZ&quot;, &quot;0BBR4ZZ&quot;, &quot;0BBS0ZZ&quot;, &quot;0BBS4ZZ&quot;, &quot;0BTR0ZZ&quot;, &quot;0BTR4ZZ&quot;, &quot;0BTS0ZZ&quot;, &quot;0BTS4ZZ&quot;, &quot;0B5R0ZZ&quot;, &quot;0B5R4ZZ&quot;, &quot;0B5S0ZZ&quot;, &quot;0B5S4ZZ&quot;)) %&gt;% 
   filter(!(grepl(&quot;Reposition .* Joint&quot;, `Full Description`) &amp; Class == &quot;spineFusion&quot;)) %&gt;% 
-  filter(!grepl(&quot;Bypass Abdominal Aorta|Destruction of Abdominal Aorta|Inspection of Gallbladder|Destruction of .* Spinal Cord|Excision of .* Nerve|Destruction of .* Nerve|Reattachment of * Thyroid|Reposition .* Thyroid|Extirpation of Matter from Thyroid|Reattachment of .* Thyroid|Diaphragm|Pleura|Removal of Internal Fixation|Removal of External Fixation|Insertion of Spacer .* Hip|Removal of .* Hip|Revision of .* Hip|Insertion of Spacer .* Knee|Removal of .* Knee|Revision of .* Knee|Monitoring of .* Knee|Cerebral Ventricle|Extraction of .* Nerve|Spinal Meninges|Dura Mater|Removal of Interbody Fusion Device|Revision of Inter.* Device|Drainage of .* Vertebra&quot;, `Full Description`))
+  filter(!grepl(&quot;Bypass Abdominal Aorta|Destruction of Abdominal Aorta|Inspection of Gallbladder|Destruction of .* Spinal Cord|Excision of .* Nerve|Destruction of .* Nerve|Reattachment of * Thyroid|Reposition .* Thyroid|Extirpation of Matter from Thyroid|Reattachment of .* Thyroid|Diaphragm|Pleura|Removal of Internal Fixation|Removal of External Fixation|Insertion of Spacer .* Hip|Removal of .* Hip|Revision of .* Hip|Insertion of Spacer .* Knee|Removal of .* Knee|Revision of .* Knee|Monitoring of .* Knee|Cerebral Ventricle|Extraction of .* Nerve|Spinal Meninges|Dura Mater|Removal of Interbody Fusion Device|Revision of Inter.* Device|Drainage of .* Vertebra|Drainage of Appendix.* Percutaneous|Drainage of Appendix.* Endoscopic|Supplement .* Hip|Supplement .* Knee|Extirpation of Matter from Appendix|Replacement of .* Hip Joint, Acetabular Surface|Replacement of .* Hip Joint, Femoral Surface|Replacement of .* Knee Joint, Femoral Surface|Replacement of .* Knee Joint, Tibial Surface|Replacement of .* Knee Joint with Synthetic Substitute, .* Meniscus|Replacement of .* Knee Joint with Patellofemoral|Replacement of .* Knee Joint with .* Unicondylar|Destruction of Left Thyroid|Destruction of Right Thyroid|Excision of Left Thyroid|Excision of Right Thyroid|Resection of Left Thyroid|Resection of Right Thyroid|Excision of Thyroid Gland Isthmus|Resection of Thyroid Gland Isthmus|Cerebral Meninges|Excision of .* Spinal Cord&quot;, `Full Description`)) %&gt;% 
+  filter(!(Class == &quot;femur&quot; &amp; (Approach == &quot;Percutaneous Approach&quot; | Approach == &quot;Percutaneous Endoscopic Approach&quot;)))
 
 
 write.csv(noncardiacSGYlookupICD10, &quot;output/ICD_noncardiacSGY_lookup.csv&quot;, row.names = FALSE)</code></pre>
 <p>separate groups</p>
 <pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;AAA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
 <pre><code>04B00ZZ, 04B03ZZ, 04B04ZZ, 04H00DZ, 04H03DZ, 04H04DZ, 04L00DJ, 04L00DZ, 04L00ZZ, 04L03DJ, 04L03DZ, 04L03ZZ, 04L04DZ, 04L04ZZ, 04Q00ZZ, 04Q03ZZ, 04Q04ZZ, 04R007Z, 04R00JZ, 04R00KZ, 04R047Z, 04R04JZ, 04R04KZ, 04U007Z, 04U00JZ, 04U00KZ, 04U037Z, 04U03JZ, 04U03KZ, 04U047Z, 04U04JZ, 04U04KZ, 04V00D6, 04V00DJ, 04V00DZ, 04V00E6, 04V00EZ, 04V00F6, 04V00FZ, 04V00Z6, 04V00ZZ, 04V03D6, 04V03DJ, 04V03DZ, 04V03E6, 04V03EZ, 04V03F6, 04V03FZ, 04V03Z6, 04V03ZZ, 04V04D6, 04V04DJ, 04V04DZ, 04V04E6, 04V04EZ, 04V04F6, 04V04FZ, 04V04Z6, 04V04ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;appendectomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0D9J00Z, 0D9J0ZX, 0D9J0ZZ, 0D9J70Z, 0D9J7ZX, 0D9J7ZZ, 0DBJ0ZX, 0DBJ0ZZ, 0DBJ3ZX, 0DBJ3ZZ, 0DBJ4ZG, 0DBJ4ZX, 0DBJ4ZZ, 0DBJ7ZX, 0DBJ7ZZ, 0DBJ8ZX, 0DBJ8ZZ, 0DDJ3ZX, 0DDJ4ZX, 0DDJ8ZX, 0DTJ0ZZ, 0DTJ4ZG, 0DTJ4ZZ, 0DTJ7ZZ, 0DTJ8ZZ</code></pre>
 <pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;chole&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
 <pre><code>0FB40ZZ, 0FB43ZZ, 0FB44ZZ, 0FB48ZZ, 0FT40ZZ, 0FT44ZG, 0FT44ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;colectomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0D5C0Z3, 0D5C0ZZ, 0D5C4Z3, 0D5C4ZZ, 0D5E0Z3, 0D5E0ZZ, 0D5E4Z3, 0D5E4ZZ, 0D5F0Z3, 0D5F0ZZ, 0D5F4Z3, 0D5F4ZZ, 0D5G0Z3, 0D5G0ZZ, 0D5G4Z3, 0D5G4ZZ, 0D5H0Z3, 0D5H0ZZ, 0D5H4Z3, 0D5H4ZZ, 0D5J0Z3, 0D5J0ZZ, 0D5J4Z3, 0D5J4ZZ, 0D5K0Z3, 0D5K0ZZ, 0D5K4Z3, 0D5K4ZZ, 0D5L0Z3, 0D5L0ZZ, 0D5L4Z3, 0D5L4ZZ, 0D5M0Z3, 0D5M0ZZ, 0D5M4Z3, 0D5M4ZZ, 0D5N0Z3, 0D5N0ZZ, 0D5N4Z3, 0D5N4ZZ, 0DBC0ZZ, 0DBC4ZZ, 0DBE0ZZ, 0DBE3ZZ, 0DBE4ZZ, 0DBE7ZZ, 0DBF0ZZ, 0DBF3ZZ, 0DBF4ZG, 0DBF4ZZ, 0DBF7ZZ, 0DBG0ZZ, 0DBG3ZZ, 0DBG4ZG, 0DBG4ZZ, 0DBG7ZZ, 0DBGFZZ, 0DBH0ZZ, 0DBH3ZZ, 0DBH4ZZ, 0DBH7ZZ, 0DBK0ZZ, 0DBK3ZZ, 0DBK4ZZ, 0DBK7ZZ, 0DBL0ZZ, 0DBL3ZZ, 0DBL4ZG, 0DBL4ZZ, 0DBL7ZZ, 0DBLFZZ, 0DBM0ZZ, 0DBM3ZZ, 0DBM4ZG, 0DBM4ZZ, 0DBM7ZZ, 0DBMFZZ, 0DBN0ZZ, 0DBN3ZZ, 0DBN4ZG, 0DBN4ZZ, 0DBN7ZZ, 0DBNFZZ, 0DTC0ZZ, 0DTC4ZZ, 0DTE0ZZ, 0DTE4ZZ, 0DTE7ZZ, 0DTE8ZZ, 0DTF0ZZ, 0DTF4ZG, 0DTF4ZZ, 0DTF7ZZ, 0DTF8ZZ, 0DTG0ZZ, 0DTG4ZG, 0DTG4ZZ, 0DTG7ZZ, 0DTG8ZZ, 0DTGFZZ, 0DTH0ZZ, 0DTH4ZZ, 0DTH7ZZ, 0DTH8ZZ, 0DTK0ZZ, 0DTK4ZZ, 0DTK7ZZ, 0DTK8ZZ, 0DTL0ZZ, 0DTL4ZG, 0DTL4ZZ, 0DTL7ZZ, 0DTL8ZZ, 0DTLFZZ, 0DTM0ZZ, 0DTM4ZG, 0DTM4ZZ, 0DTM7ZZ, 0DTM8ZZ, 0DTMFZZ, 0DTN0ZZ, 0DTN4ZG, 0DTN4ZZ, 0DTN7ZZ, 0DTN8ZZ, 0DTNFZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;craniotomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>00500Z3, 00500ZZ, 00503Z3, 00503Z4, 00503ZZ, 00504Z3, 00504ZZ, 00570ZZ, 00573ZZ, 00574ZZ, 00580ZZ, 00583ZZ, 00584ZZ, 00590ZZ, 00593ZZ, 00594ZZ, 005A0ZZ, 005A3ZZ, 005A4ZZ, 005B0ZZ, 005B3ZZ, 005B4ZZ, 005C0ZZ, 005C3ZZ, 005C4ZZ, 005D0ZZ, 005D3ZZ, 005D4ZZ, 00B00ZX, 00B00ZZ, 00B03ZZ, 00B04ZZ, 00B70ZX, 00B70ZZ, 00B73ZZ, 00B74ZZ, 00B80ZX, 00B80ZZ, 00B83ZZ, 00B84ZZ, 00B90ZX, 00B90ZZ, 00B93ZZ, 00B94ZZ, 00BA0ZX, 00BA0ZZ, 00BA3ZZ, 00BA4ZZ, 00BB0ZX, 00BB0ZZ, 00BB3ZZ, 00BB4ZZ, 00BC0ZX, 00BC0ZZ, 00BC3ZZ, 00BC4ZZ, 00BD0ZX, 00BD0ZZ, 00BD3ZZ, 00BD4ZZ, 00D00ZZ, 00D03ZZ, 00D04ZZ, 00D70ZZ, 00D73ZZ, 00D74ZZ, 00DC0ZZ, 00DC3ZZ, 00DC4ZZ, 00T70ZZ, 00T73ZZ, 00T74ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;femPop&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>041K09L, 041K0AL, 041K0JL, 041K0KL, 041K0ZL, 041K49L, 041K4AL, 041K4JL, 041K4KL, 041K4ZL, 041L09L, 041L0AL, 041L0JL, 041L0KL, 041L0ZL, 041L49L, 041L4AL, 041L4JL, 041L4KL, 041L4ZL</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;femur&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0QH604Z, 0QH605Z, 0QH606Z, 0QH60BZ, 0QH60CZ, 0QH60DZ, 0QH704Z, 0QH705Z, 0QH706Z, 0QH70BZ, 0QH70CZ, 0QH70DZ, 0QH804Z, 0QH805Z, 0QH806Z, 0QH80BZ, 0QH80CZ, 0QH80DZ, 0QH904Z, 0QH905Z, 0QH906Z, 0QH90BZ, 0QH90CZ, 0QH90DZ, 0QHB04Z, 0QHB05Z, 0QHB06Z, 0QHB0BZ, 0QHB0CZ, 0QHB0DZ, 0QHC04Z, 0QHC05Z, 0QHC06Z, 0QHC0BZ, 0QHC0CZ, 0QHC0DZ, 0QS604Z, 0QS605Z, 0QS606Z, 0QS60BZ, 0QS60CZ, 0QS60DZ, 0QS60ZZ, 0QS704Z, 0QS705Z, 0QS706Z, 0QS70BZ, 0QS70CZ, 0QS70DZ, 0QS70ZZ, 0QS804Z, 0QS805Z, 0QS806Z, 0QS80BZ, 0QS80CZ, 0QS80DZ, 0QS80ZZ, 0QS904Z, 0QS905Z, 0QS906Z, 0QS90BZ, 0QS90CZ, 0QS90DZ, 0QS90ZZ, 0QSB04Z, 0QSB05Z, 0QSB06Z, 0QSB0BZ, 0QSB0CZ, 0QSB0DZ, 0QSB0ZZ, 0QSC04Z, 0QSC05Z, 0QSC06Z, 0QSC0BZ, 0QSC0CZ, 0QSC0DZ, 0QSC0ZZ, 0QW605Z, 0QW6X5Z, 0QW705Z, 0QW7X5Z, 0QW805Z, 0QW8X5Z, 0QW905Z, 0QW9X5Z, 0QWB05Z, 0QWBX5Z, 0QWC05Z, 0QWCX5Z</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;gastricBypass&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0D16079, 0D1607A, 0D1607B, 0D1607L, 0D160J9, 0D160JA, 0D160JB, 0D160JL, 0D160K9, 0D160KA, 0D160KB, 0D160KL, 0D160Z9, 0D160ZA, 0D160ZB, 0D160ZL, 0D16479, 0D1647A, 0D1647B, 0D1647L, 0D164J9, 0D164JA, 0D164JB, 0D164JL, 0D164K9, 0D164KA, 0D164KB, 0D164KL, 0D164Z9, 0D164ZA, 0D164ZB, 0D164ZL, 0D16879, 0D1687A, 0D1687B, 0D1687L, 0D168J9, 0D168JA, 0D168JB, 0D168JL, 0D168K9, 0D168KA, 0D168KB, 0D168KL, 0D168Z9, 0D168ZA, 0D168ZB, 0D168ZL</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;liver&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0F500ZF, 0F500ZZ, 0F504ZF, 0F504ZZ, 0F510ZF, 0F510ZZ, 0F514ZF, 0F514ZZ, 0F520ZF, 0F520ZZ, 0F524ZF, 0F524ZZ, 0FB00ZZ, 0FB04ZG, 0FB04ZZ, 0FB10ZZ, 0FB14ZG, 0FB14ZZ, 0FB20ZZ, 0FB24ZG, 0FB24ZZ, 0FT00ZZ, 0FT04ZG, 0FT04ZZ, 0FT10ZZ, 0FT14ZG, 0FT14ZZ, 0FT20ZZ, 0FT24ZG, 0FT24ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;lung&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0B510ZZ, 0B514ZZ, 0B520ZZ, 0B524ZZ, 0B530ZZ, 0B534ZZ, 0B540ZZ, 0B544ZZ, 0B550ZZ, 0B554ZZ, 0B560ZZ, 0B564ZZ, 0B570ZZ, 0B574ZZ, 0B580ZZ, 0B584ZZ, 0B590ZZ, 0B594ZZ, 0B5B0ZZ, 0B5B4ZZ, 0B5C0Z3, 0B5C0ZZ, 0B5C4Z3, 0B5C4ZZ, 0B5D0Z3, 0B5D0ZZ, 0B5D4Z3, 0B5D4ZZ, 0B5F0Z3, 0B5F0ZZ, 0B5F4Z3, 0B5F4ZZ, 0B5G0Z3, 0B5G0ZZ, 0B5G4Z3, 0B5G4ZZ, 0B5H0Z3, 0B5H0ZZ, 0B5H4Z3, 0B5H4ZZ, 0B5J0Z3, 0B5J0ZZ, 0B5J4Z3, 0B5J4ZZ, 0B5K0Z3, 0B5K0ZZ, 0B5K4Z3, 0B5K4ZZ, 0B5L0Z3, 0B5L0ZZ, 0B5L4Z3, 0B5L4ZZ, 0B5M0Z3, 0B5M0ZZ, 0B5M4Z3, 0B5M4ZZ, 0BB10ZZ, 0BB14ZZ, 0BB20ZZ, 0BB24ZZ, 0BB30ZZ, 0BB34ZZ, 0BB40ZZ, 0BB44ZZ, 0BB50ZZ, 0BB54ZZ, 0BB60ZZ, 0BB64ZZ, 0BB70ZZ, 0BB74ZZ, 0BB80ZZ, 0BB84ZZ, 0BB90ZZ, 0BB94ZZ, 0BBB0ZZ, 0BBB4ZZ, 0BBC0ZZ, 0BBC4ZZ, 0BBD0ZZ, 0BBD4ZZ, 0BBF0ZZ, 0BBF4ZZ, 0BBG0ZZ, 0BBG4ZZ, 0BBH0ZZ, 0BBH4ZZ, 0BBJ0ZZ, 0BBJ4ZZ, 0BBK0ZZ, 0BBK4ZZ, 0BBL0ZZ, 0BBL4ZZ, 0BBM0ZZ, 0BBM4ZZ, 0BT10ZZ, 0BT14ZZ, 0BT20ZZ, 0BT24ZZ, 0BT30ZZ, 0BT34ZZ, 0BT40ZZ, 0BT44ZZ, 0BT50ZZ, 0BT54ZZ, 0BT60ZZ, 0BT64ZZ, 0BT70ZZ, 0BT74ZZ, 0BT80ZZ, 0BT84ZZ, 0BT90ZZ, 0BT94ZZ, 0BTB0ZZ, 0BTB4ZZ, 0BTC0ZZ, 0BTC4ZZ, 0BTD0ZZ, 0BTD4ZZ, 0BTF0ZZ, 0BTF4ZZ, 0BTG0ZZ, 0BTG4ZZ, 0BTH0ZZ, 0BTH4ZZ, 0BTJ0ZZ, 0BTJ4ZZ, 0BTK0ZZ, 0BTK4ZZ, 0BTL0ZZ, 0BTL4ZZ, 0BTM0ZZ, 0BTM4ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;neckDissection&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>07B10ZX, 07B10ZZ, 07B13ZX, 07B13ZZ, 07B14ZX, 07B14ZZ, 07B20ZX, 07B20ZZ, 07B23ZX, 07B23ZZ, 07B24ZX, 07B24ZZ, 07T10ZZ, 07T14ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;spineDecompression&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>00NY0ZZ, 00NY3ZZ, 00NY4ZZ, 01NB0ZZ, 01NB3ZZ, 01NB4ZZ, 0QB00ZZ, 0QB03ZZ, 0QB04ZZ, 0QN00ZZ, 0QN03ZZ, 0QN04ZZ, 0RBA0ZZ, 0RBA3ZZ, 0RBA4ZZ, 0RBB0ZZ, 0RBB3ZZ, 0RBB4ZZ, 0RTB0ZZ, 0SB00ZZ, 0SB03ZZ, 0SB04ZZ, 0SB20ZZ, 0SB23ZZ, 0SB24ZZ, 0SB30ZZ, 0SB33ZZ, 0SB34ZZ, 0SB40ZZ, 0SB43ZZ, 0SB44ZZ, 0ST20ZZ, 0ST40ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;spineFusion&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0RG0070, 0RG0071, 0RG007J, 0RG00A0, 0RG00A1, 0RG00AJ, 0RG00J0, 0RG00J1, 0RG00JJ, 0RG00K0, 0RG00K1, 0RG00KJ, 0RG00Z0, 0RG00Z1, 0RG00ZJ, 0RG0370, 0RG0371, 0RG037J, 0RG03A0, 0RG03A1, 0RG03AJ, 0RG03J0, 0RG03J1, 0RG03JJ, 0RG03K0, 0RG03K1, 0RG03KJ, 0RG03Z0, 0RG03Z1, 0RG03ZJ, 0RG0470, 0RG0471, 0RG047J, 0RG04A0, 0RG04A1, 0RG04AJ, 0RG04J0, 0RG04J1, 0RG04JJ, 0RG04K0, 0RG04K1, 0RG04KJ, 0RG04Z0, 0RG04Z1, 0RG04ZJ, 0RG1070, 0RG1071, 0RG107J, 0RG10A0, 0RG10A1, 0RG10AJ, 0RG10J0, 0RG10J1, 0RG10JJ, 0RG10K0, 0RG10K1, 0RG10KJ, 0RG10Z0, 0RG10Z1, 0RG10ZJ, 0RG1370, 0RG1371, 0RG137J, 0RG13A0, 0RG13A1, 0RG13AJ, 0RG13J0, 0RG13J1, 0RG13JJ, 0RG13K0, 0RG13K1, 0RG13KJ, 0RG13Z0, 0RG13Z1, 0RG13ZJ, 0RG1470, 0RG1471, 0RG147J, 0RG14A0, 0RG14A1, 0RG14AJ, 0RG14J0, 0RG14J1, 0RG14JJ, 0RG14K0, 0RG14K1, 0RG14KJ, 0RG14Z0, 0RG14Z1, 0RG14ZJ, 0RG2070, 0RG2071, 0RG207J, 0RG20A0, 0RG20A1, 0RG20AJ, 0RG20J0, 0RG20J1, 0RG20JJ, 0RG20K0, 0RG20K1, 0RG20KJ, 0RG20Z0, 0RG20Z1, 0RG20ZJ, 0RG2370, 0RG2371, 0RG237J, 0RG23A0, 0RG23A1, 0RG23AJ, 0RG23J0, 0RG23J1, 0RG23JJ, 0RG23K0, 0RG23K1, 0RG23KJ, 0RG23Z0, 0RG23Z1, 0RG23ZJ, 0RG2470, 0RG2471, 0RG247J, 0RG24A0, 0RG24A1, 0RG24AJ, 0RG24J0, 0RG24J1, 0RG24JJ, 0RG24K0, 0RG24K1, 0RG24KJ, 0RG24Z0, 0RG24Z1, 0RG24ZJ, 0RG4070, 0RG4071, 0RG407J, 0RG40A0, 0RG40A1, 0RG40AJ, 0RG40J0, 0RG40J1, 0RG40JJ, 0RG40K0, 0RG40K1, 0RG40KJ, 0RG40Z0, 0RG40Z1, 0RG40ZJ, 0RG4370, 0RG4371, 0RG437J, 0RG43A0, 0RG43A1, 0RG43AJ, 0RG43J0, 0RG43J1, 0RG43JJ, 0RG43K0, 0RG43K1, 0RG43KJ, 0RG43Z0, 0RG43Z1, 0RG43ZJ, 0RG4470, 0RG4471, 0RG447J, 0RG44A0, 0RG44A1, 0RG44AJ, 0RG44J0, 0RG44J1, 0RG44JJ, 0RG44K0, 0RG44K1, 0RG44KJ, 0RG44Z0, 0RG44Z1, 0RG44ZJ, 0RG6070, 0RG6071, 0RG607J, 0RG60A0, 0RG60A1, 0RG60AJ, 0RG60J0, 0RG60J1, 0RG60JJ, 0RG60K0, 0RG60K1, 0RG60KJ, 0RG60Z0, 0RG60Z1, 0RG60ZJ, 0RG6370, 0RG6371, 0RG637J, 0RG63A0, 0RG63A1, 0RG63AJ, 0RG63J0, 0RG63J1, 0RG63JJ, 0RG63K0, 0RG63K1, 0RG63KJ, 0RG63Z0, 0RG63Z1, 0RG63ZJ, 0RG6470, 0RG6471, 0RG647J, 0RG64A0, 0RG64A1, 0RG64AJ, 0RG64J0, 0RG64J1, 0RG64JJ, 0RG64K0, 0RG64K1, 0RG64KJ, 0RG64Z0, 0RG64Z1, 0RG64ZJ, 0RG7070, 0RG7071, 0RG707J, 0RG70A0, 0RG70A1, 0RG70AJ, 0RG70J0, 0RG70J1, 0RG70JJ, 0RG70K0, 0RG70K1, 0RG70KJ, 0RG70Z0, 0RG70Z1, 0RG70ZJ, 0RG7370, 0RG7371, 0RG737J, 0RG73A0, 0RG73A1, 0RG73AJ, 0RG73J0, 0RG73J1, 0RG73JJ, 0RG73K0, 0RG73K1, 0RG73KJ, 0RG73Z0, 0RG73Z1, 0RG73ZJ, 0RG7470, 0RG7471, 0RG747J, 0RG74A0, 0RG74A1, 0RG74AJ, 0RG74J0, 0RG74J1, 0RG74JJ, 0RG74K0, 0RG74K1, 0RG74KJ, 0RG74Z0, 0RG74Z1, 0RG74ZJ, 0RG8070, 0RG8071, 0RG807J, 0RG80A0, 0RG80A1, 0RG80AJ, 0RG80J0, 0RG80J1, 0RG80JJ, 0RG80K0, 0RG80K1, 0RG80KJ, 0RG80Z0, 0RG80Z1, 0RG80ZJ, 0RG8370, 0RG8371, 0RG837J, 0RG83A0, 0RG83A1, 0RG83AJ, 0RG83J0, 0RG83J1, 0RG83JJ, 0RG83K0, 0RG83K1, 0RG83KJ, 0RG83Z0, 0RG83Z1, 0RG83ZJ, 0RG8470, 0RG8471, 0RG847J, 0RG84A0, 0RG84A1, 0RG84AJ, 0RG84J0, 0RG84J1, 0RG84JJ, 0RG84K0, 0RG84K1, 0RG84KJ, 0RG84Z0, 0RG84Z1, 0RG84ZJ, 0RGA070, 0RGA071, 0RGA07J, 0RGA0A0, 0RGA0A1, 0RGA0AJ, 0RGA0J0, 0RGA0J1, 0RGA0JJ, 0RGA0K0, 0RGA0K1, 0RGA0KJ, 0RGA0Z0, 0RGA0Z1, 0RGA0ZJ, 0RGA370, 0RGA371, 0RGA37J, 0RGA3A0, 0RGA3A1, 0RGA3AJ, 0RGA3J0, 0RGA3J1, 0RGA3JJ, 0RGA3K0, 0RGA3K1, 0RGA3KJ, 0RGA3Z0, 0RGA3Z1, 0RGA3ZJ, 0RGA470, 0RGA471, 0RGA47J, 0RGA4A0, 0RGA4A1, 0RGA4AJ, 0RGA4J0, 0RGA4J1, 0RGA4JJ, 0RGA4K0, 0RGA4K1, 0RGA4KJ, 0RGA4Z0, 0RGA4Z1, 0RGA4ZJ, 0RH004Z, 0RH00BZ, 0RH00CZ, 0RH00DZ, 0RH034Z, 0RH03BZ, 0RH03CZ, 0RH03DZ, 0RH044Z, 0RH04BZ, 0RH04CZ, 0RH04DZ, 0RH104Z, 0RH10BZ, 0RH10CZ, 0RH10DZ, 0RH134Z, 0RH13BZ, 0RH13CZ, 0RH13DZ, 0RH144Z, 0RH14BZ, 0RH14CZ, 0RH14DZ, 0RH404Z, 0RH40BZ, 0RH40CZ, 0RH40DZ, 0RH434Z, 0RH43BZ, 0RH43CZ, 0RH43DZ, 0RH444Z, 0RH44BZ, 0RH44CZ, 0RH44DZ, 0RH604Z, 0RH60BZ, 0RH60CZ, 0RH60DZ, 0RH634Z, 0RH63BZ, 0RH63CZ, 0RH63DZ, 0RH644Z, 0RH64BZ, 0RH64CZ, 0RH64DZ, 0RHA04Z, 0RHA0BZ, 0RHA0CZ, 0RHA0DZ, 0RHA34Z, 0RHA3BZ, 0RHA3CZ, 0RHA3DZ, 0RHA44Z, 0RHA4BZ, 0RHA4CZ, 0RHA4DZ, 0SG0070, 0SG0071, 0SG007J, 0SG00A0, 0SG00A1, 0SG00AJ, 0SG00J0, 0SG00J1, 0SG00JJ, 0SG00K0, 0SG00K1, 0SG00KJ, 0SG00Z0, 0SG00Z1, 0SG00ZJ, 0SG0370, 0SG0371, 0SG037J, 0SG03A0, 0SG03A1, 0SG03AJ, 0SG03J0, 0SG03J1, 0SG03JJ, 0SG03K0, 0SG03K1, 0SG03KJ, 0SG03Z0, 0SG03Z1, 0SG03ZJ, 0SG0470, 0SG0471, 0SG047J, 0SG04A0, 0SG04A1, 0SG04AJ, 0SG04J0, 0SG04J1, 0SG04JJ, 0SG04K0, 0SG04K1, 0SG04KJ, 0SG04Z0, 0SG04Z1, 0SG04ZJ, 0SG1070, 0SG1071, 0SG107J, 0SG10A0, 0SG10A1, 0SG10AJ, 0SG10J0, 0SG10J1, 0SG10JJ, 0SG10K0, 0SG10K1, 0SG10KJ, 0SG10Z0, 0SG10Z1, 0SG10ZJ, 0SG1370, 0SG1371, 0SG137J, 0SG13A0, 0SG13A1, 0SG13AJ, 0SG13J0, 0SG13J1, 0SG13JJ, 0SG13K0, 0SG13K1, 0SG13KJ, 0SG13Z0, 0SG13Z1, 0SG13ZJ, 0SG1470, 0SG1471, 0SG147J, 0SG14A0, 0SG14A1, 0SG14AJ, 0SG14J0, 0SG14J1, 0SG14JJ, 0SG14K0, 0SG14K1, 0SG14KJ, 0SG14Z0, 0SG14Z1, 0SG14ZJ, 0SG3070, 0SG3071, 0SG307J, 0SG30A0, 0SG30A1, 0SG30AJ, 0SG30J0, 0SG30J1, 0SG30JJ, 0SG30K0, 0SG30K1, 0SG30KJ, 0SG30Z0, 0SG30Z1, 0SG30ZJ, 0SG3370, 0SG3371, 0SG337J, 0SG33A0, 0SG33A1, 0SG33AJ, 0SG33J0, 0SG33J1, 0SG33JJ, 0SG33K0, 0SG33K1, 0SG33KJ, 0SG33Z0, 0SG33Z1, 0SG33ZJ, 0SG3470, 0SG3471, 0SG347J, 0SG34A0, 0SG34A1, 0SG34AJ, 0SG34J0, 0SG34J1, 0SG34JJ, 0SG34K0, 0SG34K1, 0SG34KJ, 0SG34Z0, 0SG34Z1, 0SG34ZJ, 0SH004Z, 0SH00BZ, 0SH00CZ, 0SH00DZ, 0SH034Z, 0SH03BZ, 0SH03CZ, 0SH03DZ, 0SH044Z, 0SH04BZ, 0SH04CZ, 0SH04DZ, 0SH304Z, 0SH30BZ, 0SH30CZ, 0SH30DZ, 0SH334Z, 0SH33BZ, 0SH33CZ, 0SH33DZ, 0SH344Z, 0SH34BZ, 0SH34CZ, 0SH34DZ, XRG0092, XRG00F3, XRG1092, XRG10F3, XRG2092, XRG20F3, XRG4092, XRG40F3, XRG6092, XRG60F3, XRG7092, XRG70F3, XRG8092, XRG80F3, XRGA092, XRGA0EA, XRGA0F3, XRGA0R7, XRGA3R7, XRGA4R7, XRGB092, XRGB0EA, XRGB0F3, XRGB0R7, XRGB3R7, XRGB4R7, XRGC092, XRGC0EA, XRGC0F3, XRGC0R7, XRGC3R7, XRGC4R7, XRGD092, XRGD0EA, XRGD0F3, XRGD0R7, XRGD3R7, XRGD4R7, XRH60FA, XRH63FA, XRH64FA, XRH70FA, XRH73FA, XRH74FA, XRH80FA, XRH83FA, XRH84FA, XRHA0FA, XRHA3FA, XRHA4FA, XRHB0FA, XRHB3FA, XRHB4FA, XRHC0FA, XRHC3FA, XRHC4FA, XRHD0FA, XRHD3FA, XRHD4FA</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;THA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0SR9019, 0SR901A, 0SR901Z, 0SR9029, 0SR902A, 0SR902Z, 0SR9039, 0SR903A, 0SR903Z, 0SR9049, 0SR904A, 0SR904Z, 0SR9069, 0SR906A, 0SR906Z, 0SR907Z, 0SR90EZ, 0SR90J9, 0SR90JA, 0SR90JZ, 0SR90KZ, 0SRB019, 0SRB01A, 0SRB01Z, 0SRB029, 0SRB02A, 0SRB02Z, 0SRB039, 0SRB03A, 0SRB03Z, 0SRB049, 0SRB04A, 0SRB04Z, 0SRB069, 0SRB06A, 0SRB06Z, 0SRB07Z, 0SRB0EZ, 0SRB0J9, 0SRB0JA, 0SRB0JZ, 0SRB0KZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;thyroid&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0G5K0Z3, 0G5K0ZZ, 0G5K3Z3, 0G5K3ZZ, 0G5K4Z3, 0G5K4ZZ, 0GTK0ZZ, 0GTK4ZZ</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupICD10 %&gt;% filter(Class == &quot;TKA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>0SRC069, 0SRC06A, 0SRC06Z, 0SRC07Z, 0SRC0EZ, 0SRC0J9, 0SRC0JA, 0SRC0JZ, 0SRC0KZ, 0SRD069, 0SRD06A, 0SRD06Z, 0SRD07Z, 0SRD0EZ, 0SRD0J9, 0SRD0JA, 0SRD0JZ, 0SRD0KZ</code></pre>
 </div>
 </div>
 <div id="cpt-codes" class="section level1">
@@ -1321,9 +1384,42 @@ noncardiacSGYlookupCPT &lt;- CPT_List %&gt;%
 
 #removing codes that are extraneous
 noncardiacSGYlookupCPT &lt;- noncardiacSGYlookupCPT %&gt;% 
-  filter(!Code %in% c(&quot;44979&quot;, &quot;29916&quot;, &quot;27420&quot;, &quot;27422&quot;, &quot;27424&quot;, &quot;27427&quot;, &quot;27428&quot;, &quot;27429&quot;, &quot;27437&quot;, &quot;27438&quot;, &quot;27440&quot;, &quot;27441&quot;, &quot;27442&quot;, &quot;27443&quot;, &quot;G0428&quot;, &quot;47400&quot;, &quot;47420&quot;, &quot;47425&quot;, &quot;47460&quot;, &quot;47550&quot;, &quot;32850&quot;, &quot;G0302&quot;, &quot;G0303&quot;, &quot;G0304&quot;, &quot;G0305&quot;, &quot;S2061&quot;, &quot;38746&quot;, &quot;C9784&quot;, &quot;C9785&quot;, &quot;43848&quot;, &quot;43886&quot;, &quot;43887&quot;, &quot;43888&quot;, &quot;43770&quot;, &quot;43771&quot;, &quot;43772&quot;, &quot;43773&quot;, &quot;43774&quot;, &quot;43775&quot;, &quot;43842&quot;, &quot;43843&quot;, &quot;0164T&quot;, &quot;0165T&quot;, &quot;22850&quot;, &quot;22852&quot;, &quot;22855&quot;, &quot;22857&quot;, &quot;22859&quot;, &quot;22860&quot;, &quot;22862&quot;, &quot;22865&quot;, &quot;27250&quot;, &quot;27252&quot;, &quot;27253&quot;, &quot;27256&quot;, &quot;27257&quot;, &quot;27258&quot;, &quot;27259&quot;, &quot;27265&quot;, &quot;27266&quot;))
+  filter(!Code %in% c(&quot;44979&quot;, &quot;29916&quot;, &quot;27420&quot;, &quot;27422&quot;, &quot;27424&quot;, &quot;27427&quot;, &quot;27428&quot;, &quot;27429&quot;, &quot;27437&quot;, &quot;27438&quot;, &quot;27440&quot;, &quot;27441&quot;, &quot;27442&quot;, &quot;27443&quot;, &quot;G0428&quot;, &quot;47400&quot;, &quot;47420&quot;, &quot;47425&quot;, &quot;47460&quot;, &quot;47550&quot;, &quot;32850&quot;, &quot;G0302&quot;, &quot;G0303&quot;, &quot;G0304&quot;, &quot;G0305&quot;, &quot;S2061&quot;, &quot;38746&quot;, &quot;C9784&quot;, &quot;C9785&quot;, &quot;43848&quot;, &quot;43886&quot;, &quot;43887&quot;, &quot;43888&quot;, &quot;43770&quot;, &quot;43771&quot;, &quot;43772&quot;, &quot;43773&quot;, &quot;43774&quot;, &quot;43775&quot;, &quot;43842&quot;, &quot;43843&quot;, &quot;0164T&quot;, &quot;0165T&quot;, &quot;22850&quot;, &quot;22852&quot;, &quot;22855&quot;, &quot;22857&quot;, &quot;22859&quot;, &quot;22860&quot;, &quot;22862&quot;, &quot;22865&quot;, &quot;27250&quot;, &quot;27252&quot;, &quot;27253&quot;, &quot;27256&quot;, &quot;27257&quot;, &quot;27258&quot;, &quot;27259&quot;, &quot;27265&quot;, &quot;27266&quot;, &quot;27486&quot;, &quot;27446&quot;, &quot;27125&quot;, &quot;27137&quot;, &quot;27138&quot;, &quot;29914&quot;, &quot;29915&quot;, &quot;S2118&quot;, &quot;60210&quot;, &quot;60212&quot;, &quot;60220&quot;, &quot;60225&quot;, &quot;27175&quot;, &quot;27176&quot;, &quot;27178&quot;, &quot;27185&quot;, &quot;27187&quot;, &quot;27220&quot;, &quot;27222&quot;, &quot;27230&quot;, &quot;27232&quot;, &quot;27235&quot;, &quot;27238&quot;, &quot;27240&quot;, &quot;27246&quot;,&quot;27267&quot;, &quot;27268&quot;, &quot;27472&quot;, &quot;27495&quot;, &quot;27500&quot;, &quot;27501&quot;, &quot;27502&quot;, &quot;27503&quot;, &quot;27508&quot;, &quot;27509&quot;, &quot;27510&quot;, &quot;27516&quot;, &quot;27517&quot;))
 
 write.csv(noncardiacSGYlookupCPT, &quot;output/CPT_noncardiacSGY_lookup.csv&quot;, row.names = FALSE)</code></pre>
+<p>separate groups</p>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;AAA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>34701, 34702, 34703, 34704, 34705, 34706, 34709, 34710, 34711, 34800, 34802, 34803, 34804, 34805, 34808, 34825, 34826, 34830, 34831, 34832, 34841, 34842, 34843, 34844, 34845, 34846, 34847, 34848, 35081, 35082, 35091, 35092, 35102, 35103</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;appendectomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>44950, 44955, 44960, 44970</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;chole&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>47562, 47563, 47564, 47600, 47605, 47610, 47612, 47620</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;colectomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>44110, 44111, 44139, 44140, 44141, 44143, 44144, 44145, 44146, 44147, 44150, 44151, 44155, 44156, 44157, 44158, 44160, 44204, 44205, 44206, 44207, 44208, 44210, 44211, 44212, 44213, 45110, 45111, 45112, 45113, 45114, 45116, 45119, 45120, 45121, 45395, 45397</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;craniotomy&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>61304, 61305, 61510, 61512, 61518, 61519, 61520, 61521, 61526, 61530, 61540, 61545, 61546, 61566</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;femPop&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>35556, 35583, 35656</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;femur&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>27177, 27179, 27181, 27236, 27244, 27245, 27248, 27254, 27269, 27506, 27507, 27511, 27513, 27514, 27519</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;gastricBypass&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>43644, 43644r, 43645, 43845, 43846, 43847</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;liver&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>47120, 47122, 47125, 47130, 47379</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;lung&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>32440, 32442, 32445, 32480, 32482, 32484, 32486, 32488, 32491, 32491T, 32501, 32505, 32506, 32663, 32666, 32667, 32668, 32669, 32670, 32671, 32672</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;neckDissection&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>31365, 31368, 31390, 31395, 38542, 38700, 38720, 38724, 41135, 41145, 41155, 42426, 69155</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;spineDecompression&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>22206, 22207, 22208, 22214, 22216, 22856, 22867, 62287, 62380, 63001, 63003, 63005, 63011, 63012, 63015, 63016, 63017, 63020, 63030, 63035, 63040, 63042, 63044, 63045, 63046, 63047, 63048, 63050, 63051, 63055, 63056, 63057, 63064, 63075, 63077, 63081, 63082, 63085, 63086, 63087, 63088, 63090, 63091, 63101, 63102, 63103</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;spineFusion&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>22532, 22533, 22534, 22548, 22551, 22552, 22554, 22556, 22558, 22585, 22586, 22590, 22595, 22600, 22610, 22612, 22614, 22616, 22630, 22632, 22633, 22634, 22800, 22802, 22804, 22808, 22810, 22812, 22840, 22841, 22842, 22843, 22844, 22845, 22846, 22847, 22848, 22849, 22853, 22854, 27280, 63052, 63053</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;THA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>27130, 27132, 27134</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;thyroid&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>60240, 60252, 60254, 60260, 60270, 60271, C7555</code></pre>
+<pre class="r"><code>cat(paste(noncardiacSGYlookupCPT %&gt;% filter(Class == &quot;TKA&quot;) %&gt;% pull(Code), collapse = &quot;, &quot;))</code></pre>
+<pre><code>27445, 27447, 27487</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

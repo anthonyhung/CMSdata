@@ -300,7 +300,8 @@ noncardiacSGYlookupICD10 <- ICD10_List %>%
   select(-Type) %>% 
   filter(!Code %in% c("0BBR0ZZ", "0BBR4ZZ", "0BBS0ZZ", "0BBS4ZZ", "0BTR0ZZ", "0BTR4ZZ", "0BTS0ZZ", "0BTS4ZZ", "0B5R0ZZ", "0B5R4ZZ", "0B5S0ZZ", "0B5S4ZZ")) %>% 
   filter(!(grepl("Reposition .* Joint", `Full Description`) & Class == "spineFusion")) %>% 
-  filter(!grepl("Bypass Abdominal Aorta|Destruction of Abdominal Aorta|Inspection of Gallbladder|Destruction of .* Spinal Cord|Excision of .* Nerve|Destruction of .* Nerve|Reattachment of * Thyroid|Reposition .* Thyroid|Extirpation of Matter from Thyroid|Reattachment of .* Thyroid|Diaphragm|Pleura|Removal of Internal Fixation|Removal of External Fixation|Insertion of Spacer .* Hip|Removal of .* Hip|Revision of .* Hip|Insertion of Spacer .* Knee|Removal of .* Knee|Revision of .* Knee|Monitoring of .* Knee|Cerebral Ventricle|Extraction of .* Nerve|Spinal Meninges|Dura Mater|Removal of Interbody Fusion Device|Revision of Inter.* Device|Drainage of .* Vertebra", `Full Description`))
+  filter(!grepl("Bypass Abdominal Aorta|Destruction of Abdominal Aorta|Inspection of Gallbladder|Destruction of .* Spinal Cord|Excision of .* Nerve|Destruction of .* Nerve|Reattachment of * Thyroid|Reposition .* Thyroid|Extirpation of Matter from Thyroid|Reattachment of .* Thyroid|Diaphragm|Pleura|Removal of Internal Fixation|Removal of External Fixation|Insertion of Spacer .* Hip|Removal of .* Hip|Revision of .* Hip|Insertion of Spacer .* Knee|Removal of .* Knee|Revision of .* Knee|Monitoring of .* Knee|Cerebral Ventricle|Extraction of .* Nerve|Spinal Meninges|Dura Mater|Removal of Interbody Fusion Device|Revision of Inter.* Device|Drainage of .* Vertebra|Drainage of Appendix.* Percutaneous|Drainage of Appendix.* Endoscopic|Supplement .* Hip|Supplement .* Knee|Extirpation of Matter from Appendix|Replacement of .* Hip Joint, Acetabular Surface|Replacement of .* Hip Joint, Femoral Surface|Replacement of .* Knee Joint, Femoral Surface|Replacement of .* Knee Joint, Tibial Surface|Replacement of .* Knee Joint with Synthetic Substitute, .* Meniscus|Replacement of .* Knee Joint with Patellofemoral|Replacement of .* Knee Joint with .* Unicondylar|Destruction of Left Thyroid|Destruction of Right Thyroid|Excision of Left Thyroid|Excision of Right Thyroid|Resection of Left Thyroid|Resection of Right Thyroid|Excision of Thyroid Gland Isthmus|Resection of Thyroid Gland Isthmus|Cerebral Meninges|Excision of .* Spinal Cord", `Full Description`)) %>% 
+  filter(!(Class == "femur" & (Approach == "Percutaneous Approach" | Approach == "Percutaneous Endoscopic Approach")))
 
 
 write.csv(noncardiacSGYlookupICD10, "output/ICD_noncardiacSGY_lookup.csv", row.names = FALSE)
@@ -309,7 +310,21 @@ write.csv(noncardiacSGYlookupICD10, "output/ICD_noncardiacSGY_lookup.csv", row.n
 separate groups
 ```{r}
 cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "AAA") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "appendectomy") %>% pull(Code), collapse = ", "))
 cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "chole") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "colectomy") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "craniotomy") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "femPop") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "femur") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "gastricBypass") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "liver") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "lung") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "neckDissection") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "spineDecompression") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "spineFusion") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "THA") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "thyroid") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupICD10 %>% filter(Class == "TKA") %>% pull(Code), collapse = ", "))
 ```
 
 
@@ -496,10 +511,28 @@ noncardiacSGYlookupCPT <- CPT_List %>%
 
 #removing codes that are extraneous
 noncardiacSGYlookupCPT <- noncardiacSGYlookupCPT %>% 
-  filter(!Code %in% c("44979", "29916", "27420", "27422", "27424", "27427", "27428", "27429", "27437", "27438", "27440", "27441", "27442", "27443", "G0428", "47400", "47420", "47425", "47460", "47550", "32850", "G0302", "G0303", "G0304", "G0305", "S2061", "38746", "C9784", "C9785", "43848", "43886", "43887", "43888", "43770", "43771", "43772", "43773", "43774", "43775", "43842", "43843", "0164T", "0165T", "22850", "22852", "22855", "22857", "22859", "22860", "22862", "22865", "27250", "27252", "27253", "27256", "27257", "27258", "27259", "27265", "27266"))
+  filter(!Code %in% c("44979", "29916", "27420", "27422", "27424", "27427", "27428", "27429", "27437", "27438", "27440", "27441", "27442", "27443", "G0428", "47400", "47420", "47425", "47460", "47550", "32850", "G0302", "G0303", "G0304", "G0305", "S2061", "38746", "C9784", "C9785", "43848", "43886", "43887", "43888", "43770", "43771", "43772", "43773", "43774", "43775", "43842", "43843", "0164T", "0165T", "22850", "22852", "22855", "22857", "22859", "22860", "22862", "22865", "27250", "27252", "27253", "27256", "27257", "27258", "27259", "27265", "27266", "27486", "27446", "27125", "27137", "27138", "29914", "29915", "S2118", "60210", "60212", "60220", "60225", "27175", "27176", "27178", "27185", "27187", "27220", "27222", "27230", "27232", "27235", "27238", "27240", "27246","27267", "27268", "27472", "27495", "27500", "27501", "27502", "27503", "27508", "27509", "27510", "27516", "27517"))
 
 write.csv(noncardiacSGYlookupCPT, "output/CPT_noncardiacSGY_lookup.csv", row.names = FALSE)
 
 ```
 
-
+separate groups
+```{r}
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "AAA") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "appendectomy") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "chole") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "colectomy") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "craniotomy") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "femPop") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "femur") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "gastricBypass") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "liver") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "lung") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "neckDissection") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "spineDecompression") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "spineFusion") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "THA") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "thyroid") %>% pull(Code), collapse = ", "))
+cat(paste(noncardiacSGYlookupCPT %>% filter(Class == "TKA") %>% pull(Code), collapse = ", "))
+```

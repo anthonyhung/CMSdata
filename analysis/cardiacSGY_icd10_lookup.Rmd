@@ -336,3 +336,27 @@ X2RF432	Replacement of Aortic Valve using Zooplastic Tissue, Rapid Deployment Te
 X2C0361	Extirpation of Matter from Coronary Artery, One Artery using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1
 X2C1361 Extirpation of Matter from Coronary Artery, Two Arteries using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1 Percutaneous Approach	FALSE	FALSE	FALSE
 X2C2361 Extirpation of Matter from Coronary Artery, Three Arteries using Orbital Atherectomy Technology, Percutaneous Approach, New Technology Group 1 Percutaneous Approach	FALSE	FALSE	FALSE
+
+
+```{r}
+codes_raw <- ("02HW3YZ, 02LW3DJ, 02VW3DZ, 027X3DZ, 027X3ZZ, 027W3DZ, 027W3ZZ, 02HW3DZ, 02QX3ZZ, 02QW3ZZ, 02VX3EZ, 02VX3FZ, 02VX3DZ, 02VW3EZ, 02VW3FZ, 02VW3CZ, 02VW3ZZ, 02UX3JZ, 02UW3JZ, 02CW3ZZ, 02CX3ZZ")
+
+paste_codes_from_excel <- function(pasted_text) {
+  # pasted_text: string you get from copy-pasting the Excel column
+  clean <- pasted_text %>%
+    # replace commas/tabs/semicolons with spaces, keep letters/digits only separated
+    gsub("[,;\\t]", " ", .) %>%
+    trimws()
+  
+  # split on any whitespace, then remove any non-alphanumeric chars around items
+  codes <- unlist(strsplit(clean, "\\s+"))
+  codes <- gsub("^['\"]+|['\".,;:+-]+$","", codes)  # drop leading/trailing quotes, commas, periods, etc.
+  codes <- codes[codes != ""]                       # drop empties
+  
+  # return an R-ready quoted vector as a string
+  paste0("c(", paste(shQuote(codes), collapse = ", "), ")")
+}
+
+paste_codes_from_excel(codes_raw)
+```
+
